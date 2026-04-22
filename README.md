@@ -1,2 +1,5 @@
 # grace-wj.github.io
-grace's personal website
+
+My personal website. Live at <https://grace-wj.github.io>.
+
+Plain HTML/CSS/JS, deployed via GitHub Pages from `main`.

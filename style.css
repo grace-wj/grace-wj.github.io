@@ -1,41 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=UnifrakturMaguntia&display=swap');
+
 :root {
-  --bg: #fafaf7;
-  --fg: #1a1a1a;
-  --accent: #555;
+  --page: #f5efe0;
+  --ink: #1b1610;
+  --dim: #7a6650;
+  --rubric: #a0271a;      /* vermilion */
+  --gilt: #b58b2a;        /* gold */
+  --ruled: #cfbf9a;
+  --margin-ink: #3f342a;
+  --gloss: #5d4a36;
+  --page-shadow: rgba(80, 50, 20, 0.18);
+  --serif: 'EB Garamond', 'Fraunces', Georgia, serif;
+  --display: 'Fraunces', 'EB Garamond', Georgia, serif;
+  --black: 'UnifrakturMaguntia', 'Fraunces', serif;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html, body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
-  color: var(--fg);
-  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  background: #2a1f15;
+  color: var(--ink);
+  font-family: var(--serif);
   font-size: 18px;
-  line-height: 1.6;
-}
-
-main {
+  line-height: 1.55;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 2rem 2.5rem;
-  max-width: 40rem;
 }
 
-h1 {
-  font-size: clamp(2.5rem, 8vw, 5rem);
+body {
+  background:
+    radial-gradient(1200px 800px at 50% -200px, rgba(255, 230, 180, 0.04), transparent 70%),
+    repeating-linear-gradient(0deg, #2a1f15 0 40px, #231a11 40px 80px);
+  padding: 2rem 1rem 5rem;
+}
+
+/* masthead */
+.masthead {
+  max-width: 78rem;
+  margin: 0 auto 2rem;
+  text-align: center;
+  color: var(--page);
+  padding: 1.5rem 1rem 2rem;
+}
+.edition {
+  font-family: var(--serif);
+  font-style: italic;
+  letter-spacing: 0.3em;
+  text-transform: lowercase;
+  color: var(--gilt);
+  font-size: 0.85rem;
+  margin: 0 0 0.8rem;
+}
+.masthead h1.title {
+  font-family: var(--black);
   font-weight: 400;
-  letter-spacing: -0.02em;
-  margin: 0 0 1rem;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 0.95;
+  margin: 0 0 0.6rem;
+  color: var(--page);
+  letter-spacing: 0.02em;
+}
+.masthead .amp {
+  color: var(--gilt);
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+}
+.masthead .subtitle {
+  font-style: italic;
+  color: var(--ruled);
+  font-size: 1rem;
+  margin: 0;
 }
 
-p {
-  color: var(--accent);
-  margin: 0;
+/* page (the manuscript leaf) */
+.page {
+  max-width: 78rem;
+  margin: 0 auto;
+  background: var(--page);
+  background-image:
+    radial-gradient(900px 600px at 20% 20%, rgba(165,130,80,0.06), transparent 60%),
+    radial-gradient(700px 500px at 80% 90%, rgba(165,130,80,0.05), transparent 60%),
+    repeating-linear-gradient(19deg, rgba(140,100,60,0.025) 0 2px, transparent 2px 6px);
+  padding: 3rem clamp(1.2rem, 3vw, 3rem) 4rem;
+  position: relative;
+  box-shadow:
+    0 30px 60px var(--page-shadow),
+    0 6px 20px rgba(0,0,0,0.25);
+  display: grid;
+  grid-template-columns: 13rem 1fr 13rem;
+  gap: 2.4rem;
+  border: 1px solid #dccfab;
+}
+/* decorative horizontal rules */
+.page::before, .page::after {
+  content: "";
+  position: absolute;
+  left: 2.5rem; right: 2.5rem;
+  height: 1px;
+  background: var(--ruled);
+  opacity: 0.65;
+}
+.page::before { top: 1.4rem; }
+.page::after { bottom: 1.4rem; }
+
+/* body column */
+.body {
+  grid-column: 2;
+  font-family: var(--serif);
+  color: var(--ink);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  hyphens: auto;
+  text-align: justify;
+  text-justify: inter-word;
+}
+.body p { margin: 0 0 1rem; text-indent: 1.4em; }
+.body p.lead { text-indent: 0; }
+.body h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--rubric);
+  margin: 2.2rem 0 0.6rem;
+  text-align: center;
+  font-variation-settings: "opsz" 144;
+}
+.body h2.colophon { margin-top: 2.6rem; font-size: 1rem; }
+.body p.colophon-text {
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--dim);
+  text-align: center;
+  text-indent: 0;
+}
+
+/* drop cap */
+.dropcap {
+  float: left;
+  font-family: var(--black);
+  font-size: 4.6rem;
+  line-height: 0.85;
+  padding: 0.3rem 0.5rem 0 0;
+  color: var(--rubric);
+  text-shadow:
+    0 0 0 var(--rubric),
+    1px 1px 0 rgba(0,0,0,0.08);
+}
+
+/* footnote markers in running text */
+sup.fn {
+  color: var(--rubric);
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--display);
+  padding: 0 0.05em;
+  font-size: 0.7em;
+}
+sup.fn:hover { background: rgba(160, 39, 26, 0.12); }
+
+sup { color: var(--gilt); }
+
+.body a.work {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--rubric);
+  cursor: pointer;
+}
+.body a.work:hover {
+  background: rgba(160, 39, 26, 0.06);
+  color: var(--rubric);
+}
+
+.body a[href] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--gilt);
+  text-underline-offset: 3px;
+}
+
+/* in-body pilcrow notes */
+.note {
+  display: inline-block;
+  cursor: pointer;
+  color: var(--gilt);
+  font-family: var(--display);
+  margin: 0 0.15em;
+  padding: 0 0.15em;
+  line-height: 1;
+  position: relative;
+  vertical-align: baseline;
+}
+.note__pilcrow { font-weight: 700; font-style: italic; }
+.note:hover { background: rgba(181, 139, 42, 0.15); }
+.note.active { color: var(--rubric); }
+
+/* margins */
+.margin {
+  font-family: var(--serif);
+  color: var(--gloss);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  padding-top: 0.5rem;
+}
+.margin--left { grid-column: 1; text-align: right; }
+.margin--right { grid-column: 3; text-align: left; }
+
+.gloss {
+  margin: 0 0 1.4rem;
+  padding: 0 0.2rem;
+  transition: background 0.2s ease;
+}
+.gloss p { margin: 0; }
+.gloss em { color: var(--margin-ink); }
+.gloss__no {
+  color: var(--rubric);
+  font-weight: 700;
+  font-family: var(--display);
+  margin-right: 0.1em;
+}
+.gloss.highlight {
+  background: rgba(181, 139, 42, 0.17);
+  box-shadow:
+    inset 3px 0 0 var(--gilt),
+    inset -3px 0 0 var(--gilt);
+  padding: 0.2rem 0.4rem;
+}
+.rubric .inc {
+  font-family: var(--black);
+  font-weight: 400;
+  color: var(--rubric);
+  font-size: 1.05rem;
+  line-height: 1.2;
+  text-align: left;
+}
+
+/* modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 3rem 1rem;
+  background: rgba(20, 12, 5, 0.55);
+  z-index: 50;
+  overflow: auto;
+}
+.modal.open { display: flex; }
+.modal__page {
+  background: var(--page);
+  padding: 3rem 2.5rem 2.5rem;
+  max-width: 42rem;
+  width: 100%;
+  font-family: var(--serif);
+  color: var(--ink);
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+  background-image:
+    repeating-linear-gradient(22deg, rgba(140,100,60,0.03) 0 2px, transparent 2px 8px);
+}
+.modal__close {
+  position: absolute;
+  top: 0.8rem; right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: var(--rubric);
+  cursor: pointer;
+  font-family: var(--display);
+  line-height: 1;
+}
+.modal__content h3 {
+  font-family: var(--display);
+  color: var(--rubric);
+  font-size: 1.4rem;
+  margin: 0 0 0.2rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.modal__content .kind {
+  font-style: italic;
+  color: var(--dim);
+  font-size: 0.9rem;
+  margin: 0 0 1.2rem;
+}
+.modal__content p { margin: 0 0 0.9rem; line-height: 1.65; }
+.modal__content sup.fn { cursor: default; }
+.modal__content .fn-list {
+  margin-top: 1.6rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--ruled);
+  font-size: 0.85rem;
+  color: var(--gloss);
+}
+.modal__content .fn-list p { margin: 0 0 0.4rem; }
+.modal__content .fn-list .n {
+  color: var(--rubric);
+  font-weight: 700;
+  margin-right: 0.3em;
+  font-family: var(--display);
+}
+
+/* folio */
+.folio {
+  max-width: 78rem;
+  margin: 1rem auto 0;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ruled);
+  font-size: 0.82rem;
+  padding: 0 0.5rem;
+}
+
+/* mobile: single column, margin notes inline */
+@media (max-width: 900px) {
+  .page {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.2rem 3rem;
+    gap: 1.2rem;
+  }
+  .body {
+    grid-column: 1;
+    font-size: 1rem;
+  }
+  .margin {
+    grid-column: 1;
+    text-align: left;
+    font-size: 0.85rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--gilt);
+  }
+  .margin--left, .margin--right { text-align: left; }
+  .masthead h1.title { font-size: clamp(2.5rem, 12vw, 4.5rem); }
 }

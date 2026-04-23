@@ -1,15 +1,172 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grace</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+<title>grace — archive</title>
+<meta name="description" content="Grace Wei-li Juan — a pinboard of things. Drag to pan, scroll to zoom." />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main>
-    <h1>grace</h1>
-    <p>a site, under construction.</p>
-  </main>
+<div class="help" id="help">
+  <p><strong>drag</strong> to pan · <strong>scroll</strong> to zoom · <strong>click</strong> to focus · <kbd>r</kbd> to recenter</p>
+</div>
+<div class="minimap" id="minimap" aria-hidden="true">
+  <div class="minimap__viewport" id="mvp"></div>
+  <div class="minimap__dot" style="--x: 0.50; --y: 0.50"></div>
+</div>
+<main class="viewport" id="viewport">
+  <div class="world" id="world">
+    <!-- title -->
+    <div class="item title" style="--x: 0; --y: 0; --rot: -2deg;">
+      <h1>grace<br/>wei-li<br/>juan</h1>
+      <p class="sub">software engineer · polymath · visual artist · <em>a pinboard</em></p>
+    </div>
+
+    <!-- sticky notes -->
+    <div class="item sticky yellow" style="--x: -520; --y: -180; --rot: 4deg;">
+      <p>i keep thinking about what it means for <u>a system to be kind</u>.</p>
+      <p class="meta">— note to self, march</p>
+    </div>
+    <div class="item sticky pink" style="--x: 480; --y: -260; --rot: -5deg;">
+      <p>reminder: the compiler is also a <em>reader</em>.</p>
+    </div>
+    <div class="item sticky blue" style="--x: 620; --y: 320; --rot: 3deg;">
+      <p>a garden is a database that forgets on purpose.</p>
+    </div>
+    <div class="item sticky yellow" style="--x: -680; --y: 420; --rot: -7deg;">
+      <p>two paintings, one bug fixed, one long walk. a good tuesday.</p>
+    </div>
+
+    <!-- polaroids (projects) -->
+    <div class="item polaroid" style="--x: -340; --y: 340; --rot: -3deg;">
+      <div class="polaroid__img">
+        <svg viewBox="0 0 200 150"><rect width="200" height="150" fill="#cfd8c5"/>
+          <circle cx="100" cy="80" r="34" fill="#e4b363"/>
+          <g stroke="#2f3a2a" stroke-width="1.2" fill="none">
+            <ellipse cx="100" cy="80" rx="54" ry="10"/>
+            <ellipse cx="100" cy="80" rx="74" ry="18" transform="rotate(20 100 80)"/>
+            <ellipse cx="100" cy="80" rx="88" ry="26" transform="rotate(-15 100 80)"/>
+          </g>
+        </svg>
+      </div>
+      <p class="polaroid__caption">hum — a pocket synth for non-musicians. rust + webaudio.</p>
+    </div>
+    <div class="item polaroid" style="--x: 260; --y: 120; --rot: 4deg;">
+      <div class="polaroid__img">
+        <svg viewBox="0 0 200 150"><rect width="200" height="150" fill="#1a1f2b"/>
+          <g font-family="ui-monospace, monospace" font-size="8" fill="#9aa7c0">
+            <text x="12" y="24">∞ parse(stars) {</text>
+            <text x="20" y="40">  const grief =</text>
+            <text x="20" y="54">    tokens();</text>
+            <text x="20" y="68">  return grief</text>
+            <text x="20" y="82">    .map(soften);</text>
+            <text x="12" y="96">}</text>
+            <text x="12" y="120" fill="#e4b363">// i love you</text>
+          </g>
+        </svg>
+      </div>
+      <p class="polaroid__caption">slowcompiler — deliberately slow. prints haiku between stages.</p>
+    </div>
+    <div class="item polaroid" style="--x: 120; --y: -380; --rot: -4deg;">
+      <div class="polaroid__img">
+        <svg viewBox="0 0 200 150"><rect width="200" height="150" fill="#f2e6d5"/>
+          <g stroke="#8a5a3b" stroke-width="1.1" fill="none">
+            <path d="M10 75 Q60 40 110 75 T210 75"/>
+            <path d="M10 90 Q60 60 110 90 T210 90" opacity=".7"/>
+            <path d="M10 60 Q60 25 110 60 T210 60" opacity=".5"/>
+          </g>
+          <g fill="#8a5a3b"><circle cx="40" cy="25" r="1.5"/><circle cx="120" cy="20" r="1.5"/><circle cx="175" cy="32" r="1.5"/></g>
+          <text x="10" y="140" fill="#8a5a3b" font-family="monospace" font-size="8">weft — one scarf / year</text>
+        </svg>
+      </div>
+      <p class="polaroid__caption">weft — a loom tied by git. one scarf finishes per year.</p>
+    </div>
+
+    <!-- art pieces -->
+    <div class="item art" style="--x: 800; --y: -60; --rot: 2deg;">
+      <div class="art__frame">
+        <svg viewBox="0 0 300 220">
+          <rect width="300" height="220" fill="#0b0f0a"/>
+          <circle cx="150" cy="110" r="10" fill="#e4b363"/>
+          <g stroke="#cfd8c5" stroke-width="1" fill="none">
+            <ellipse cx="150" cy="110" rx="70" ry="26"/>
+            <ellipse cx="150" cy="110" rx="115" ry="48" transform="rotate(22 150 110)"/>
+            <ellipse cx="150" cy="110" rx="170" ry="74" transform="rotate(-18 150 110)"/>
+          </g>
+          <circle cx="218" cy="118" r="3" fill="#d97f8c"/>
+          <circle cx="82" cy="94" r="3" fill="#7aa7c9"/>
+        </svg>
+      </div>
+      <p class="art__label">three bodies orbiting a lamp · 2024 · ink</p>
+    </div>
+    <div class="item art" style="--x: -900; --y: 80; --rot: -3deg;">
+      <div class="art__frame">
+        <svg viewBox="0 0 300 220">
+          <rect width="300" height="220" fill="#f0e4c8"/>
+          <g stroke="#2f3a2a" stroke-width="0.8" opacity="0.8" fill="none">
+            <circle cx="80" cy="110" r="46"/>
+            <circle cx="80" cy="110" r="70"/>
+            <circle cx="80" cy="110" r="95"/>
+            <line x1="0" y1="110" x2="300" y2="110"/>
+            <line x1="80" y1="0" x2="80" y2="220"/>
+          </g>
+          <g fill="#2f3a2a" font-family="Georgia, serif" font-size="9" font-style="italic">
+            <text x="190" y="40">harbor, 03:14</text>
+            <text x="190" y="58">tide ↑ 0.6m</text>
+            <text x="190" y="76">moon: waning</text>
+          </g>
+        </svg>
+      </div>
+      <p class="art__label">tide-chart for a city that doesn't exist · 2025 · gouache</p>
+    </div>
+
+    <!-- zine / writing teasers -->
+    <div class="item zine" style="--x: 40; --y: 420; --rot: 1deg;">
+      <h3>on stillness</h3>
+      <p>there is a kind of software that sits still. it does one thing and does not grow. <span class="mono">cat</span>, <span class="mono">grep</span>, <span class="mono">make</span>. the unix utilities were finished before i was born. they work.</p>
+      <p class="zine__more">— an essay</p>
+    </div>
+    <div class="item zine" style="--x: -160; --y: 640; --rot: -2deg;">
+      <h3>notes toward a theory of kitsch</h3>
+      <p>kitsch is the aesthetic of pre-digested feeling. a neural network is a kitsch machine if you squint. i'm interested in the opposite: art that asks you to chew.</p>
+      <p class="zine__more">— draft, ongoing</p>
+    </div>
+
+    <!-- contact scrap -->
+    <div class="item scrap" style="--x: 940; --y: 460; --rot: -6deg;">
+      <p>find me</p>
+      <ul>
+        <li><a href="mailto:grayswan795@gmail.com">mail</a></li>
+        <li><a href="https://github.com/grace-wj" rel="noopener">github</a></li>
+        <li>elsewhere, on foot</li>
+      </ul>
+    </div>
+
+    <!-- handwritten arrow annotations -->
+    <svg class="anno" style="--x: -280; --y: -80; --rot: -8deg;" viewBox="0 0 180 80">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#8a5a3b"/>
+        </marker>
+      </defs>
+      <path d="M10 60 Q60 10 150 40" stroke="#8a5a3b" stroke-width="1.4" fill="none" marker-end="url(#arrow)"/>
+      <text x="12" y="75" font-family="Caveat, 'Comic Sans MS', cursive" fill="#8a5a3b" font-size="16">start here</text>
+    </svg>
+    <svg class="anno" style="--x: 380; --y: 480; --rot: 4deg;" viewBox="0 0 180 60">
+      <path d="M170 10 Q80 30 20 48" stroke="#8a5a3b" stroke-width="1.4" fill="none" marker-end="url(#arrow)"/>
+      <text x="55" y="12" font-family="Caveat, 'Comic Sans MS', cursive" fill="#8a5a3b" font-size="16">←unfinished</text>
+    </svg>
+
+    <!-- grid tick marks for spatial feel -->
+    <div class="dot" style="--x: -1100; --y: -600;"></div>
+    <div class="dot" style="--x: 1200; --y: -700;"></div>
+    <div class="dot" style="--x: -1200; --y: 800;"></div>
+    <div class="dot" style="--x: 1100; --y: 900;"></div>
+    <div class="dot" style="--x: 0; --y: 1200;"></div>
+    <div class="dot" style="--x: 0; --y: -1100;"></div>
+  </div>
+</main>
+<script src="script.js" defer></script>
 </body>
 </html>

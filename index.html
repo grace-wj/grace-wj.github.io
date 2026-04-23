@@ -1,15 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grace</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>grace@wj:~$</title>
+<meta name="description" content="Grace Wei-li Juan — software engineer, polymath, visual artist. A portfolio you type into." />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main>
-    <h1>grace</h1>
-    <p>a site, under construction.</p>
-  </main>
+<main class="crt" id="screen">
+  <div class="scanlines" aria-hidden="true"></div>
+  <section class="term" id="term" aria-label="Terminal session">
+    <pre class="motd" id="motd"></pre>
+    <div id="history" class="history"></div>
+    <form class="prompt-line" id="form" autocomplete="off" spellcheck="false">
+      <span class="prompt" aria-hidden="true">grace@wj<span class="sep">:</span><span class="path" id="path">~</span><span class="dollar">$</span>&nbsp;</span>
+      <input id="input" class="input" aria-label="terminal input" autofocus />
+      <span class="cursor" id="cursor" aria-hidden="true">█</span>
+    </form>
+  </section>
+</main>
+<noscript><p style="color:#9fefb6;font-family:monospace;padding:2rem;">This site is a terminal. It needs JavaScript.</p></noscript>
+<script src="script.js" defer></script>
 </body>
 </html>

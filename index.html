@@ -1,15 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grace</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>grace — the foyer</title>
+<meta name="description" content="A small room with four doors. Each opens onto a different version of this site." />
+<link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <main>
-    <h1>grace</h1>
-    <p>a site, under construction.</p>
-  </main>
+<body class="room">
+
+<main class="foyer">
+
+  <header class="placard">
+    <p class="aside">grace wei-li juan</p>
+    <h1>you are in a small room.</h1>
+    <p class="lede">four doors. each opens onto a different version of this site. step through any of them; come back when you like.</p>
+  </header>
+
+  <section class="doors" aria-label="doors">
+
+    <a class="door" href="terminal/" style="--accent: #9fefb6;">
+      <span class="door__num">i.</span>
+      <span class="door__panel" aria-hidden="true">
+        <span class="door__knob"></span>
+      </span>
+      <span class="door__label">
+        <span class="door__name">terminal</span>
+        <span class="door__tag">a unix shell — type to get anywhere</span>
+      </span>
+    </a>
+
+    <a class="door" href="archive/" style="--accent: #f3c969;">
+      <span class="door__num">ii.</span>
+      <span class="door__panel" aria-hidden="true">
+        <span class="door__knob"></span>
+      </span>
+      <span class="door__label">
+        <span class="door__name">archive</span>
+        <span class="door__tag">a 2D pinboard — drag to pan, scroll to zoom</span>
+      </span>
+    </a>
+
+    <a class="door" href="marginalia/" style="--accent: #c14a3a;">
+      <span class="door__num">iii.</span>
+      <span class="door__panel" aria-hidden="true">
+        <span class="door__knob"></span>
+      </span>
+      <span class="door__label">
+        <span class="door__name">marginalia</span>
+        <span class="door__tag">a critical edition — footnotes all the way down</span>
+      </span>
+    </a>
+
+    <a class="door" href="signal/" style="--accent: #74b9ff;">
+      <span class="door__num">iv.</span>
+      <span class="door__panel" aria-hidden="true">
+        <span class="door__knob"></span>
+      </span>
+      <span class="door__label">
+        <span class="door__name">signal</span>
+        <span class="door__tag">an FM tuner — WGWJ, 88.0&ndash;108.0</span>
+      </span>
+    </a>
+
+  </section>
+
+  <footer class="floor">
+    <p>each door is a branch &mdash; <code>concept/&lt;name&gt;</code> &mdash; pulled into its own folder. nothing here is final.</p>
+  </footer>
+
+</main>
+
 </body>
 </html>

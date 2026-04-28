@@ -1,0 +1,274 @@
+:root {
+  --paper:     #f1e6cc;
+  --paper-d:   #e6d8b6;
+  --paper-2:   #ead9b6;
+  --ink:       #1a1410;
+  --ink-soft:  #4d3f30;
+  --ink-dim:   #84725a;
+  --vermilion: #a8311e;
+  --gold:      #a8853c;
+  --serif:     'Cormorant Garamond', 'Iowan Old Style', Garamond, Georgia, serif;
+  --smallcap:  'Cormorant SC', 'Iowan Old Style', Garamond, Georgia, serif;
+  --mono:      'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+}
+html { scroll-behavior: auto; }
+body {
+  /* paper grain — three offset radial-gradient layers */
+  background:
+    radial-gradient(1100px 700px at 15% 15%, rgba(120,80,30,0.05), transparent 60%),
+    radial-gradient(900px 700px at 85% 85%, rgba(80,40,10,0.04), transparent 60%),
+    radial-gradient(circle at 30% 60%, rgba(120,80,30,0.025) 1px, transparent 2px) 0 0/220px 220px,
+    var(--paper);
+  overflow-x: hidden;
+}
+
+/* ──────────────────────────────────────────────────────────
+   masthead, above the chart
+   ────────────────────────────────────────────────────────── */
+.masthead {
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 8vh 5vw 4vh;
+  text-align: center;
+}
+.kicker {
+  font-family: var(--smallcap);
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  color: var(--vermilion);
+  margin: 0 0 1.2rem;
+}
+.sc {
+  font-family: var(--smallcap);
+  letter-spacing: 0.16em;
+  text-transform: lowercase;
+  font-weight: 500;
+}
+.title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(2rem, 4.4vw, 3.2rem);
+  line-height: 1.05;
+  margin: 0 0 1.3rem;
+  letter-spacing: -0.005em;
+}
+.title em { font-style: italic; color: var(--vermilion); }
+.lede {
+  margin: 0 0 1.4rem;
+  line-height: 1.55;
+  font-size: 1.04rem;
+  color: var(--ink-soft);
+  text-align: left;
+}
+.hint {
+  margin: 0;
+  font-size: 0.74rem;
+  color: var(--ink-dim);
+}
+
+/* ──────────────────────────────────────────────────────────
+   the track + sticky camera (passage convention)
+   vertical scroll → horizontal pan via --cam-x
+   ────────────────────────────────────────────────────────── */
+.track {
+  position: relative;
+  height: 720vh;             /* vertical scroll budget — ~7 viewports of scroll → full year */
+  width: 100%;
+}
+.camera {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--paper);
+  border-top: 1px solid rgba(26,20,16,0.20);
+  border-bottom: 1px solid rgba(26,20,16,0.20);
+}
+
+/* the chart panned by --cam-x; full-bleed; preserveAspectRatio="none" stretches vertically */
+.chart {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3000px;
+  height: 100%;
+  transform: translate3d(var(--cam-x, 0px), 0, 0);
+  will-change: transform;
+}
+
+/* ──────────────────────────────────────────────────────────
+   moored work pins — interactive bits
+   ────────────────────────────────────────────────────────── */
+.work { cursor: pointer; }
+.work .dot { transition: r 200ms ease, transform 250ms ease; transform-origin: center; transform-box: fill-box; }
+.work .label,
+.work .kind  { transition: fill 200ms ease, opacity 200ms ease; }
+.work:hover .dot,
+.work:focus .dot { r: 9; }
+.work:hover .label,
+.work:focus .label { fill: var(--vermilion); }
+
+/* ──────────────────────────────────────────────────────────
+   HUD — top-left of the camera, fixed in viewport-space
+   ────────────────────────────────────────────────────────── */
+.hud {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  z-index: 10;
+  background: rgba(241, 230, 204, 0.85);
+  border: 1px solid rgba(26,20,16,0.18);
+  padding: 0.6rem 0.85rem 0.7rem;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+  min-width: 13rem;
+}
+.hud__line {
+  font-family: var(--smallcap);
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  color: var(--ink);
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  font-weight: 500;
+}
+.hud__pigment {
+  font-family: var(--serif);
+  font-style: italic;
+  margin: 0 0 0.35rem;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.hud__chip {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 1px;
+  background: var(--paper-d);
+  border: 1px solid rgba(26,20,16,0.4);
+  box-shadow: inset 0 -2px 4px rgba(0,0,0,0.15);
+  transition: background 220ms ease;
+}
+.hud__week {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  color: var(--ink-dim);
+  text-transform: lowercase;
+  font-weight: 500;
+}
+
+/* ──────────────────────────────────────────────────────────
+   drawer — slides in from the right when a work is clicked
+   ────────────────────────────────────────────────────────── */
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(420px, 92vw);
+  height: 100vh;
+  background: var(--paper);
+  border-left: 1px solid rgba(26,20,16,0.25);
+  z-index: 100;
+  transform: translateX(110%);
+  transition: transform 380ms cubic-bezier(.2,.7,.2,1);
+  overflow: auto;
+  padding: 3.6rem 2rem 2.5rem;
+  box-shadow: -20px 0 48px rgba(0,0,0,0.10);
+}
+.drawer.is-open { transform: translateX(0); }
+.drawer__close {
+  position: absolute;
+  top: 0.6rem; right: 1rem;
+  background: none;
+  border: none;
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  color: var(--vermilion);
+  cursor: pointer;
+  line-height: 1;
+}
+.drawer__content h2 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.55rem;
+  margin: 0 0 0.2rem;
+}
+.drawer__content .meta {
+  font-family: var(--smallcap);
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  color: var(--vermilion);
+  text-transform: lowercase;
+  margin: 0 0 1rem;
+}
+.drawer__content p { margin: 0 0 0.85rem; line-height: 1.6; color: var(--ink-soft); }
+.drawer__content em { color: var(--ink); font-style: italic; }
+.drawer__content .anchor-line {
+  margin-top: 1.2rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid rgba(26,20,16,0.2);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  color: var(--ink-dim);
+  text-transform: lowercase;
+}
+
+/* ──────────────────────────────────────────────────────────
+   coda
+   ────────────────────────────────────────────────────────── */
+.coda {
+  text-align: center;
+  padding: 3vh 5vw 5vh;
+  max-width: 38rem;
+  margin: 0 auto;
+}
+.coda__line {
+  font-family: var(--smallcap);
+  letter-spacing: 0.16em;
+  font-size: 0.78rem;
+  color: var(--ink-dim);
+  margin: 0 0 0.4rem;
+  text-transform: lowercase;
+}
+.coda__line em { font-family: var(--serif); font-style: italic; text-transform: none; letter-spacing: 0; color: var(--ink-soft); }
+.coda a { color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--gold); }
+.coda a:hover { color: var(--vermilion); }
+
+/* ──────────────────────────────────────────────────────────
+   responsive
+   ────────────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .masthead { padding: 6vh 6vw 3vh; }
+  .title { font-size: clamp(1.5rem, 7vw, 2.2rem); }
+  .lede { font-size: 0.95rem; }
+  .hud { min-width: 11rem; padding: 0.5rem 0.7rem; left: 8px; top: 8px; }
+  .hud__line { font-size: 0.92rem; }
+  .hud__pigment { font-size: 0.82rem; }
+  .track { height: 480vh; }   /* shorter scroll budget on mobile */
+  .drawer { width: 100%; padding: 3rem 1.4rem 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work .dot, .work .label, .work .kind,
+  .drawer, .hud__chip { transition: none; }
+}

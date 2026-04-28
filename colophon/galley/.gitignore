@@ -1,9 +1,0 @@
-.DS_Store
-*.log
-node_modules/
-dist/
-.env
-.env.local
-.vscode/
-.idea/
-.playwright-mcp/

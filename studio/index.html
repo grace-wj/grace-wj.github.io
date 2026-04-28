@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Grace Wei-li Juan — studio</title>
+<meta name="description" content="A small painter's studio you can orbit. Each object is a thing Grace is making." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500&display=swap" />
+<link rel="stylesheet" href="style.css" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<noscript><p class="noscript">This studio needs JavaScript and a browser with WebGL. The room won't render without them.</p></noscript>
+
+<div id="stage" aria-label="A 3D painter's studio. Drag to orbit, click an object to read about it."></div>
+
+<header class="placard" aria-hidden="false">
+  <p class="kicker">grace wei-li juan</p>
+  <h1>the studio</h1>
+  <p class="lede">a small room. drag to look around. click an object to ask what it is.</p>
+</header>
+
+<div class="hud">
+  <p class="hud__label" id="hudLabel">&nbsp;</p>
+  <p class="hud__hint">drag · scroll to zoom</p>
+</div>
+
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <button class="drawer__close" id="drawerClose" aria-label="close">×</button>
+  <div class="drawer__inner" id="drawerInner"></div>
+</aside>
+
+<noscript></noscript>
+<script type="module" src="script.js"></script>
+</body>
+</html>

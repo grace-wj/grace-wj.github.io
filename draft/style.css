@@ -1,0 +1,307 @@
+:root {
+  /* paper warmth shifts with time of day; defaults are ~midday */
+  --paper:        #f4ebd6;
+  --paper-edge:   #e6d8b8;
+  --ink:          #1c1410;
+  --ink-soft:     #4d3f30;
+  --ink-dim:      #847258;
+  --ink-faint:    #b3a07c;
+  --vermilion:    #b53a23;
+  --vermilion-deep:#8a261a;
+  --rule:         rgba(28,20,16,0.10);
+  --serif:        'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+  --hand:         'Caveat', 'Bradley Hand', 'Comic Sans MS', cursive;
+}
+
+/* time-of-day variants */
+.ms[data-tod="dawn"] {
+  --paper: #f0e6d8;
+  --paper-edge: #ddccae;
+  --ink: #2a201a;
+}
+.ms[data-tod="morning"] {
+  --paper: #f6eedd;
+  --paper-edge: #ead9b6;
+  --ink: #1c1410;
+}
+.ms[data-tod="midday"] {
+  --paper: #f5ecd5;
+  --paper-edge: #e6d6b2;
+  --ink: #1a120e;
+}
+.ms[data-tod="afternoon"] {
+  --paper: #f3e4c8;
+  --paper-edge: #ddc89b;
+  --ink: #1d130d;
+}
+.ms[data-tod="evening"] {
+  --paper: #efd9b1;
+  --paper-edge: #d6b884;
+  --ink: #221610;
+}
+.ms[data-tod="night"] {
+  --paper: #2a2218;
+  --paper-edge: #1c160e;
+  --ink: #ead8b0;
+  --ink-soft: #b8a37a;
+  --ink-dim: #8c7853;
+  --ink-faint: #5b4d36;
+  --vermilion: #d56450;
+  --vermilion-deep:#a14a3a;
+  --rule: rgba(255,225,180,0.10);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper-edge);
+  color: var(--ink);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  transition: background 1500ms ease, color 1500ms ease;
+}
+
+body.ms {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 50% 30%, var(--paper) 0%, var(--paper-edge) 90%);
+}
+
+/* ——— folio (top tab) ——— */
+.folio {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 2vh 4vw 0;
+  font-size: 0.86rem;
+  color: var(--ink-dim);
+  font-style: italic;
+  font-feature-settings: 'lnum';
+}
+.folio__draft {
+  margin: 0;
+  display: flex;
+  gap: 0.6em;
+  align-items: baseline;
+}
+.folio__label {
+  font-style: normal;
+  letter-spacing: 0.18em;
+  text-transform: lowercase;
+  color: var(--vermilion);
+  font-size: 0.78rem;
+}
+.folio__rev {
+  font-style: italic;
+  color: var(--ink-dim);
+}
+.folio__time {
+  margin-left: 0.6em;
+  color: var(--ink-faint);
+}
+.folio__skip {
+  font-family: var(--hand);
+  font-size: 1.1rem;
+  background: transparent;
+  border: 0;
+  color: var(--vermilion);
+  cursor: pointer;
+  padding: 0.2em 0.4em;
+  border-bottom: 1px solid color-mix(in oklab, var(--vermilion) 40%, transparent);
+}
+.folio__skip:hover { color: var(--vermilion-deep); border-color: var(--vermilion-deep); }
+.folio__skip[hidden] { display: none; }
+
+/* ——— page ——— */
+.page {
+  max-width: 1080px;
+  margin: 6vh auto 4vh;
+  padding: 0 4vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6em;
+}
+
+/* row = body slot + margin slot */
+.row {
+  display: grid;
+  grid-template-columns: minmax(auto, 36ch) 16ch;
+  gap: 2.6rem;
+  align-items: start;
+}
+
+/* ——— typography ——— */
+.head {
+  margin: 0 0 1.2em;
+}
+.title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+  line-height: 1.0;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  min-height: 1em;
+}
+.subtitle {
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1.04rem;
+  margin: 0;
+  min-height: 1em;
+}
+
+.prose {
+  font-size: clamp(1.04rem, 1.5vw, 1.18rem);
+  line-height: 1.65;
+  color: var(--ink);
+  margin: 0;
+  letter-spacing: 0.005em;
+  min-height: 1em;
+}
+.prose--lead { margin-bottom: 0.4em; }
+.prose--coda { font-style: italic; color: var(--ink-soft); }
+
+/* works list */
+.works {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  font-size: clamp(1.0rem, 1.4vw, 1.12rem);
+  line-height: 1.55;
+  min-height: 1em;
+}
+.works li {
+  position: relative;
+  padding-left: 1.6em;
+  color: var(--ink);
+  min-height: 1em;
+}
+.works li::before {
+  content: '';
+  position: absolute;
+  left: 0.4em;
+  top: 0.85em;
+  width: 0.7em;
+  height: 1px;
+  background: var(--vermilion);
+  opacity: 0.7;
+}
+.works .work-name {
+  font-style: italic;
+  color: var(--ink);
+}
+.works .work-desc { color: var(--ink-soft); }
+
+/* ——— strikethroughs ——— */
+.prose s, .works s, .head s {
+  text-decoration: line-through;
+  text-decoration-color: var(--vermilion);
+  text-decoration-thickness: 1.5px;
+  color: color-mix(in oklab, var(--ink) 50%, var(--paper));
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* the cursor: appended to the .head segment via JS */
+.caret {
+  display: inline-block;
+  width: 1px;
+  height: 0.96em;
+  background: currentColor;
+  vertical-align: -0.08em;
+  margin-left: 1px;
+  animation: caret-blink 1s steps(2, jump-none) infinite;
+  opacity: 0.85;
+}
+.caret--big {
+  height: 1.0em;
+  width: 2px;
+  background: var(--vermilion);
+}
+@keyframes caret-blink {
+  0%, 49.99% { opacity: 0; }
+  50%, 100%  { opacity: 0.85; }
+}
+
+/* ——— margin notes ——— */
+.margin {
+  font-family: var(--hand);
+  color: var(--vermilion);
+  font-size: 1.18rem;
+  line-height: 1.35;
+  font-weight: 500;
+  letter-spacing: 0.002em;
+  align-self: end;
+  padding-top: 0.4em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  min-height: 0.5em;
+}
+.margin .note {
+  position: relative;
+  display: block;
+  opacity: 0;
+  transition: opacity 600ms ease, transform 600ms cubic-bezier(.3,.8,.4,1);
+  transform: translateX(-4px) rotate(-0.4deg);
+}
+.margin .note.is-shown {
+  opacity: 1;
+  transform: translateX(0) rotate(-0.4deg);
+}
+.margin .note .arrow {
+  display: inline-block;
+  margin-right: 0.2em;
+  font-family: var(--serif);
+  color: var(--vermilion);
+  font-size: 1.0em;
+  vertical-align: -0.05em;
+}
+
+/* ——— foot ——— */
+.ms__foot {
+  text-align: center;
+  padding: 5vh 4vw 5vh;
+  color: var(--ink-faint);
+  font-style: italic;
+  font-size: 0.9rem;
+  border-top: 1px dashed var(--rule);
+  margin-top: 4vh;
+}
+.ms__signoff a {
+  color: var(--vermilion);
+  text-decoration: none;
+  border-bottom: 1px dotted color-mix(in oklab, var(--vermilion) 50%, transparent);
+}
+.ms__signoff a:hover { color: var(--vermilion-deep); }
+
+/* ——— responsive ——— */
+@media (max-width: 880px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 0.6em;
+  }
+  .margin {
+    align-self: start;
+    padding-top: 0.2em;
+    border-left: 1px solid var(--rule);
+    padding-left: 0.8em;
+    margin-left: 0;
+    font-size: 1.04rem;
+  }
+}
+
+/* ——— motion preference ——— */
+@media (prefers-reduced-motion: reduce) {
+  .caret { animation: none; opacity: 0; }
+  .margin .note { transition: none; }
+  html, body { transition: none; }
+}

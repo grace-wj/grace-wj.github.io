@@ -81,6 +81,18 @@ body.room {
   max-height: clamp(220px, 42vh, 360px);
 }
 
+.doors--three-rows {
+  max-width: 1140px;
+  row-gap: clamp(2rem, 4.4vh, 3.4rem);
+}
+.doors--three-rows .door__panel {
+  max-height: clamp(180px, 30vh, 280px);
+  aspect-ratio: 2 / 4.4;
+}
+.doors--three-rows .door__num { font-size: 0.84rem; margin-bottom: 0.55rem; }
+.doors--three-rows .door__name { font-size: 1.06rem; }
+.doors--three-rows .door__tag  { font-size: 0.83rem; max-width: 22ch; line-height: 1.4; }
+
 .door {
   position: relative;
   display: flex;
@@ -234,6 +246,11 @@ body.room {
     row-gap: 2rem;
   }
   .doors--two-rows .door__panel { max-height: clamp(170px, 32vh, 240px); }
+  .doors--three-rows {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 2rem;
+  }
+  .doors--three-rows .door__panel { max-height: clamp(150px, 26vh, 220px); }
   .door__tag { font-size: 0.78rem; max-width: 16ch; }
 }
 @media (max-width: 720px) {
@@ -242,8 +259,10 @@ body.room {
     gap: 2rem 1.2rem;
   }
   .doors--two-rows { grid-template-columns: repeat(2, 1fr); row-gap: 2rem; }
+  .doors--three-rows { grid-template-columns: repeat(2, 1fr); row-gap: 2rem; }
   .doors--two-rows .door__panel,
-  .door__panel { max-height: 30vh; }
+  .doors--three-rows .door__panel,
+  .door__panel { max-height: 28vh; }
   .door__tag { font-size: 0.82rem; }
 }
 

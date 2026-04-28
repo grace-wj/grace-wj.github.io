@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Grace Wei-li Juan — passage</title>
+<meta name="description" content="A handscroll. Scroll vertically; the studio passes horizontally, from dawn to night, six stations of a working day." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+SC:wght@500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="masthead">
+  <p class="kicker">grace wei-li juan</p>
+  <h1 class="title">passage</h1>
+  <p class="lede">scroll. you are looking sideways through a working day. <span class="ital">six stations, dawn to night, in one room.</span></p>
+  <p class="cue">↓</p>
+</header>
+
+<section class="track" id="track">
+
+  <div class="camera">
+
+    <aside class="hud" aria-live="polite">
+      <span class="hud__roman" id="hudRoman">i</span>
+      <span class="hud__sep">·</span>
+      <span class="hud__hour" id="hudHour">dawn</span>
+      <span class="hud__sep">·</span>
+      <span class="hud__work" id="hudWork">hum</span>
+    </aside>
+
+    <div class="meter" aria-hidden="true">
+      <span class="meter__bar" id="meterBar"></span>
+      <span class="meter__ticks">
+        <i style="--at: 0.075"></i>
+        <i style="--at: 0.236"></i>
+        <i style="--at: 0.398"></i>
+        <i style="--at: 0.560"></i>
+        <i style="--at: 0.722"></i>
+        <i style="--at: 0.898"></i>
+      </span>
+    </div>
+
+    <div class="scene" id="scene" aria-label="a handscroll of one day in the studio, six stations">
+
+      <!-- ——— sky ——— -->
+      <svg class="layer layer--sky" viewBox="0 0 8000 800" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0.00"  stop-color="#1f2740"/>
+            <stop offset="0.05"  stop-color="#3b3850"/>
+            <stop offset="0.11"  stop-color="#a07664"/>
+            <stop offset="0.18"  stop-color="#d4a684"/>
+            <stop offset="0.27"  stop-color="#c9d4e2"/>
+            <stop offset="0.42"  stop-color="#d6dde8"/>
+            <stop offset="0.55"  stop-color="#e0d6c2"/>
+            <stop offset="0.66"  stop-color="#e6b685"/>
+            <stop offset="0.76"  stop-color="#c46838"/>
+            <stop offset="0.85"  stop-color="#5a3050"/>
+            <stop offset="0.92"  stop-color="#1c2148"/>
+            <stop offset="1.00"  stop-color="#0e1428"/>
+          </linearGradient>
+          <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+            <stop offset="0"  stop-color="#fff2cf" stop-opacity="0.95"/>
+            <stop offset="0.5" stop-color="#fde0a0" stop-opacity="0.6"/>
+            <stop offset="1"  stop-color="#fde0a0" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="moon" cx="50%" cy="50%" r="50%">
+            <stop offset="0"  stop-color="#f3eed8" stop-opacity="1"/>
+            <stop offset="0.7" stop-color="#dcd0a8" stop-opacity="0.6"/>
+            <stop offset="1"  stop-color="#dcd0a8" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect x="0" y="0" width="8000" height="600" fill="url(#sky)"/>
+        <!-- sun, climbing then setting -->
+        <circle cx="900" cy="380" r="42" fill="url(#sun)"/>
+        <circle cx="900" cy="380" r="18" fill="#ffeec7"/>
+        <circle cx="2100" cy="170" r="38" fill="url(#sun)"/>
+        <circle cx="2100" cy="170" r="14" fill="#fff5d2"/>
+        <circle cx="3300" cy="120" r="36" fill="url(#sun)"/>
+        <circle cx="3300" cy="120" r="13" fill="#fffae0"/>
+        <circle cx="4600" cy="220" r="40" fill="url(#sun)"/>
+        <circle cx="4600" cy="220" r="16" fill="#ffe2a8"/>
+        <circle cx="5900" cy="380" r="50" fill="url(#sun)"/>
+        <circle cx="5900" cy="380" r="22" fill="#ff9c5a"/>
+        <!-- moon, rising at night -->
+        <circle cx="7250" cy="200" r="32" fill="url(#moon)"/>
+        <circle cx="7250" cy="200" r="14" fill="#f3eed8"/>
+        <!-- a few stars in the night portion -->
+        <g fill="#f3eed8" opacity="0.9">
+          <circle cx="6900" cy="120" r="1.4"/>
+          <circle cx="7100" cy="80"  r="1.0"/>
+          <circle cx="7400" cy="140" r="1.2"/>
+          <circle cx="7600" cy="100" r="1.0"/>
+          <circle cx="7800" cy="160" r="1.4"/>
+          <circle cx="6800" cy="220" r="0.9"/>
+          <circle cx="7950" cy="60"  r="1.1"/>
+        </g>
+        <!-- soft clouds, mostly in morning/midday -->
+        <g fill="#ffffff" opacity="0.45">
+          <ellipse cx="1500" cy="200" rx="100" ry="18"/>
+          <ellipse cx="2400" cy="240" rx="120" ry="20"/>
+          <ellipse cx="3000" cy="180" rx="140" ry="22"/>
+          <ellipse cx="3600" cy="260" rx="100" ry="18"/>
+          <ellipse cx="4100" cy="200" rx="120" ry="20"/>
+        </g>
+        <g fill="#ffffff" opacity="0.25">
+          <ellipse cx="800" cy="280" rx="90" ry="16"/>
+          <ellipse cx="4900" cy="240" rx="100" ry="18"/>
+        </g>
+      </svg>
+
+      <!-- ——— far mountains (silhouette) ——— -->
+      <svg class="layer layer--far" viewBox="0 0 8000 800" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="#3a4060" opacity="0.55" d="M 0 600
+          L 0 460
+          C 200 420, 350 460, 500 440
+          L 700 380 L 900 430 L 1200 400 L 1450 460 L 1700 420
+          L 2000 380 L 2300 440 L 2600 400 L 2850 470 L 3100 410
+          L 3400 450 L 3700 420 L 4000 460 L 4300 410 L 4600 470
+          L 4900 430 L 5200 470 L 5500 420 L 5800 470 L 6100 430
+          L 6400 480 L 6700 440 L 7000 480 L 7300 430 L 7600 470
+          L 8000 440 L 8000 600 Z"/>
+      </svg>
+
+      <!-- ——— middle hills ——— -->
+      <svg class="layer layer--mid" viewBox="0 0 8000 800" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="#2c3344" opacity="0.7" d="M 0 700
+          L 0 560
+          C 300 530, 500 550, 800 520
+          L 1100 540 L 1400 510 L 1700 540 L 2000 520
+          L 2300 540 L 2600 520 L 2900 560 L 3200 510
+          L 3500 540 L 3800 520 L 4100 540 L 4400 520
+          L 4700 560 L 5000 530 L 5300 560 L 5600 530
+          L 5900 560 L 6200 530 L 6500 570 L 6800 540
+          L 7100 580 L 7400 540 L 7700 580 L 8000 550
+          L 8000 700 Z"/>
+      </svg>
+
+      <!-- ——— ground (the floor of the room / earth) ——— -->
+      <svg class="layer layer--ground" viewBox="0 0 8000 800" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0"   stop-color="#3a2c1c"/>
+            <stop offset="0.6" stop-color="#22180e"/>
+            <stop offset="1"   stop-color="#0e0905"/>
+          </linearGradient>
+          <linearGradient id="floor-night" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0"   stop-color="#1a1a2c"/>
+            <stop offset="1"   stop-color="#0a0a14"/>
+          </linearGradient>
+        </defs>
+        <rect x="0"    y="600" width="6500" height="200" fill="url(#floor)"/>
+        <rect x="6500" y="600" width="1500" height="200" fill="url(#floor-night)"/>
+        <!-- a path/road across the foreground, dotted -->
+        <path stroke="#5a4628" stroke-width="2" stroke-dasharray="14 12" fill="none" opacity="0.6"
+              d="M 0 720 Q 2000 700, 4000 720 T 8000 720"/>
+      </svg>
+
+      <!-- ——— stations ——— -->
+      <svg class="layer layer--stations" viewBox="0 0 8000 800" aria-hidden="true">
+
+        <!-- I. dawn — hum — a window with a glowing synth on the sill (~x=600) -->
+        <g transform="translate(600 480)" class="station" data-station="0">
+          <!-- house silhouette (wall + roof) -->
+          <path d="M -90 120 L -90 -10 L 0 -70 L 90 -10 L 90 120 Z"
+                fill="#1a1410" stroke="#0c0805" stroke-width="2"/>
+          <!-- chimney -->
+          <rect x="40" y="-50" width="14" height="40" fill="#1a1410" stroke="#0c0805"/>
+          <!-- window (lit) -->
+          <rect x="-40" y="20" width="80" height="60" fill="#f6d99c" stroke="#a98058" stroke-width="2"/>
+          <line x1="0" y1="20" x2="0" y2="80" stroke="#a98058" stroke-width="2"/>
+          <line x1="-40" y1="50" x2="40" y2="50" stroke="#a98058" stroke-width="2"/>
+          <!-- synth on the sill (small) -->
+          <rect x="-26" y="60" width="52" height="14" fill="#3a2c1c" stroke="#a98058"/>
+          <circle cx="-18" cy="67" r="2" fill="#f3c969"/>
+          <circle cx="-10" cy="67" r="2" fill="#f3c969"/>
+          <circle cx="-2"  cy="67" r="2" fill="#f3c969"/>
+          <!-- glow halo behind window -->
+          <circle cx="0" cy="50" r="80" fill="#f6d99c" opacity="0.20"/>
+          <!-- a small lamp post outside -->
+          <line x1="-130" y1="120" x2="-130" y2="40" stroke="#0c0805" stroke-width="3"/>
+          <circle cx="-130" cy="36" r="6" fill="#f6d99c"/>
+          <circle cx="-130" cy="36" r="14" fill="#f6d99c" opacity="0.35"/>
+        </g>
+
+        <!-- II. morning — slowcompiler — a desk with a monitor (~x=1900) -->
+        <g transform="translate(1900 510)" class="station" data-station="1">
+          <!-- a small studio open to the morning, walls partly removed for the camera -->
+          <!-- floor-line to anchor -->
+          <rect x="-110" y="80" width="220" height="40" fill="#3a2c1c" stroke="#1a1410"/>
+          <!-- desk -->
+          <rect x="-80" y="20" width="160" height="10" fill="#5a4628" stroke="#1a1410" stroke-width="1.5"/>
+          <line x1="-72" y1="30" x2="-72" y2="80" stroke="#1a1410" stroke-width="2"/>
+          <line x1="72"  y1="30" x2="72"  y2="80" stroke="#1a1410" stroke-width="2"/>
+          <!-- monitor (terminal-green) -->
+          <rect x="-40" y="-40" width="80" height="50" fill="#0a0805" stroke="#1a1410" stroke-width="2"/>
+          <rect x="-36" y="-36" width="72" height="42" fill="#0a1810"/>
+          <line x1="-30" y1="-26" x2="20"  y2="-26" stroke="#9fefb6" stroke-width="1.4" opacity="0.85"/>
+          <line x1="-30" y1="-20" x2="14"  y2="-20" stroke="#9fefb6" stroke-width="1.4" opacity="0.85"/>
+          <line x1="-30" y1="-14" x2="26"  y2="-14" stroke="#9fefb6" stroke-width="1.4" opacity="0.85"/>
+          <line x1="-30" y1="-8"  x2="8"   y2="-8"  stroke="#9fefb6" stroke-width="1.4" opacity="0.85"/>
+          <rect x="-10" y="10" width="20" height="6" fill="#1a1410"/>
+          <!-- mug -->
+          <ellipse cx="55" cy="14" rx="9" ry="4" fill="#1a1410"/>
+          <rect x="46" y="6" width="18" height="14" fill="#7a5536"/>
+          <path d="M 64 8 Q 72 11 64 18" stroke="#7a5536" stroke-width="2" fill="none"/>
+          <!-- steam -->
+          <path d="M 50 0 Q 46 -8 52 -14 Q 58 -20 54 -28" stroke="#a8b8cc" stroke-width="1.4" fill="none" opacity="0.7"/>
+          <!-- window behind, with the morning sky -->
+          <rect x="60" y="-90" width="60" height="60" fill="#aac6e0" stroke="#1a1410" stroke-width="2"/>
+          <line x1="90" y1="-90" x2="90" y2="-30" stroke="#1a1410" stroke-width="1.4"/>
+          <line x1="60" y1="-60" x2="120" y2="-60" stroke="#1a1410" stroke-width="1.4"/>
+        </g>
+
+        <!-- III. noon — weft — a loom (~x=3200) -->
+        <g transform="translate(3200 500)" class="station" data-station="2">
+          <!-- ground -->
+          <rect x="-130" y="90" width="260" height="30" fill="#3a2c1c" stroke="#1a1410"/>
+          <!-- the loom: two upright posts, a beam, a partial woven cloth -->
+          <rect x="-90" y="-60" width="10" height="160" fill="#5a4628" stroke="#1a1410" stroke-width="1.5"/>
+          <rect x="80"  y="-60" width="10" height="160" fill="#5a4628" stroke="#1a1410" stroke-width="1.5"/>
+          <rect x="-90" y="-70" width="180" height="14" fill="#7a5a36" stroke="#1a1410" stroke-width="1.5"/>
+          <rect x="-90" y="86" width="180" height="14" fill="#7a5a36" stroke="#1a1410" stroke-width="1.5"/>
+          <!-- the warp (vertical threads) -->
+          <g stroke="#c9b283" stroke-width="0.8" opacity="0.85">
+            <line x1="-78" y1="-58" x2="-78" y2="86"/>
+            <line x1="-66" y1="-58" x2="-66" y2="86"/>
+            <line x1="-54" y1="-58" x2="-54" y2="86"/>
+            <line x1="-42" y1="-58" x2="-42" y2="86"/>
+            <line x1="-30" y1="-58" x2="-30" y2="86"/>
+            <line x1="-18" y1="-58" x2="-18" y2="86"/>
+            <line x1="-6"  y1="-58" x2="-6"  y2="86"/>
+            <line x1="6"   y1="-58" x2="6"   y2="86"/>
+            <line x1="18"  y1="-58" x2="18"  y2="86"/>
+            <line x1="30"  y1="-58" x2="30"  y2="86"/>
+            <line x1="42"  y1="-58" x2="42"  y2="86"/>
+            <line x1="54"  y1="-58" x2="54"  y2="86"/>
+            <line x1="66"  y1="-58" x2="66"  y2="86"/>
+            <line x1="78"  y1="-58" x2="78"  y2="86"/>
+          </g>
+          <!-- woven cloth (bottom 60% of the warp) -->
+          <rect x="-80" y="14" width="160" height="72" fill="#c9b283"/>
+          <!-- weft bands: most tan, three red ("the week the parser was rewritten") -->
+          <rect x="-80" y="34" width="160" height="2" fill="#a8311e"/>
+          <rect x="-80" y="44" width="160" height="2" fill="#a8311e"/>
+          <rect x="-80" y="56" width="160" height="2" fill="#a8311e"/>
+          <g stroke="#7a5a36" stroke-width="0.6" opacity="0.7">
+            <line x1="-80" y1="20" x2="80" y2="20"/>
+            <line x1="-80" y1="26" x2="80" y2="26"/>
+            <line x1="-80" y1="64" x2="80" y2="64"/>
+            <line x1="-80" y1="72" x2="80" y2="72"/>
+            <line x1="-80" y1="80" x2="80" y2="80"/>
+          </g>
+          <!-- a small skein of unwound thread on the floor -->
+          <ellipse cx="-110" cy="105" rx="14" ry="6" fill="#a8311e" opacity="0.55"/>
+          <ellipse cx="-110" cy="103" rx="14" ry="6" fill="none" stroke="#7a2a1c" stroke-width="1.2"/>
+          <!-- a tree visible behind, a window of branches -->
+          <line x1="120" y1="-40" x2="120" y2="60" stroke="#3a2c1c" stroke-width="3"/>
+          <path d="M 100 -10 Q 120 -50 140 -10 Q 130 30 120 0 Q 110 30 100 -10 Z"
+                fill="#5a7036" opacity="0.7"/>
+        </g>
+
+        <!-- IV. afternoon — three bodies, orbiting — an easel (~x=4500) -->
+        <g transform="translate(4500 500)" class="station" data-station="3">
+          <!-- ground -->
+          <rect x="-110" y="90" width="220" height="30" fill="#3a2c1c" stroke="#1a1410"/>
+          <!-- easel (three legs) -->
+          <line x1="-50" y1="100" x2="-30" y2="-40" stroke="#5a4628" stroke-width="3"/>
+          <line x1="50" y1="100" x2="30" y2="-40" stroke="#5a4628" stroke-width="3"/>
+          <line x1="0" y1="100" x2="0" y2="-50" stroke="#5a4628" stroke-width="3"/>
+          <!-- crossbar -->
+          <line x1="-44" y1="20" x2="44" y2="20" stroke="#5a4628" stroke-width="2"/>
+          <!-- the canvas / painting -->
+          <rect x="-44" y="-50" width="88" height="70" fill="#1c1810" stroke="#3a2c1c" stroke-width="2"/>
+          <!-- procedural painting: lamp pool + three bodies -->
+          <ellipse cx="0" cy="0" rx="34" ry="12" fill="#c46838" opacity="0.5"/>
+          <ellipse cx="0" cy="0" rx="22" ry="8" fill="#e6b685" opacity="0.7"/>
+          <circle cx="0" cy="-12" r="4" fill="#fde8b8"/>
+          <!-- three figures (silhouettes around the lamp) -->
+          <ellipse cx="-22" cy="2" rx="3" ry="6" fill="#0c0805"/>
+          <ellipse cx="-22" cy="-7" rx="2.5" ry="3" fill="#0c0805"/>
+          <ellipse cx="0" cy="6" rx="3.5" ry="6" fill="#0c0805"/>
+          <ellipse cx="0" cy="-2" rx="2.8" ry="3" fill="#0c0805"/>
+          <ellipse cx="22" cy="2" rx="3" ry="6" fill="#0c0805"/>
+          <ellipse cx="22" cy="-7" rx="2.5" ry="3" fill="#0c0805"/>
+          <!-- palette -->
+          <ellipse cx="-90" cy="40" rx="32" ry="10" fill="#5a4628" stroke="#1a1410"/>
+          <circle cx="-100" cy="36" r="3" fill="#a8311e"/>
+          <circle cx="-90" cy="36" r="3" fill="#f3c969"/>
+          <circle cx="-80" cy="38" r="3" fill="#2a3a8a"/>
+          <circle cx="-72" cy="40" r="3" fill="#5a7036"/>
+          <!-- brush stuck in a jar -->
+          <rect x="60" y="60" width="14" height="30" fill="#5a4628" stroke="#1a1410"/>
+          <line x1="67" y1="60" x2="67" y2="20" stroke="#1a1410" stroke-width="1.5"/>
+          <rect x="64" y="14" width="6" height="8" fill="#a8311e"/>
+        </g>
+
+        <!-- V. evening — on stillness — a reading room (~x=5800) -->
+        <g transform="translate(5800 510)" class="station" data-station="4">
+          <!-- ground -->
+          <rect x="-130" y="90" width="260" height="30" fill="#3a2c1c" stroke="#1a1410"/>
+          <!-- a wall behind, with a hanging picture -->
+          <rect x="-130" y="-100" width="260" height="190" fill="#2a1f14" opacity="0.6"/>
+          <rect x="-50" y="-80" width="60" height="44" fill="none" stroke="#a98058" stroke-width="2"/>
+          <!-- armchair -->
+          <path d="M -70 90 L -70 0 Q -70 -10 -60 -10 L 60 -10 Q 70 -10 70 0 L 70 90 Z"
+                fill="#5a3022" stroke="#1a1410" stroke-width="2"/>
+          <path d="M -70 -10 L -70 -50 Q -70 -60 -60 -60 L 60 -60 Q 70 -60 70 -50 L 70 -10"
+                fill="#7a3c2c" stroke="#1a1410" stroke-width="2"/>
+          <!-- backrest indent -->
+          <path d="M -54 -50 L -54 -16 L 54 -16 L 54 -50" fill="#9a5040" opacity="0.6"/>
+          <!-- floor lamp on the right -->
+          <line x1="100" y1="90" x2="100" y2="-30" stroke="#1a1410" stroke-width="3"/>
+          <ellipse cx="100" cy="90" rx="14" ry="3" fill="#1a1410"/>
+          <path d="M 80 -30 L 120 -30 L 110 -60 L 90 -60 Z" fill="#a98058" stroke="#1a1410" stroke-width="2"/>
+          <ellipse cx="100" cy="-50" rx="18" ry="6" fill="#fde8b8" opacity="0.6"/>
+          <circle cx="100" cy="-46" r="50" fill="#f6d99c" opacity="0.18"/>
+          <!-- side stack of books on the left -->
+          <rect x="-110" y="60" width="36" height="8" fill="#5a3022" stroke="#1a1410"/>
+          <rect x="-108" y="50" width="36" height="10" fill="#7a3c2c" stroke="#1a1410"/>
+          <rect x="-106" y="38" width="36" height="12" fill="#3a2c5c" stroke="#1a1410"/>
+          <rect x="-104" y="24" width="36" height="14" fill="#5a4628" stroke="#1a1410"/>
+        </g>
+
+        <!-- VI. night — letters — moonlit stair, mailbox, an open notebook (~x=7200) -->
+        <g transform="translate(7200 530)" class="station" data-station="5">
+          <!-- ground / step -->
+          <rect x="-150" y="60" width="300" height="40" fill="#1a1a2c" stroke="#0c0c14"/>
+          <rect x="-150" y="40" width="300" height="20" fill="#1c1c30" stroke="#0c0c14"/>
+          <!-- a small mailbox on a post -->
+          <line x1="60" y1="40" x2="60" y2="-60" stroke="#0c0c14" stroke-width="3"/>
+          <rect x="40" y="-86" width="40" height="26" rx="2" fill="#5a3022" stroke="#0c0c14" stroke-width="2"/>
+          <path d="M 40 -86 Q 60 -96 80 -86" fill="none" stroke="#0c0c14" stroke-width="2"/>
+          <line x1="60" y1="-72" x2="60" y2="-60" stroke="#0c0c14"/>
+          <!-- letter slot -->
+          <line x1="48" y1="-72" x2="72" y2="-72" stroke="#0c0c14" stroke-width="2"/>
+          <!-- a small flag -->
+          <rect x="80" y="-90" width="2" height="12" fill="#a8311e"/>
+          <path d="M 82 -90 L 92 -86 L 82 -82 Z" fill="#a8311e"/>
+          <!-- an open notebook on the step -->
+          <path d="M -110 36 L -50 36 L -50 60 L -110 60 Z" fill="#f3eed8" stroke="#0c0c14" stroke-width="1.5"/>
+          <line x1="-80" y1="36" x2="-80" y2="60" stroke="#0c0c14" stroke-width="1"/>
+          <!-- pen -->
+          <line x1="-60" y1="48" x2="-30" y2="36" stroke="#0c0c14" stroke-width="2"/>
+          <circle cx="-30" cy="36" r="2" fill="#a8311e"/>
+          <!-- ink lines on notebook -->
+          <line x1="-104" y1="44" x2="-86" y2="44" stroke="#1a1a2c" stroke-width="0.6" opacity="0.8"/>
+          <line x1="-104" y1="50" x2="-90" y2="50" stroke="#1a1a2c" stroke-width="0.6" opacity="0.8"/>
+          <line x1="-74"  y1="44" x2="-56" y2="44" stroke="#1a1a2c" stroke-width="0.6" opacity="0.8"/>
+          <line x1="-74"  y1="50" x2="-58" y2="50" stroke="#1a1a2c" stroke-width="0.6" opacity="0.8"/>
+          <!-- moon-light pool around the notebook -->
+          <ellipse cx="-80" cy="48" rx="80" ry="20" fill="#dcd0a8" opacity="0.18"/>
+        </g>
+
+      </svg>
+
+      <!-- ——— captions (calligraphic, baked into the scene) ——— -->
+      <svg class="layer layer--captions" viewBox="0 0 8000 800" aria-hidden="true">
+        <g class="caption" transform="translate(600 280)">
+          <text class="cap__roman">i.</text>
+          <text class="cap__name" y="22">hum</text>
+          <text class="cap__line" y="46">a synthesizer for those</text>
+          <text class="cap__line" y="64">who cannot read music</text>
+        </g>
+        <g class="caption" transform="translate(1900 320)">
+          <text class="cap__roman">ii.</text>
+          <text class="cap__name" y="22">slowcompiler</text>
+          <text class="cap__line" y="46">thirty seconds per</text>
+          <text class="cap__line" y="64">hello world</text>
+        </g>
+        <g class="caption" transform="translate(3200 290)">
+          <text class="cap__roman">iii.</text>
+          <text class="cap__name" y="22">weft</text>
+          <text class="cap__line" y="46">one thread per commit,</text>
+          <text class="cap__line" y="64">one scarf per orbit</text>
+        </g>
+        <g class="caption" transform="translate(4500 300)">
+          <text class="cap__roman">iv.</text>
+          <text class="cap__name" y="22">three bodies,</text>
+          <text class="cap__name" y="44">orbiting a lamp</text>
+          <text class="cap__line" y="68">a small series in oil</text>
+        </g>
+        <g class="caption" transform="translate(5800 240)">
+          <text class="cap__roman">v.</text>
+          <text class="cap__name" y="22">on stillness</text>
+          <text class="cap__line" y="46">an essay against</text>
+          <text class="cap__line" y="64">the finished thing</text>
+        </g>
+        <g class="caption" transform="translate(7200 280)">
+          <text class="cap__roman">vi.</text>
+          <text class="cap__name" y="22">letters</text>
+          <text class="cap__line" y="46">slow correspondence;</text>
+          <text class="cap__line" y="64">replies are longer</text>
+          <text class="cap__line" y="82">than they should be</text>
+        </g>
+      </svg>
+
+    </div>
+
+  </div>
+
+</section>
+
+<footer class="afterscroll">
+  <p class="afterscroll__line">
+    you have walked from <span class="ital">dawn</span> to <span class="ital">night.</span>
+    the studio is the same studio.
+  </p>
+  <p class="afterscroll__sub">
+    correspondence: <a href="mailto:grayswan795@gmail.com">grayswan795&#64;gmail.com</a> &middot;
+    <span class="ital">replies will be slow, and longer than they should be.</span>
+  </p>
+  <p class="afterscroll__set">
+    Grace Wei-li Juan &middot; software engineer, polymath, visual artist
+  </p>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

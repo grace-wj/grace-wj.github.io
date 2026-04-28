@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Grace Wei-li Juan — a draft</title>
+<meta name="description" content="A self-portrait, drafted live. The page composes itself in front of you. Strikethroughs are kept; marginalia are written by hand." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="ms" data-tod="">
+
+<header class="folio">
+  <p class="folio__draft">
+    <span class="folio__label">draft</span>
+    <span class="folio__rev" id="rev">i</span>
+    <span class="folio__time" id="time">&mdash;</span>
+  </p>
+  <button class="folio__skip" id="skip" type="button" hidden>skip to settled</button>
+</header>
+
+<article class="page">
+
+  <div class="row" data-row="head">
+    <header class="head">
+      <h1 class="title" id="title"></h1>
+      <p class="subtitle" id="subtitle"></p>
+    </header>
+    <aside class="margin" data-margin="head"></aside>
+  </div>
+
+  <div class="row" data-row="p1">
+    <p class="prose" id="p1"></p>
+    <aside class="margin" data-margin="p1"></aside>
+  </div>
+
+  <div class="row" data-row="p2">
+    <p class="prose" id="p2"></p>
+    <aside class="margin" data-margin="p2"></aside>
+  </div>
+
+  <div class="row" data-row="works">
+    <p class="prose prose--lead" id="works-lead"></p>
+    <ul class="works" id="works"></ul>
+    <aside class="margin" data-margin="works"></aside>
+  </div>
+
+  <div class="row" data-row="p4">
+    <p class="prose" id="p4"></p>
+    <aside class="margin" data-margin="p4"></aside>
+  </div>
+
+  <div class="row" data-row="p5">
+    <p class="prose prose--coda" id="p5"></p>
+    <aside class="margin" data-margin="p5"></aside>
+  </div>
+
+</article>
+
+<footer class="ms__foot">
+  <p class="ms__signoff">
+    <span id="signoff">&mdash;</span>
+  </p>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

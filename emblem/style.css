@@ -1,0 +1,404 @@
+:root {
+  --paper:     #f1e6cc;
+  --paper-2:   #ead9b6;
+  --paper-deep:#c9b283;
+  --ink:       #1a140e;
+  --ink-soft:  #4d3f30;
+  --ink-dim:   #7a6a52;
+  --vermilion: #a8311e;
+  --vermilion-deep: #82211a;
+  --gold:      #a8853c;
+  --gold-deep: #7e6324;
+  --ultra:     #2a3a8a;
+  --serif:     'Cormorant Garamond', 'Iowan Old Style', Garamond, Georgia, serif;
+  --smallcap:  'Cormorant SC', 'Iowan Old Style', Garamond, Georgia, serif;
+  --gothic:    'UnifrakturMaguntia', 'Iowan Old Style', Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  background: #2a2218;
+  color: var(--ink);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 50% 50%, #3b2f22 0%, #1c1610 80%);
+}
+
+/* ——— leaf (the page-as-vellum) ——— */
+.leaf {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 5vh 4vw 4vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2.6vh;
+}
+
+/* ——— plate (the emblem itself, on cream paper) ——— */
+.plate {
+  position: relative;
+  background:
+    radial-gradient(ellipse 100% 80% at 50% 30%, #f6ecd1 0%, var(--paper) 60%, var(--paper-2) 100%),
+    var(--paper);
+  border: 1px solid color-mix(in oklab, var(--paper-deep) 80%, var(--ink) 20%);
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 5vw, 4.5rem);
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.06) inset,
+    0 1px 0 rgba(255,255,255,0.5) inset,
+    0 24px 60px rgba(0,0,0,0.55),
+    0 4px 14px rgba(0,0,0,0.4);
+  isolation: isolate;
+}
+/* paper grain via SVG turbulence layered as background-image */
+.plate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(120,90,40,0.08), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(80,60,20,0.08), transparent 60%),
+    repeating-linear-gradient(
+      78deg,
+      rgba(112,80,40,0.0) 0 11px,
+      rgba(112,80,40,0.025) 11px 12px
+    ),
+    repeating-linear-gradient(
+      9deg,
+      rgba(112,80,40,0.0) 0 16px,
+      rgba(112,80,40,0.018) 16px 17px
+    );
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
+/* foxing / age spots */
+.plate::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 70px 30px at 12% 8%, rgba(140,90,30,0.10), transparent 70%),
+    radial-gradient(ellipse 50px 20px at 90% 18%, rgba(140,90,30,0.10), transparent 70%),
+    radial-gradient(ellipse 60px 25px at 4% 92%, rgba(140,90,30,0.08), transparent 70%),
+    radial-gradient(ellipse 80px 30px at 96% 96%, rgba(140,90,30,0.10), transparent 70%);
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
+
+.plate > * { position: relative; z-index: 1; }
+
+/* corner ornaments — vine flourishes in vermilion + gold */
+.plate__corner {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  z-index: 2;
+  pointer-events: none;
+  fill: var(--gold);
+  stroke: var(--gold-deep);
+  stroke-width: 1;
+  stroke-linecap: round;
+  opacity: 0.85;
+}
+.plate__corner path { fill: var(--vermilion); stroke: var(--vermilion-deep); stroke-width: 0.8; }
+.plate__corner path:first-of-type,
+.plate__corner path:nth-of-type(2) { fill: none; stroke: var(--gold-deep); stroke-width: 1.4; }
+.plate__corner circle { fill: var(--gold-deep); stroke: none; }
+.plate__corner--tl { top: 14px; left: 14px;  }
+.plate__corner--tr { top: 14px; right: 14px; }
+.plate__corner--bl { bottom: 14px; left: 14px;  }
+.plate__corner--br { bottom: 14px; right: 14px; }
+
+/* ——— head: motto ——— */
+.plate__head {
+  text-align: center;
+  margin-bottom: 1.4em;
+  border-bottom: 1px solid color-mix(in oklab, var(--ink) 8%, transparent);
+  padding-bottom: 1.2em;
+}
+.plate__series {
+  font-family: var(--smallcap);
+  letter-spacing: 0.22em;
+  font-size: 0.78rem;
+  color: var(--vermilion);
+  margin: 0 0 1em;
+  text-transform: lowercase;
+}
+.plate__series .ital {
+  font-family: var(--gothic);
+  font-style: normal;
+  font-size: 1.55em;
+  vertical-align: -0.18em;
+  letter-spacing: 0;
+  color: var(--vermilion-deep);
+  padding: 0 0.05em;
+}
+.plate__motto {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 3.6vw, 2.0rem);
+  line-height: 1.2;
+  margin: 0 0 0.4em;
+  color: var(--ink);
+  letter-spacing: 0.005em;
+}
+.plate__motto .motto__line { display: inline-block; }
+.plate__motto-en {
+  font-family: var(--smallcap);
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
+  color: var(--ink-soft);
+  margin: 0;
+  text-transform: lowercase;
+}
+
+/* ——— ornaments ——— */
+.ornament svg {
+  width: clamp(160px, 60%, 280px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  fill: var(--gold);
+  stroke: var(--gold-deep);
+}
+.ornament path { stroke-width: 1; fill: var(--gold); }
+.ornament circle { fill: var(--gold-deep); stroke: none; }
+.ornament--top { margin-bottom: 1rem; }
+.ornament--bot { margin-top: 1rem; }
+
+/* ——— figure (the emblem image) ——— */
+.plate__figure {
+  margin: 0 0 1.6em;
+  text-align: center;
+}
+.emblem-frame {
+  width: clamp(220px, 60%, 360px);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  position: relative;
+  background: rgba(0,0,0,0.02);
+  border: 2px double var(--gold);
+  outline: 1px solid color-mix(in oklab, var(--gold) 50%, var(--ink) 30%);
+  outline-offset: -8px;
+  padding: 12px;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.5) inset,
+    0 0 0 1px rgba(0,0,0,0.04) inset;
+}
+.emblem {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.emblem .stroke    { stroke: var(--ink); stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.emblem .stroke-thin { stroke: var(--ink); stroke-width: 0.8; fill: none; stroke-linecap: round; }
+.emblem .ink       { fill: var(--ink); }
+.emblem .red       { fill: var(--vermilion); }
+.emblem .red-stroke{ stroke: var(--vermilion); fill: none; stroke-width: 1.4; stroke-linecap: round; }
+.emblem .gold      { fill: var(--gold); }
+.emblem .gold-stroke{ stroke: var(--gold-deep); fill: none; stroke-width: 1; }
+.emblem .blue      { fill: var(--ultra); }
+.emblem .blue-stroke{ stroke: var(--ultra); fill: none; stroke-width: 1.2; }
+.emblem .hatch     { stroke: var(--ink); stroke-width: 0.4; fill: none; opacity: 0.65; }
+
+/* ——— verse / epigram ——— */
+.plate__verse {
+  text-align: center;
+  font-style: italic;
+  font-size: clamp(1.04rem, 1.7vw, 1.18rem);
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0 0 1.8em;
+  max-width: 26em;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 0.4em;
+  border-top: 1px solid color-mix(in oklab, var(--ink) 6%, transparent);
+}
+.plate__verse p { margin: 0; }
+.plate__verse br + .indented,
+.plate__verse .indented { padding-left: 1.3em; }
+.plate__verse .rubric {
+  color: var(--vermilion-deep);
+  font-style: normal;
+  font-family: var(--smallcap);
+  letter-spacing: 0.06em;
+  font-size: 0.88em;
+  padding-right: 0.05em;
+}
+.plate__verse .dropcap {
+  font-family: var(--gothic);
+  font-style: normal;
+  color: var(--vermilion-deep);
+  font-size: 2em;
+  line-height: 0.85;
+  float: left;
+  padding: 0.05em 0.18em 0 0;
+  margin-top: 0.05em;
+}
+
+/* ——— foot ——— */
+.plate__foot {
+  text-align: center;
+  border-top: 1px solid color-mix(in oklab, var(--ink) 8%, transparent);
+  padding-top: 1.2em;
+  margin-top: 0.6em;
+}
+.plate__folio {
+  font-family: var(--smallcap);
+  letter-spacing: 0.18em;
+  font-size: 0.86rem;
+  color: var(--vermilion-deep);
+  margin: 0 0 0.4em;
+  text-transform: lowercase;
+}
+.plate__folio .ital { font-style: italic; color: var(--ink); font-family: var(--serif); letter-spacing: 0.005em; }
+.plate__compositor {
+  font-style: italic;
+  font-size: 0.86rem;
+  color: var(--ink-dim);
+  margin: 0;
+}
+
+/* ——— apparatus (recompose / cite) ——— */
+.apparatus {
+  text-align: center;
+  color: #d8c79a;
+  padding: 0 1rem;
+}
+.recompose {
+  font-family: var(--smallcap);
+  font-size: 0.92rem;
+  letter-spacing: 0.16em;
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid color-mix(in oklab, var(--gold) 55%, transparent);
+  padding: 0.7em 1.6em;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: background 240ms, color 240ms, border-color 240ms;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.7em;
+}
+.recompose:hover, .recompose:focus-visible {
+  background: color-mix(in oklab, var(--gold) 16%, transparent);
+  color: #f1d99a;
+  border-color: var(--gold);
+  outline: none;
+}
+.recompose__label { font-style: normal; }
+.recompose__hint  {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+  color: color-mix(in oklab, var(--gold) 70%, transparent);
+}
+.recompose__hint kbd {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-style: normal;
+  font-size: 0.7rem;
+  border: 1px solid color-mix(in oklab, var(--gold) 35%, transparent);
+  padding: 0 0.4em;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.04);
+}
+.apparatus__cite {
+  margin: 1em 0 0.4em;
+  font-size: 0.82rem;
+  color: #b9a578;
+  font-style: italic;
+}
+.apparatus__cite code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-style: normal;
+  background: rgba(168,133,60,0.10);
+  padding: 0.05em 0.5em;
+  border-radius: 2px;
+  color: var(--gold);
+}
+.apparatus__cite a {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px dotted color-mix(in oklab, var(--gold) 50%, transparent);
+}
+.apparatus__cite a:hover { color: #f1d99a; }
+.apparatus__cite .ital { font-style: italic; color: #b9a578; }
+.apparatus__about {
+  font-size: 0.82rem;
+  color: #9c8a64;
+  font-style: italic;
+  max-width: 38em;
+  margin: 0.6em auto 0;
+  line-height: 1.55;
+}
+.apparatus__about .sc {
+  font-family: var(--smallcap);
+  font-style: normal;
+  letter-spacing: 0.12em;
+  font-size: 0.92em;
+  color: var(--gold);
+}
+
+/* ——— colophon ——— */
+.colophon {
+  text-align: center;
+  color: #8e7d56;
+  font-size: 0.82rem;
+  font-style: italic;
+  margin-top: 2vh;
+  padding: 0 1rem;
+}
+.colophon a {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px dotted color-mix(in oklab, var(--gold) 45%, transparent);
+}
+.colophon a:hover { color: #f1d99a; }
+.colophon p { margin: 0.4em 0; }
+.colophon__set { color: #75673f; }
+.colophon__set .ital { color: #8e7d56; }
+
+/* ——— accessibility ——— */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+/* ——— responsive ——— */
+@media (max-width: 600px) {
+  .plate { padding: 2.4rem 1.4rem; }
+  .plate__corner { width: 24px; height: 24px; }
+  .recompose { padding: 0.6em 1em; gap: 0.4em; flex-direction: column; }
+}
+
+/* ——— motion preference ——— */
+@media (prefers-reduced-motion: reduce) {
+  /* nothing animated except the recompose flash, which we'll suppress in JS */
+}
+
+/* recompose flash */
+.plate.is-recomposing {
+  animation: leaf-flip 380ms cubic-bezier(.6,.02,.4,1) both;
+}
+@keyframes leaf-flip {
+  0%   { transform: rotateY(0deg); opacity: 1; }
+  35%  { transform: rotateY(-9deg); opacity: 0.8; }
+  100% { transform: rotateY(0deg); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .plate.is-recomposing { animation: none; }
+}

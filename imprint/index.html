@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Grace Wei-li Juan — imprint</title>
+<meta name="description" content="A constellation of works under the Wei-li Press imprint. Halftone nodes; typed edges. Drag a node, the rest follows." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Space+Mono:wght@400;700&display=swap" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- vertical edge marquee -->
+<aside class="rails" aria-hidden="true">
+  <span class="rail">IMPRINT · WEI-LI PRESS · NOT FOR SALE · IMPRINT · WEI-LI PRESS · </span>
+</aside>
+
+<!-- registration crosses -->
+<svg class="reg reg--tl" viewBox="0 0 30 30" aria-hidden="true">
+  <circle cx="15" cy="15" r="6"/><line x1="15" y1="3" x2="15" y2="27"/><line x1="3" y1="15" x2="27" y2="15"/>
+</svg>
+<svg class="reg reg--tr" viewBox="0 0 30 30" aria-hidden="true">
+  <circle cx="15" cy="15" r="6"/><line x1="15" y1="3" x2="15" y2="27"/><line x1="3" y1="15" x2="27" y2="15"/>
+</svg>
+<svg class="reg reg--bl" viewBox="0 0 30 30" aria-hidden="true">
+  <circle cx="15" cy="15" r="6"/><line x1="15" y1="3" x2="15" y2="27"/><line x1="3" y1="15" x2="27" y2="15"/>
+</svg>
+<svg class="reg reg--br" viewBox="0 0 30 30" aria-hidden="true">
+  <circle cx="15" cy="15" r="6"/><line x1="15" y1="3" x2="15" y2="27"/><line x1="3" y1="15" x2="27" y2="15"/>
+</svg>
+
+<!-- HUD -->
+<aside class="hud">
+  <p class="hud__head"><span class="lab">imprint</span> <span class="hud__sub">grace wei-li juan</span></p>
+  <p class="hud__line">drag a node · hover an edge</p>
+  <p class="hud__line">click for the writing</p>
+  <p class="hud__line hud__legend">
+    <span class="dot dot--pink"></span> projects ·
+    <span class="dot dot--cyan"></span> paintings ·
+    <span class="dot dot--black"></span> essays ·
+    <span class="dot dot--ring"></span> influences
+  </p>
+</aside>
+
+<!-- masthead -->
+<header class="masthead">
+  <p class="kicker">PROOF · ISSUE XVIII · WEI-LI PRESS · MMXXVI</p>
+  <h1 class="title">an <em>imprint</em><br/>and what is under it</h1>
+  <p class="lede">
+    The works of <em>Wei-li Press</em>, drawn as a constellation. Each node is a project, painting, essay, or thing-she-keeps-reading. Each line is the relation between two of them — <em>after</em>, <em>panel iii</em>, <em>voiced by</em>. Drag a node; the rest of the imprint follows.
+  </p>
+</header>
+
+<!-- the field — full-bleed SVG with nodes + edges -->
+<svg class="field" id="field" aria-label="constellation of works"></svg>
+
+<!-- side panel -->
+<aside class="panel" id="panel" aria-hidden="true">
+  <button class="panel__close" id="panelClose" type="button" aria-label="close">×</button>
+  <div class="panel__content" id="panelContent"></div>
+</aside>
+
+<!-- coda -->
+<footer class="coda">
+  <p>Set in <em>Anton</em> for the title, <em>Fraunces</em> for the body, <em>Space Mono</em> for the labels. <em>The verb on the line is the metadata; the line is just the line.</em></p>
+  <p>Grace Wei-li Juan · <a href="mailto:grayswan795@gmail.com">by post</a> · <a href="https://github.com/grace-wj" rel="noopener">in source</a></p>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

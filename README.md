@@ -6,18 +6,26 @@ Plain HTML/CSS/JS, deployed via GitHub Pages from the `main` branch.
 
 ## Concept branches
 
-Sixteen exploratory directions live on their own branches, also pulled into named subdirectories of `main` for side-by-side preview. See [`SUMMARY.md`](./SUMMARY.md) for an index and previewing instructions.
+Twenty exploratory directions live on their own branches, also pulled into named subdirectories of `main` for side-by-side preview in the foyer. See [`SUMMARY.md`](./SUMMARY.md) for the full index and previewing instructions.
 
-The first twelve are *originals*, each weird on its own axis. The last four are *remixes* — recombined from parts of the originals.
+The foyer's **centerpiece** is the *press family* — six concepts that share the same riso visual frame (fluorescent pink + cornflower blue + warm black on cream paper). The two side wings hold *eleven originals* (each weird on its own axis) and *three remixes* (recombined from parts of the originals).
 
-### Originals
+### Press family (six)
+
+- [`concept/press`](../../tree/concept/press) ★ — risograph zine, six spreads — *the visual anchor*
+- [`concept/galley`](../../tree/concept/galley) ★ — a riso zine that prints itself in front of you
+- [`concept/forme`](../../tree/concept/forme) — a 3D printer's forme of locked-up type, drag to rotate
+- [`concept/imprint`](../../tree/concept/imprint) — a constellation of works, riso-printed
+- [`concept/colophon`](../../tree/concept/colophon) — a riso-printed FM tuning dial as the publisher's mark
+- [`concept/quire`](../../tree/concept/quire) — eight stitched leaves, scroll ↓ to pan east
+
+### Originals (eleven)
 
 - [`concept/terminal`](../../tree/concept/terminal) — site as Unix shell
 - [`concept/archive`](../../tree/concept/archive) — pannable 2D pinboard
 - [`concept/marginalia`](../../tree/concept/marginalia) — critical-edition manuscript
 - [`concept/signal`](../../tree/concept/signal) — FM tuner dial
 - [`concept/studio`](../../tree/concept/studio) — 3D painter's room you orbit
-- [`concept/press`](../../tree/concept/press) — risograph zine, six spreads
 - [`concept/constellation`](../../tree/concept/constellation) — knowledge graph with typed edges
 - [`concept/atelier`](../../tree/concept/atelier) — painter's notebook with a palette as nav
 - [`concept/carillon`](../../tree/concept/carillon) — six bells, FM-synthesized
@@ -25,9 +33,10 @@ The first twelve are *originals*, each weird on its own axis. The last four are 
 - [`concept/draft`](../../tree/concept/draft) — self-portrait, drafted live with strikethroughs
 - [`concept/passage`](../../tree/concept/passage) — handscroll, scroll-as-camera
 
-### Remixes
+### Remixes (three)
 
 - [`concept/orrery`](../../tree/concept/orrery) — six works orbit a lamp; conjunctions toll bells *(after studio · constellation · carillon · draft)*
-- [`concept/galley`](../../tree/concept/galley) — a riso zine prints itself in front of you *(after press · draft · emblem)*
 - [`concept/tideline`](../../tree/concept/tideline) — a year of making, drawn as a tide chart *(after passage · atelier · archive · signal)*
 - [`concept/warp`](../../tree/concept/warp) — fifty-two weft rows, three of them red *(after atelier · draft · marginalia · press)*
+
+★ = anchor of the press family.

@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>grace — the foyer</title>
-<meta name="description" content="A foyer with sixteen doors. Twelve originals, four remixes — the second wing borrows parts back from the first." />
+<meta name="description" content="A foyer with twenty doors. A press-family centerpiece of six, a wing of ten originals, a wing of three remixes." />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body class="room">
@@ -14,14 +14,94 @@
   <header class="placard">
     <p class="aside">grace wei-li juan</p>
     <h1>you are in a foyer.</h1>
-    <p class="lede">twelve doors line one side. four further on, in a small second wing, borrow parts of the first twelve back. step through any of them; come back when you like.</p>
+    <p class="lede">twenty doors. the centerpiece is a small press-family of six — where the taste has converged. the rest are kept in two other wings: eleven originals from the first three rounds, and three remixes from the fourth.</p>
   </header>
 
-  <!-- ─────────── wing one: the twelve originals ─────────── -->
+  <!-- ─────────── centerpiece: the press family ─────────── -->
+  <section class="wing wing--press" aria-label="the press family">
+    <header class="wing__head wing__head--center">
+      <p class="wing__label wing__label--press"><span class="wing__count">centerpiece</span> &middot; press family &middot; <span class="wing__sub-inline">six doors in one ink</span></p>
+      <p class="wing__sub">all six hold the same riso visual frame — fluorescent pink + cornflower blue + warm black on cream. they differ in <em>what the visitor does</em>.</p>
+    </header>
+
+    <div class="press-tray">
+      <!-- the four corners of a registration plate, drawn around the tray -->
+      <span class="reg reg--tl" aria-hidden="true"></span>
+      <span class="reg reg--tr" aria-hidden="true"></span>
+      <span class="reg reg--bl" aria-hidden="true"></span>
+      <span class="reg reg--br" aria-hidden="true"></span>
+
+      <div class="doors doors--press" aria-label="press family">
+
+        <a class="door door--press" href="press/" style="--accent: #ff3a8c;">
+          <span class="door__num">vi.</span>
+          <span class="door__panel" aria-hidden="true"><span class="door__knob"></span></span>
+          <span class="door__label">
+            <span class="door__name">press</span>
+            <span class="door__tag">a riso zine — six spreads in two colors</span>
+            <span class="door__role">the anchor &middot; <em>the visual frame</em></span>
+          </span>
+        </a>
+
+        <a class="door door--press" href="galley/" style="--accent: color-mix(in oklab, #ff3a8c 50%, #4a5aaa);">
+          <span class="door__num">xiv.</span>
+          <span class="door__panel" aria-hidden="true"><span class="door__knob"></span></span>
+          <span class="door__label">
+            <span class="door__name">galley</span>
+            <span class="door__tag">a riso zine — prints itself in front of you</span>
+            <span class="door__role">the anchor &middot; <em>medium as performance</em></span>
+          </span>
+        </a>
+
+        <a class="door door--press" href="forme/" style="--accent: #2c4dff;">
+          <span class="door__num">xvii.</span>
+          <span class="door__panel" aria-hidden="true"><span class="door__knob"></span></span>
+          <span class="door__label">
+            <span class="door__name">forme</span>
+            <span class="door__tag">a printer&rsquo;s forme of locked-up type — drag to rotate</span>
+            <span class="door__role"><em>3D drag</em> &middot; held flat in css 3d</span>
+          </span>
+        </a>
+
+        <a class="door door--press" href="imprint/" style="--accent: color-mix(in oklab, #ff3a8c 55%, #2c4dff);">
+          <span class="door__num">xviii.</span>
+          <span class="door__panel" aria-hidden="true"><span class="door__knob"></span></span>
+          <span class="door__label">
+            <span class="door__name">imprint</span>
+            <span class="door__tag">a constellation of works — riso-printed, drag a node</span>
+            <span class="door__role"><em>node-and-edge</em> &middot; verbs in mono</span>
+          </span>
+        </a>
+
+        <a class="door door--press" href="colophon/" style="--accent: color-mix(in oklab, #2c4dff 65%, #ff3a8c);">
+          <span class="door__num">xix.</span>
+          <span class="door__panel" aria-hidden="true"><span class="door__knob"></span></span>
+          <span class="door__label">
+            <span class="door__name">colophon</span>
+            <span class="door__tag">a printed tuning dial — ±0.3 of any station and you read it</span>
+            <span class="door__role"><em>signal&rsquo;s dial</em> &middot; restyled in ink</span>
+          </span>
+        </a>
+
+        <a class="door door--press" href="quire/" style="--accent: color-mix(in oklab, #ff3a8c 70%, #d4a868);">
+          <span class="door__num">xx.</span>
+          <span class="door__panel" aria-hidden="true"><span class="door__knob"></span></span>
+          <span class="door__label">
+            <span class="door__name">quire</span>
+            <span class="door__tag">eight stitched leaves — scroll &darr; to pan east</span>
+            <span class="door__role"><em>horizontal scroll</em> &middot; vertical book</span>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── wing: the ten originals ─────────── -->
   <section class="wing wing--originals">
     <header class="wing__head">
-      <p class="wing__label">wing i &middot; <span class="wing__count">twelve originals</span></p>
-      <p class="wing__sub">each door, one site — weird on its own axis.</p>
+      <p class="wing__label">wing &middot; <span class="wing__count">eleven originals</span></p>
+      <p class="wing__sub">each door, one site — weird on its own axis. press has moved upstairs into the centerpiece.</p>
     </header>
 
     <div class="doors doors--three-rows" aria-label="originals">
@@ -68,15 +148,6 @@
         <span class="door__label">
           <span class="door__name">studio</span>
           <span class="door__tag">a 3D painter&rsquo;s room — drag to orbit</span>
-        </span>
-      </a>
-
-      <a class="door" href="press/" style="--accent: #ff3a8c;">
-        <span class="door__num">vi.</span>
-        <span class="door__panel" aria-hidden="true"><span class="door__knob"></span></span>
-        <span class="door__label">
-          <span class="door__name">press</span>
-          <span class="door__tag">a riso zine — six spreads in two colors</span>
         </span>
       </a>
 
@@ -137,11 +208,11 @@
     </div>
   </section>
 
-  <!-- ─────────── wing two: the four remixes ─────────── -->
+  <!-- ─────────── wing: three remixes from round four ─────────── -->
   <section class="wing wing--remixes">
     <header class="wing__head">
-      <p class="wing__label">wing ii &middot; <span class="wing__count">four remixes</span></p>
-      <p class="wing__sub">recombined from the parts of the first twelve. each draws from at least three.</p>
+      <p class="wing__label">wing &middot; <span class="wing__count">three remixes</span></p>
+      <p class="wing__sub">recombined from the parts of the originals. each draws from at least three. galley has moved upstairs into the centerpiece.</p>
     </header>
 
     <div class="doors doors--remixes" aria-label="remixes">
@@ -154,17 +225,6 @@
           <span class="door__name">orrery</span>
           <span class="door__tag">six works orbit a lamp — when two cross, a bell tolls</span>
           <span class="door__parents"><em>after</em> studio &middot; carillon &middot; constellation &middot; draft</span>
-        </span>
-      </a>
-
-      <a class="door door--remix" href="galley/"
-         style="--accent: color-mix(in oklab, #ff3a8c 50%, #4a5aaa);">
-        <span class="door__num">xiv.</span>
-        <span class="door__panel" aria-hidden="true"><span class="door__knob"></span></span>
-        <span class="door__label">
-          <span class="door__name">galley</span>
-          <span class="door__tag">a riso zine — prints itself in front of you</span>
-          <span class="door__parents"><em>after</em> press &middot; draft &middot; emblem</span>
         </span>
       </a>
 
@@ -194,7 +254,7 @@
   </section>
 
   <footer class="floor">
-    <p>each door is a branch &mdash; <code>concept/&lt;name&gt;</code> &mdash; pulled into its own folder. wing ii borrows wing i's parts; nothing here is final.</p>
+    <p>each door is a branch &mdash; <code>concept/&lt;name&gt;</code> &mdash; pulled into its own folder. nothing here is final.</p>
   </footer>
 
 </main>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Grace Wei-li Juan — colophon</title>
+<meta name="description" content="A riso-printed colophon shaped like a tuning dial. Tune across the works of Wei-li Press." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Space+Mono:wght@400;700&display=swap" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<aside class="rails" aria-hidden="true">
+  <span class="rail">COLOPHON · WGWJ · WEI-LI PRESS · NOT FOR SALE · COLOPHON · WGWJ · </span>
+</aside>
+
+<svg class="reg reg--tl" viewBox="0 0 30 30" aria-hidden="true">
+  <circle cx="15" cy="15" r="6"/><line x1="15" y1="3" x2="15" y2="27"/><line x1="3" y1="15" x2="27" y2="15"/>
+</svg>
+<svg class="reg reg--tr" viewBox="0 0 30 30" aria-hidden="true">
+  <circle cx="15" cy="15" r="6"/><line x1="15" y1="3" x2="15" y2="27"/><line x1="3" y1="15" x2="27" y2="15"/>
+</svg>
+<svg class="reg reg--bl" viewBox="0 0 30 30" aria-hidden="true">
+  <circle cx="15" cy="15" r="6"/><line x1="15" y1="3" x2="15" y2="27"/><line x1="3" y1="15" x2="27" y2="15"/>
+</svg>
+<svg class="reg reg--br" viewBox="0 0 30 30" aria-hidden="true">
+  <circle cx="15" cy="15" r="6"/><line x1="15" y1="3" x2="15" y2="27"/><line x1="3" y1="15" x2="27" y2="15"/>
+</svg>
+
+<main class="page">
+
+  <!-- masthead -->
+  <header class="masthead">
+    <p class="kicker">PROOF · ISSUE XIX · WEI-LI PRESS · MMXXVI</p>
+    <h1 class="title">colophon<br/><em>of grace wei-li juan</em></h1>
+    <p class="lede">
+      A printer's <em>colophon</em> is the line at the back of a book that names who set it. <em>WGWJ</em> is the call sign Grace's first concept used. This page is both — a printed colophon shaped like a tuning dial, set to one of seven works at a time. Drag the needle, or scroll over the dial; <em>±0.3 of any station and you read it.</em>
+    </p>
+  </header>
+
+  <!-- dial unit: a riso-printed horizontal tuner -->
+  <div class="dial-unit">
+
+    <!-- the dial itself -->
+    <div class="dial" id="dial">
+      <!-- pink ink scale fill -->
+      <div class="dial__scale" aria-hidden="true">
+        <!-- 100 minor ticks (drawn via repeating-linear-gradient) -->
+        <div class="dial__ticks dial__ticks--minor"></div>
+        <!-- 11 major ticks -->
+        <div class="dial__ticks dial__ticks--major"></div>
+        <!-- station markers (cyan dots), positioned by JS via inline style -->
+        <div class="dial__markers" id="dialMarkers"></div>
+        <!-- numbers row: from 88.0 to 108.0 in 1.0 steps -->
+        <ol class="dial__nums" id="dialNums"></ol>
+      </div>
+
+      <!-- the needle (cyan) -->
+      <div class="dial__needle" id="needle" aria-hidden="true">
+        <div class="dial__needle-stem"></div>
+        <div class="dial__needle-head"></div>
+        <p class="dial__needle-readout" id="readout">—</p>
+      </div>
+    </div>
+
+    <!-- S-meter: a halftone bar — strength of signal lock -->
+    <div class="meter">
+      <p class="meter__head">S-METER</p>
+      <div class="meter__bar" aria-hidden="true">
+        <div class="meter__fill" id="meterFill"></div>
+      </div>
+      <p class="meter__line" id="lockLabel">— off channel —</p>
+    </div>
+
+    <!-- preset row -->
+    <ol class="presets" id="presets"></ol>
+  </div>
+
+  <!-- the printed card for the locked station — a riso "spread" -->
+  <article class="card" id="card">
+    <p class="card__folio" id="cardFolio">—</p>
+    <h2 class="card__head" id="cardHead">— TUNING —</h2>
+    <p class="card__sub"  id="cardSub">drag the needle, or scroll on the dial.</p>
+    <div class="card__body" id="cardBody">
+      <p>Off channel. Lock onto a station within ±0.3 MHz to read the spread.</p>
+    </div>
+    <p class="card__static" id="cardStatic" hidden></p>
+  </article>
+
+  <!-- coda -->
+  <footer class="coda">
+    <p>Set in <em>Anton</em> for the dial face, <em>Fraunces</em> italic for the lede, <em>Space Mono</em> for the numbers. <em>Lock-in is ±0.3 of any station; off the channel, the spread goes to halftone static.</em></p>
+    <p>Grace Wei-li Juan · <a href="mailto:grayswan795@gmail.com">by post</a> · <a href="https://github.com/grace-wj" rel="noopener">in source</a></p>
+  </footer>
+
+</main>
+
+<script src="script.js" defer></script>
+</body>
+</html>

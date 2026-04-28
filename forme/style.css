@@ -1,0 +1,436 @@
+:root {
+  /* riso ink palette — same as press/galley */
+  --paper:   #f3e9d2;
+  --paper-d: #e6d8b2;
+  --pink:    #ff3a8c;
+  --cyan:    #2c4dff;
+  --black:   #1a1410;
+
+  --display: 'Anton', 'Bebas Neue', Impact, sans-serif;
+  --serif:   'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --mono:    'Space Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+body {
+  background:
+    radial-gradient(1200px 800px at 10% 10%, rgba(120,80,30,0.05), transparent 60%),
+    radial-gradient(900px 700px at 90% 90%, rgba(80,40,10,0.04), transparent 60%),
+    radial-gradient(circle at 30% 60%, rgba(120,80,30,0.025) 1px, transparent 2px) 0 0/240px 240px,
+    var(--paper);
+  color: var(--black);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  font-size: 17px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─────────── vertical edge marquee ─────────── */
+.rails {
+  position: fixed;
+  top: 0; bottom: 0;
+  right: 0;
+  width: 28px;
+  z-index: 50;
+  background: var(--cyan);
+  color: var(--paper);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+.rail {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+  display: inline-block;
+  animation: rail 80s linear infinite;
+}
+@keyframes rail {
+  from { transform: translateY(-50%); }
+  to   { transform: translateY(50%); }
+}
+
+/* ─────────── HUD top-left (press style) ─────────── */
+.hud {
+  position: fixed;
+  top: 16px; left: 16px;
+  z-index: 60;
+  background: var(--paper);
+  border: 1px solid var(--black);
+  padding: 0.7rem 0.95rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--black);
+  letter-spacing: 0.06em;
+  max-width: 14rem;
+  box-shadow: 4px 4px 0 var(--black);
+  pointer-events: none;
+}
+.hud__head { margin: 0 0 0.5rem; font-weight: 700; display: flex; justify-content: space-between; }
+.lab { text-transform: uppercase; }
+.hud__sub { font-weight: 400; color: rgba(26,20,16,0.6); font-style: italic; font-family: var(--serif); letter-spacing: 0; }
+.hud__line { margin: 0 0 0.25rem; color: rgba(26,20,16,0.7); }
+.hud__angle { color: var(--cyan); font-weight: 700; }
+
+/* ─────────── registration crosses (corners) ─────────── */
+.reg {
+  position: fixed;
+  width: 22px; height: 22px;
+  stroke: var(--black);
+  stroke-width: 0.6;
+  fill: none;
+  opacity: 0.5;
+  z-index: 5;
+  pointer-events: none;
+}
+.reg--tl { top: 8px; left: 8px; }
+.reg--tr { top: 8px; right: 44px; }
+.reg--bl { bottom: 8px; left: 8px; }
+.reg--br { bottom: 8px; right: 44px; }
+
+/* ─────────── masthead ─────────── */
+.masthead {
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 6vh 6vw 2vh;
+  text-align: center;
+}
+.kicker {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.20em;
+  margin: 0 0 1.2rem;
+  color: var(--pink);
+}
+.title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(3rem, 8vw, 5.6rem);
+  line-height: 0.9;
+  margin: 0 0 1.2rem;
+  letter-spacing: -0.005em;
+  color: var(--pink);
+  text-transform: uppercase;
+}
+.title em {
+  font-family: var(--serif);
+  font-style: italic;
+  text-transform: none;
+  font-weight: 500;
+  font-size: 0.55em;
+  letter-spacing: 0;
+  color: var(--cyan);
+  display: inline-block;
+  margin-top: 0.3em;
+  /* fake misregistration shadow — the cyan italic is offset 3px from where it would be */
+  text-shadow: 3px -2px 0 rgba(255, 58, 140, 0.35);
+}
+.lede {
+  margin: 0 auto;
+  line-height: 1.55;
+  font-size: 1rem;
+  color: var(--black);
+  text-align: left;
+  max-width: 30rem;
+}
+
+/* ─────────── the 3D scene ─────────── */
+.scene {
+  width: 100%;
+  height: 70vh;
+  min-height: 460px;
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+  position: relative;
+  cursor: grab;
+  margin-top: 2vh;
+  /* halftone overlay over the WHOLE scene area: the riso dot pattern */
+  background:
+    radial-gradient(circle, rgba(26,20,16,0.10) 1px, transparent 1.4px) 0 0/8px 8px;
+  background-blend-mode: multiply;
+  border-top: 1px solid rgba(26,20,16,0.12);
+  border-bottom: 1px solid rgba(26,20,16,0.12);
+}
+.scene:active { cursor: grabbing; }
+
+.forme {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 0; height: 0;
+  transform-style: preserve-3d;
+  /* default starting angle — already tilted so the visitor reads 3D from the first frame */
+  transform: translate(-50%, -50%) rotateX(var(--rx, -45deg)) rotateY(var(--ry, -15deg));
+  transition: transform 320ms cubic-bezier(.2,.7,.2,1);
+}
+.forme.is-dragging { transition: none; }
+
+/* the chase plate — the flat metal underneath the locked-up type */
+.chase-plate {
+  position: absolute;
+  top: -180px; left: -350px;
+  width: 700px; height: 360px;
+  background:
+    radial-gradient(circle, rgba(26,20,16,0.05) 1px, transparent 1.4px) 0 0/4px 4px,
+    var(--paper-d);
+  border: 1px solid rgba(26,20,16,0.18);
+  transform: translateZ(0);
+  box-shadow: inset 0 0 0 1px rgba(26,20,16,0.08);
+}
+
+/* the chase — four metal bars forming a frame around the type */
+.chase {
+  position: absolute;
+  background: var(--black);
+  /* a light hatching: the cast metal of the chase frame */
+  background-image:
+    repeating-linear-gradient(45deg, transparent 0 3px, rgba(255,255,255,0.05) 3px 4px),
+    linear-gradient(180deg, #2a2218, #1a1410);
+  transform: translateZ(8px);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
+}
+.chase--top    { top: -180px; left: -350px; width: 700px; height: 18px; }
+.chase--bot    { top:  162px; left: -350px; width: 700px; height: 18px; }
+.chase--left   { top: -180px; left: -350px; width: 18px;  height: 360px; }
+.chase--right  { top: -180px; left:  332px; width: 18px;  height: 360px; }
+
+/* type pieces — flat riso-color blocks, raised above the chase plate */
+.type {
+  position: absolute;
+  top: 0; left: 0;
+  width:  var(--w, 200px);
+  height: var(--h, 80px);
+  transform: translate3d(var(--x, 0), var(--y, 0), 18px);
+  font-family: var(--display);
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6px 14px;
+  border: 1px solid var(--black);
+  border-radius: 1px;
+  cursor: pointer;
+  background: var(--paper);
+  /* soft halftone shading on every type piece — the way ink hits the cast face */
+  background-image:
+    radial-gradient(circle, rgba(26,20,16,0.22) 0.9px, transparent 1.1px) 0 0/3px 3px;
+  color: var(--black);
+  user-select: none;
+  -webkit-user-select: none;
+  font: inherit;
+  font-family: var(--display);
+  text-align: left;
+  /* drop a tiny hand-printed shadow beneath each piece — like ink showing through */
+  box-shadow:
+    /* a thin warm-black block-shadow at -1/-1 */
+    -2px 2px 0 rgba(26,20,16,0.18),
+    /* a deeper "metal underside" shadow */
+    0 4px 0 rgba(26,20,16,0.18);
+  transition: transform 320ms cubic-bezier(.2,.7,.2,1), box-shadow 200ms ease, filter 200ms ease;
+}
+.type--pink  { background-color: var(--pink);  color: var(--paper); border-color: var(--pink); }
+.type--cyan  { background-color: var(--cyan);  color: var(--paper); border-color: var(--cyan); }
+.type--black { background-color: var(--black); color: var(--paper); border-color: var(--black); }
+
+/* furniture — the wooden blocks that fill empty space; pale, no text */
+.type--furniture {
+  background:
+    repeating-linear-gradient(0deg, rgba(26,20,16,0.12) 0 1px, transparent 1px 4px),
+    var(--paper-d);
+  border-color: rgba(26,20,16,0.30);
+  cursor: default;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* the title block — at the top of the forme, no link */
+.type--title {
+  top: 0; left: 0;
+  --w: 700px; --h: 56px;
+  --x: -350px; --y: -178px;
+  transform: translate3d(var(--x), var(--y), 18px);
+  background: var(--paper);
+  border: none;
+  box-shadow: none;
+  cursor: default;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0 1rem;
+}
+.type__rule {
+  font-family: var(--display);
+  font-size: 36px;
+  letter-spacing: 0.12em;
+  color: var(--cyan);
+  /* fake misregistration: a pink ghost behind the cyan */
+  text-shadow: 3px -2px 0 var(--pink);
+}
+.type__rule--big {
+  font-size: 44px;
+  color: var(--pink);
+  text-shadow: -3px 2px 0 var(--cyan);
+}
+
+/* the lockup of headline + sub + folio inside each piece */
+.type__head {
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.0;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  color: inherit;
+  /* fake misregistration: a thin under-print shadow */
+  text-shadow: 2px -1px 0 rgba(0,0,0,0.10);
+}
+.type__sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  color: rgba(255,255,255,0.78);
+  margin-top: 2px;
+}
+.type--black .type__sub { color: rgba(243,233,210,0.78); }
+.type__folio {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+}
+.type--black .type__folio { color: rgba(243,233,210,0.6); }
+
+/* hover/focus & lifted states */
+.type--piece:hover,
+.type--piece:focus-visible {
+  outline: none;
+  filter: brightness(1.06);
+  box-shadow:
+    -3px 3px 0 rgba(26,20,16,0.22),
+    0 6px 0 rgba(26,20,16,0.22);
+}
+.type--piece.is-lifted {
+  transform: translate3d(var(--x, 0), var(--y, 0), 100px);
+  filter: brightness(1.10) saturate(1.10);
+  z-index: 10;
+}
+
+/* ─────────── drawer ─────────── */
+.drawer {
+  position: fixed;
+  top: 0; right: 0;
+  width: min(440px, 92vw);
+  height: 100vh;
+  background: var(--paper);
+  border-left: 1px solid var(--black);
+  z-index: 80;
+  transform: translateX(110%);
+  transition: transform 380ms cubic-bezier(.2,.7,.2,1);
+  overflow: auto;
+  padding: 3.6rem 2rem 2.5rem;
+  box-shadow: -16px 0 40px rgba(0,0,0,0.10);
+}
+.drawer.is-open { transform: translateX(0); }
+.drawer__close {
+  position: absolute;
+  top: 0.5rem; right: 0.9rem;
+  background: none;
+  border: none;
+  font-family: var(--display);
+  font-size: 1.6rem;
+  color: var(--pink);
+  cursor: pointer;
+  line-height: 1;
+}
+.drawer__content h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 2.2rem;
+  line-height: 0.95;
+  margin: 0 0 0.3rem;
+  color: var(--pink);
+  text-transform: uppercase;
+  /* misregistration cyan ghost */
+  text-shadow: 2px -2px 0 var(--cyan);
+}
+.drawer__content .meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--cyan);
+  margin: 0.4rem 0 1.1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.drawer__content p { margin: 0 0 0.85rem; line-height: 1.6; color: var(--black); }
+.drawer__content em { color: var(--black); font-style: italic; }
+.drawer__content .quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  margin: 1rem 0 1.2rem;
+  padding-top: 0.6rem;
+  border-top: 2px solid var(--pink);
+  color: var(--pink);
+}
+.drawer__content .specs {
+  margin-top: 1rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--black);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  line-height: 1.6;
+  color: rgba(26,20,16,0.7);
+  text-transform: uppercase;
+}
+
+/* ─────────── coda ─────────── */
+.coda {
+  text-align: center;
+  padding: 3vh 6vw 5vh;
+  max-width: 38rem;
+  margin: 0 auto;
+}
+.coda p {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: rgba(26,20,16,0.7);
+  margin: 0 0 0.4rem;
+  line-height: 1.55;
+}
+.coda em { font-family: var(--serif); font-style: italic; letter-spacing: 0; }
+.coda a { color: var(--cyan); text-decoration: underline; text-underline-offset: 3px; }
+.coda a:hover { color: var(--pink); }
+
+/* ─────────── responsive ─────────── */
+@media (max-width: 760px) {
+  .hud { font-size: 10px; padding: 0.5rem 0.65rem; max-width: 12rem; }
+  .rails { width: 20px; }
+  .rail { font-size: 10px; }
+  .masthead { padding: 5vh 7vw 2vh; }
+  .title { font-size: clamp(2.2rem, 12vw, 3.6rem); }
+  .lede { font-size: 0.95rem; }
+  .scene { height: 62vh; min-height: 420px; perspective: 1100px; }
+  .drawer { width: 100%; padding: 3rem 1.4rem 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forme, .type, .drawer { transition: none; }
+  .rail { animation: none; }
+}

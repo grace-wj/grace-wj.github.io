@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Grace Wei-li Juan — quire</title>
+<meta name="description" content="A quire of eight riso leaves. Vertical scroll moves a horizontal camera across the gathered sheets." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Space+Mono:wght@400;700&display=swap" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<aside class="rails" aria-hidden="true">
+  <span class="rail">QUIRE · A GATHERING OF LEAVES · WEI-LI PRESS · NOT FOR SALE · QUIRE · </span>
+</aside>
+
+<svg class="reg reg--tl" viewBox="0 0 30 30" aria-hidden="true">
+  <circle cx="15" cy="15" r="6"/><line x1="15" y1="3" x2="15" y2="27"/><line x1="3" y1="15" x2="27" y2="15"/>
+</svg>
+<svg class="reg reg--tr" viewBox="0 0 30 30" aria-hidden="true">
+  <circle cx="15" cy="15" r="6"/><line x1="15" y1="3" x2="15" y2="27"/><line x1="3" y1="15" x2="27" y2="15"/>
+</svg>
+<svg class="reg reg--bl" viewBox="0 0 30 30" aria-hidden="true">
+  <circle cx="15" cy="15" r="6"/><line x1="15" y1="3" x2="15" y2="27"/><line x1="3" y1="15" x2="27" y2="15"/>
+</svg>
+<svg class="reg reg--br" viewBox="0 0 30 30" aria-hidden="true">
+  <circle cx="15" cy="15" r="6"/><line x1="15" y1="3" x2="15" y2="27"/><line x1="3" y1="15" x2="27" y2="15"/>
+</svg>
+
+<!-- HUD top-left: leaf indicator -->
+<aside class="hud" aria-live="polite">
+  <p class="hud__head"><span class="lab">quire</span> <span class="hud__sub">grace wei-li juan</span></p>
+  <ol class="leaves" id="leafIndicator">
+    <li data-i="0"><span class="rom">i</span> cover</li>
+    <li data-i="1"><span class="rom">ii</span> hum</li>
+    <li data-i="2"><span class="rom">iii</span> slowcompiler</li>
+    <li data-i="3"><span class="rom">iv</span> weft</li>
+    <li data-i="4"><span class="rom">v</span> three bodies</li>
+    <li data-i="5"><span class="rom">vi</span> on stillness</li>
+    <li data-i="6"><span class="rom">vii</span> letters</li>
+    <li data-i="7"><span class="rom">viii</span> colophon</li>
+  </ol>
+  <p class="hud__line">scroll &darr; · pan east</p>
+</aside>
+
+<!-- the track + camera (passage convention) -->
+<div class="track" id="track">
+  <div class="camera">
+
+    <div class="quire" id="quire">
+
+      <!-- ─── leaf i: cover ─── -->
+      <article class="leaf leaf--cover">
+        <p class="leaf__folio">001</p>
+        <p class="leaf__kicker">PROOF · ISSUE XX · WEI-LI PRESS · MMXXVI</p>
+        <h1 class="leaf__masthead">
+          <span>GRACE</span><span>WEI-LI</span><span>JUAN</span>
+        </h1>
+        <p class="leaf__sub"><em>a quire</em> of eight leaves, gathered by hand and pulled in the browser of whoever is reading.</p>
+        <p class="leaf__cont">a quire is what you call a gathering of folded sheets that becomes a section of a book. eight leaves, sixteen pages, this is one. <em>scroll down to pan east; the binding is on your right.</em></p>
+        <div class="leaf__hf leaf__hf--disc" aria-hidden="true"></div>
+      </article>
+
+      <!-- gutter: stitching marks between leaves -->
+      <div class="gutter" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+
+      <!-- ─── leaf ii: hum ─── -->
+      <article class="leaf leaf--hum">
+        <p class="leaf__folio">003</p>
+        <p class="leaf__kicker">i. PROJECT · A SYNTHESIZER</p>
+        <h2 class="leaf__head leaf__head--cyan">HUM</h2>
+        <p class="leaf__sub"><em>for people who cannot read music.</em></p>
+        <div class="leaf__cols">
+          <div>
+            <p>You hum into it; it gives you back a small song it thinks you meant. Rust + WebAudio. Around four thousand two hundred lines of code, in quiet beta.</p>
+            <p>About a hundred and twenty weekly users, most of whom cannot read music.</p>
+            <p class="quote pink">&ldquo;<em>The shower mode is the most-used patch.</em>&rdquo;</p>
+          </div>
+          <div class="leaf__hf leaf__hf--mic" aria-hidden="true"></div>
+        </div>
+      </article>
+
+      <div class="gutter" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+
+      <!-- ─── leaf iii: slowcompiler ─── -->
+      <article class="leaf leaf--slow">
+        <p class="leaf__folio">009</p>
+        <p class="leaf__kicker">ii. PROJECT · A COMPILER</p>
+        <h2 class="leaf__head leaf__head--pink">SLOWCOMPILER</h2>
+        <p class="leaf__sub"><em>thirty seconds per</em> hello world.</p>
+        <pre class="leaf__code">
+fn main() {
+  println!(<span class="s">"hello world"</span>);
+}
+        </pre>
+        <ol class="leaf__pipeline">
+          <li><span class="step">i</span> lex     <span class="haiku">first the small whispers</span></li>
+          <li><span class="step">ii</span> parse   <span class="haiku">at last, the small tree drops</span></li>
+          <li><span class="step">iii</span> type    <span class="haiku">leaves into a list</span></li>
+          <li><span class="step">iv</span> lower   <span class="haiku">a list, and a list</span></li>
+          <li><span class="step">v</span> emit    <span class="haiku">no one will sing in</span></li>
+        </ol>
+      </article>
+
+      <div class="gutter" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+
+      <!-- ─── leaf iv: weft ─── -->
+      <article class="leaf leaf--weft">
+        <p class="leaf__folio">015</p>
+        <p class="leaf__kicker">iii. PROJECT · A LOOM</p>
+        <h2 class="leaf__head leaf__head--cyan">WEFT</h2>
+        <p class="leaf__sub"><em>one thread per commit, one scarf per orbital year.</em></p>
+        <div class="leaf__cols">
+          <div>
+            <p>A physical jacquard loom, a Raspberry Pi, and a git hook. Once a day, the loom takes the day's commits and pulls them through the cloth.</p>
+            <p>The week the parser of <em>slowcompiler</em> was rewritten left three days of red thread; you can see it on the cloth — the <span class="thread thread--red">red weft</span> in an otherwise <span class="thread thread--green">green spring</span>.</p>
+          </div>
+          <div class="leaf__weave" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span class="red"></span><span class="red"></span><span class="red"></span>
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </article>
+
+      <div class="gutter" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+
+      <!-- ─── leaf v: three bodies ─── -->
+      <article class="leaf leaf--three">
+        <p class="leaf__folio">021</p>
+        <p class="leaf__kicker">iv. PAINTINGS · OIL ON LINEN</p>
+        <h2 class="leaf__head leaf__head--pink">THREE BODIES, <em>orbiting</em></h2>
+        <p class="leaf__sub">Eight panels, each fifteen inches square. <em>The kettle, three figures, one warm pool of light.</em></p>
+        <div class="leaf__panels" aria-hidden="true">
+          <div class="panel panel--i"><span>i</span></div>
+          <div class="panel panel--ii"><span>ii</span></div>
+          <div class="panel panel--iii"><span>iii</span></div>
+        </div>
+        <p class="leaf__cont">Painted on long autumn afternoons; the light went from warm to cold and the painting followed it. Shown briefly in a borrowed window on Bergen Street; now in private collections, by which is meant: friends' living rooms.</p>
+      </article>
+
+      <div class="gutter" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+
+      <!-- ─── leaf vi: on stillness ─── -->
+      <article class="leaf leaf--essay">
+        <p class="leaf__folio">027</p>
+        <p class="leaf__kicker">v. ESSAY · WRITTEN AT LENGTH</p>
+        <h2 class="leaf__head leaf__head--cyan">ON STILLNESS</h2>
+        <p class="leaf__sub"><em>finished is the wrong unit.</em></p>
+        <div class="leaf__cols">
+          <p>An essay on the question of when a thing is finished. The argument is that finished is the wrong unit. Reads like a long letter; has been written for two years and may continue to be written for two more.</p>
+          <p>What I cross out is not gone — it is the shape this draft is not. <em>Strikethroughs are kept. Some weeks have no notes. The cloth is still cloth.</em></p>
+        </div>
+        <p class="quote pink">&ldquo;<em>A gardener would recognize this. So would a conservator. Some things are only themselves while they're decaying.</em>&rdquo;</p>
+      </article>
+
+      <div class="gutter" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+
+      <!-- ─── leaf vii: letters ─── -->
+      <article class="leaf leaf--letters">
+        <p class="leaf__folio">032</p>
+        <p class="leaf__kicker">vi. CORRESPONDENCE · POSTED</p>
+        <h2 class="leaf__head leaf__head--pink">LETTERS</h2>
+        <p class="leaf__sub"><em>replies will be slow and, when they come, longer than they should be.</em></p>
+        <div class="leaf__cols">
+          <div>
+            <p>Slow correspondence in the post. Comes in at the shallows in November like the first weather of the year.</p>
+            <p>Letter is the right unit of attention. <em>Correspondence welcome:</em></p>
+            <p class="leaf__addr">Grace Wei-li Juan<br/>Brooklyn, NY · MMXXVI<br/><a href="mailto:grayswan795@gmail.com">grayswan795@gmail.com</a></p>
+          </div>
+          <div class="leaf__hf leaf__hf--envelope" aria-hidden="true"></div>
+        </div>
+      </article>
+
+      <div class="gutter" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+
+      <!-- ─── leaf viii: colophon ─── -->
+      <article class="leaf leaf--colophon">
+        <p class="leaf__folio">037</p>
+        <p class="leaf__kicker">vii. COLOPHON · BACK OF THE BOOK</p>
+        <h2 class="leaf__head leaf__head--cyan">COLOPHON</h2>
+        <p class="leaf__sub"><em>this leaf names who set the others.</em></p>
+        <div class="leaf__colophon-list">
+          <p><strong>SET IN</strong> Anton (Vernon Adams), Fraunces (Phaedra Charles), Space Mono (Colophon Foundry).</p>
+          <p><strong>STOCK</strong> linen-finished cream, 80gsm.</p>
+          <p><strong>INKS</strong> fluorescent pink (RZ-21), cornflower blue (RZ-19), warm black, hand-pulled in your browser by mix-blend-mode multiply.</p>
+          <p><strong>BINDING</strong> a quire — eight leaves, sixteen pages, gathered.</p>
+          <p><strong>COMPOSED BY</strong> Grace Wei-li Juan.</p>
+          <p><strong>EDITION</strong> proof, not for sale.</p>
+        </div>
+        <p class="leaf__cont leaf__cont--end"><em>The end of a quire is also the back of a book. Replies will be slow and, when they come, longer than they should be.</em></p>
+      </article>
+
+    </div>
+
+  </div>
+</div>
+
+<script src="script.js" defer></script>
+</body>
+</html>

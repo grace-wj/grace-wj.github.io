@@ -1,0 +1,480 @@
+:root {
+  /* the three drums */
+  --paper:   #f3e9d2;        /* cream, ever so slightly warm */
+  --paper-d: #e6d8b2;
+  --pink:    #ff3a8c;        /* fluorescent pink head */
+  --cyan:    #2c4dff;        /* cornflower blue head */
+  --black:   #1a1410;        /* warm black third color */
+  --shadow:  rgba(60, 30, 10, 0.10);
+
+  --display: 'Anton', 'Bebas Neue', 'Helvetica Neue Condensed Bold', 'Impact', sans-serif;
+  --serif:   'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --mono:    'Space Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --reg: 0px;             /* registration offset; nudged per plate via inline style */
+  --halftone-size: 4px;   /* halftone dot pitch on illustrations */
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--black);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+body {
+  /* paper grain — three offset radial-gradient noise layers */
+  background:
+    radial-gradient(1200px 800px at 10% 10%, rgba(120,80,30,0.045), transparent 60%),
+    radial-gradient(900px 700px at 90% 80%, rgba(80,40,10,0.04), transparent 60%),
+    radial-gradient(circle at 30% 60%, rgba(120,80,30,0.025) 1px, transparent 2px) 0 0/240px 240px,
+    var(--paper);
+}
+
+/* ───────────────────────────────────────────────────────────
+   the rolling vertical marquee on the right edge — riso convention
+   ─────────────────────────────────────────────────────────── */
+.rails {
+  position: fixed;
+  top: 0; bottom: 0;
+  right: 0;
+  width: 28px;
+  z-index: 50;
+  background: var(--cyan);
+  color: var(--paper);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+.rail {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+  display: inline-block;
+  animation: rail 60s linear infinite;
+}
+@keyframes rail {
+  from { transform: translateY(-50%); }
+  to   { transform: translateY(50%); }
+}
+
+/* ───────────────────────────────────────────────────────────
+   press HUD — top-left, status of the printing
+   ─────────────────────────────────────────────────────────── */
+.press-hud {
+  position: fixed;
+  top: 16px; left: 16px;
+  z-index: 60;
+  background: var(--paper);
+  border: 1px solid var(--black);
+  padding: 0.8rem 1rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--black);
+  letter-spacing: 0.06em;
+  max-width: 14rem;
+  box-shadow: 4px 4px 0 var(--black);
+}
+.hud__head {
+  margin: 0 0 0.6rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.lab { text-transform: uppercase; }
+.hud__seed { color: var(--cyan); font-weight: 400; }
+.plates {
+  list-style: none;
+  margin: 0 0 0.6rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.plates li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: lowercase;
+  color: rgba(26,20,16,0.4);
+  transition: color 200ms ease;
+}
+.plates li.is-running { color: var(--black); }
+.plates li.is-done    { color: rgba(26,20,16,0.7); text-decoration: line-through; text-decoration-color: rgba(26,20,16,0.3); }
+.dot {
+  display: inline-block;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: rgba(26,20,16,0.15);
+  transition: background 200ms ease, box-shadow 200ms ease;
+}
+.plates li[data-plate="cyan"]  .dot { background: rgba(44,77,255,0.18); }
+.plates li[data-plate="pink"]  .dot { background: rgba(255,58,140,0.18); }
+.plates li[data-plate="black"] .dot { background: rgba(26,20,16,0.18); }
+.plates li.is-running .dot {
+  background: var(--cyan);
+  box-shadow: 0 0 0 2px rgba(44,77,255,0.18);
+  animation: dot-pulse 600ms ease-in-out infinite alternate;
+}
+.plates li[data-plate="pink"].is-running .dot  { background: var(--pink);  box-shadow: 0 0 0 2px rgba(255,58,140,0.18); }
+.plates li[data-plate="black"].is-running .dot { background: var(--black); box-shadow: 0 0 0 2px rgba(26,20,16,0.20); }
+.plates li.is-done .dot { background: rgba(26,20,16,0.4); }
+@keyframes dot-pulse {
+  from { transform: scale(0.92); }
+  to   { transform: scale(1.08); }
+}
+.hud__line {
+  margin: 0 0 0.7rem;
+  font-style: italic;
+  color: rgba(26,20,16,0.6);
+  font-family: var(--serif);
+  font-size: 12px;
+  letter-spacing: 0;
+  min-height: 1em;
+}
+.hud__btns { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.btn {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.65rem;
+  background: var(--paper);
+  border: 1px solid var(--black);
+  color: var(--black);
+  cursor: pointer;
+}
+.btn:hover { background: var(--black); color: var(--paper); }
+.btn--primary { background: var(--pink); border-color: var(--pink); color: var(--paper); }
+.btn--primary:hover { background: var(--black); border-color: var(--black); }
+
+/* ───────────────────────────────────────────────────────────
+   the press — three stacked plates, each in mix-blend-mode multiply
+   ─────────────────────────────────────────────────────────── */
+.press {
+  position: relative;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 8vh 6vw 8vh;
+  min-height: 100vh;
+  isolation: isolate;            /* contains blend modes within the press */
+}
+
+.reg {
+  position: absolute;
+  width: 22px; height: 22px;
+  stroke: var(--black);
+  stroke-width: 0.6;
+  fill: none;
+  opacity: 0.5;
+}
+.reg circle { stroke-width: 0.7; }
+.reg--tl { top: 16px; left: 16px; }
+.reg--tr { top: 16px; right: 44px; }
+.reg--bl { bottom: 16px; left: 16px; }
+.reg--br { bottom: 16px; right: 44px; }
+
+/* every plate: positioned over the same area; multiply blend */
+.plate {
+  position: relative;
+}
+.plate--cyan,
+.plate--pink {
+  position: absolute;
+  inset: 0;
+  padding: inherit;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+.plate--cyan  { color: var(--cyan); }
+.plate--pink  { color: var(--pink); }
+.plate--black { color: var(--black); }
+
+/* offset for misregistration — applied via JS animation */
+.plate--cyan  { transform: translate(calc(-1 * var(--reg-cyan, 0px)), 0); }
+.plate--pink  { transform: translate(var(--reg-pink, 0px), calc(-1 * var(--reg-pink-y, 0px))); }
+.plate--black { transform: translate(0, var(--reg-black, 0px)); }
+
+/* hidden until the press lays them down */
+.plate { opacity: 0; transition: opacity 280ms ease; }
+.plate.is-laid { opacity: 1; }
+
+/* ───────────────────────────────────────────────────────────
+   cyan plate contents — a halftone illustration + blocks
+   ─────────────────────────────────────────────────────────── */
+.ht-disc {
+  position: absolute;
+  top: 4vh;
+  right: 6vw;
+  width: clamp(180px, 28vw, 360px);
+  height: clamp(180px, 28vw, 360px);
+  border-radius: 50%;
+  background: var(--cyan);
+  -webkit-mask: radial-gradient(circle at 30% 30%, #000 1.6px, transparent 1.8px) 0 0/var(--halftone-size) var(--halftone-size);
+          mask: radial-gradient(circle at 30% 30%, #000 1.6px, transparent 1.8px) 0 0/var(--halftone-size) var(--halftone-size);
+  /* progressively reveal via a clip-path animation */
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1800ms cubic-bezier(.5,.0,.5,1);
+}
+.plate--cyan.is-laid .ht-disc { clip-path: inset(0 0 0 0); }
+
+.block-floor {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 0;
+  height: 22vh;
+  background: var(--cyan);
+  /* fine halftone shading */
+  -webkit-mask: radial-gradient(circle, #000 1.0px, transparent 1.2px) 0 0/3px 3px;
+          mask: radial-gradient(circle, #000 1.0px, transparent 1.2px) 0 0/3px 3px;
+  opacity: 0.55;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1400ms cubic-bezier(.5,.0,.5,1);
+}
+.plate--cyan.is-laid .block-floor { clip-path: inset(0 0 0 0); }
+
+.specs-rule {
+  position: absolute;
+  top: 8vh;
+  bottom: 12vh;
+  right: 4vw;
+  width: 2px;
+  background: var(--cyan);
+  opacity: 0.6;
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform 900ms ease;
+}
+.plate--cyan.is-laid .specs-rule { transform: scaleY(1); }
+
+/* ───────────────────────────────────────────────────────────
+   pink plate — masthead and kicker, with misregistration
+   ─────────────────────────────────────────────────────────── */
+.masthead {
+  font-family: var(--display);
+  font-size: clamp(4rem, 14vw, 11rem);
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--pink);
+  text-transform: uppercase;
+  font-weight: 400;
+  /* progressively reveal via a left-to-right wipe */
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1400ms cubic-bezier(.5,.0,.5,1);
+}
+.plate--pink.is-laid .masthead { clip-path: inset(0 0 0 0); }
+.masthead__line { display: block; }
+
+.kicker {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.20em;
+  margin: 0.6rem 0 1.2rem;
+  color: var(--pink);
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+.plate--pink.is-laid .kicker { opacity: 1; transition-delay: 700ms; }
+.kicker__sep { color: rgba(255,58,140,0.4); }
+
+.pull {
+  /* sits below the kicker, before the body — a magazine pull-quote in flow */
+  margin: 1.2rem 0 1.6rem;
+  max-width: 36rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+  line-height: 1.35;
+  color: var(--pink);
+  border-top: 2px solid var(--pink);
+  padding-top: 0.6rem;
+  opacity: 0;
+  transition: opacity 700ms ease;
+}
+.plate--pink.is-laid .pull { opacity: 1; transition-delay: 1200ms; }
+.pull em { font-style: normal; font-weight: 500; }
+
+/* ───────────────────────────────────────────────────────────
+   warm-black plate — body text, specs, colophon
+   ─────────────────────────────────────────────────────────── */
+.plate--black { padding-top: clamp(4rem, 12vw, 9rem); }
+
+/* ghost elements — keep layout space without painting; pink and black plates share structure */
+.masthead--ghost,
+.kicker--ghost,
+.pull--ghost,
+.body--ghost,
+.specs--ghost,
+.colophon--ghost {
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+.masthead--ghost { margin: 0; }
+.kicker--ghost  { margin: 0.6rem 0 1.2rem; }
+.body--ghost {
+  /* reserves the same height as the body on the other plate; we don't know exactly, so this is a min */
+  min-height: 24rem;
+}
+.specs--ghost { min-height: 12rem; }
+.colophon--ghost { min-height: 4rem; margin-top: 3rem; }
+
+.row {
+  margin-top: 1.4rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 12rem;
+  gap: clamp(1.4rem, 4vw, 3rem);
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+.body {
+  max-width: 32rem;
+}
+.body p {
+  margin: 0 0 0.85rem;
+  line-height: 1.55;
+  font-size: 17px;
+  color: var(--black);
+}
+.body em { font-style: italic; }
+.body .lede {
+  font-style: italic;
+  font-size: 18px;
+  color: var(--black);
+}
+.dropcap {
+  float: left;
+  font-family: var(--display);
+  font-size: 4rem;
+  line-height: 0.85;
+  margin: 0.2rem 0.4rem 0 0;
+  color: var(--pink);   /* dropcap pulls pink — overprint will turn it darker */
+}
+.body h2 {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  margin: 1.6rem 0 0.4rem;
+  color: var(--black);
+}
+.works {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.works li {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 0.6rem;
+  padding: 0.4rem 0;
+  border-top: 1px solid rgba(26,20,16,0.18);
+  font-size: 15px;
+}
+.works li:last-child { border-bottom: 1px solid rgba(26,20,16,0.18); }
+.works .folio {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  color: var(--cyan);    /* cyan + black = darker cyan; reads as overprint */
+  align-self: center;
+}
+.works strong { font-weight: 500; font-style: italic; color: var(--black); }
+
+.specs {
+  width: 100%;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  color: var(--black);
+  text-align: left;
+  border-left: 1px solid rgba(26,20,16,0.35);
+  padding-left: 0.8rem;
+  margin-top: 0.4rem;
+}
+.specs__head {
+  margin: 0 0 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.20em;
+  color: var(--black);
+}
+.specs__line { margin: 0; }
+
+.colophon {
+  margin-top: 3rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(26,20,16,0.25);
+  max-width: 30rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  line-height: 1.55;
+  color: var(--black);
+}
+.colophon a { color: var(--cyan); text-decoration: underline; }
+.colophon a:hover { color: var(--pink); }
+.colophon__line {
+  margin: 0.4rem 0 0;
+  font-style: italic;
+  color: rgba(26,20,16,0.7);
+  font-family: var(--serif);
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+/* the warm-black plate also wipes in, but more slowly — text is the third pull */
+.plate--black .body,
+.plate--black .specs,
+.plate--black .colophon {
+  opacity: 0;
+  transition: opacity 800ms ease;
+}
+.plate--black.is-laid .body      { opacity: 1; transition-delay: 200ms; }
+.plate--black.is-laid .specs     { opacity: 1; transition-delay: 600ms; }
+.plate--black.is-laid .colophon  { opacity: 1; transition-delay: 1100ms; }
+
+/* ───────────────────────────────────────────────────────────
+   responsive
+   ─────────────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .press-hud { font-size: 10px; padding: 0.6rem 0.7rem; max-width: 11rem; left: 12px; top: 12px; }
+  .rails { width: 20px; }
+  .rail { font-size: 10px; }
+  .press { padding: 9vh 7vw 8vh; overflow-x: hidden; }
+  .ht-disc { top: 3vh; right: 7vw; width: 56vw; height: 56vw; opacity: 0.85; }
+  .row { grid-template-columns: 1fr; gap: 1.4rem; }
+  .specs { border-left: none; border-top: 1px solid rgba(26,20,16,0.35); padding-left: 0; padding-top: 0.6rem; }
+  .pull { max-width: none; }
+  .masthead { font-size: clamp(3rem, 18vw, 6rem); }
+  .body { max-width: none; }
+  .works li { grid-template-columns: 2.4rem 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* skip the printing animation entirely — show the finished proof */
+  .plate, .ht-disc, .block-floor, .specs-rule, .masthead, .kicker, .pull,
+  .plate--black .body, .plate--black .specs, .plate--black .colophon {
+    transition: none !important;
+    animation: none !important;
+  }
+  .rail { animation: none; }
+}

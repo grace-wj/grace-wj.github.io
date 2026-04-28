@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Grace Wei-li Juan — galley</title>
+<meta name="description" content="A riso zine that prints itself in front of you. Cyan plate, pink plate, warm-black plate. Reload to pull again." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Space+Mono:wght@400;700&display=swap" />
+<link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+
+<!-- the rolling vertical marquee: a riso convention, lifted from press -->
+<aside class="rails" aria-hidden="true">
+  <span class="rail">PRESSED IN BROWSER · PROOF · NOT FOR SALE · PRESSED IN BROWSER · PROOF · NOT FOR SALE · </span>
+</aside>
+
+<!-- the press HUD: status of the printing -->
+<aside class="press-hud" id="hud" aria-live="polite">
+  <p class="hud__head"><span class="lab">galley</span> <span class="hud__seed" id="hudSeed">—</span></p>
+  <ol class="plates">
+    <li data-plate="cyan"><span class="dot"></span> cyan</li>
+    <li data-plate="pink"><span class="dot"></span> fluo pink</li>
+    <li data-plate="black"><span class="dot"></span> warm black</li>
+  </ol>
+  <p class="hud__line" id="hudLine">staging…</p>
+  <div class="hud__btns">
+    <button type="button" id="skip" class="btn">skip to printed</button>
+    <button type="button" id="again" class="btn btn--primary" hidden>another pull</button>
+  </div>
+</aside>
+
+<!-- the zine itself — three layered plates -->
+<main class="press">
+
+  <!-- registration crosses (corners) -->
+  <svg class="reg reg--tl" viewBox="0 0 30 30" aria-hidden="true">
+    <circle cx="15" cy="15" r="6" />
+    <line x1="15" y1="3" x2="15" y2="27" />
+    <line x1="3" y1="15" x2="27" y2="15" />
+  </svg>
+  <svg class="reg reg--tr" viewBox="0 0 30 30" aria-hidden="true">
+    <circle cx="15" cy="15" r="6" />
+    <line x1="15" y1="3" x2="15" y2="27" />
+    <line x1="3" y1="15" x2="27" y2="15" />
+  </svg>
+  <svg class="reg reg--bl" viewBox="0 0 30 30" aria-hidden="true">
+    <circle cx="15" cy="15" r="6" />
+    <line x1="15" y1="3" x2="15" y2="27" />
+    <line x1="3" y1="15" x2="27" y2="15" />
+  </svg>
+  <svg class="reg reg--br" viewBox="0 0 30 30" aria-hidden="true">
+    <circle cx="15" cy="15" r="6" />
+    <line x1="15" y1="3" x2="15" y2="27" />
+    <line x1="3" y1="15" x2="27" y2="15" />
+  </svg>
+
+  <!-- ─── cyan plate: blocks of color + halftone illustration ─── -->
+  <div class="plate plate--cyan" id="plateCyan" aria-hidden="true">
+    <svg class="hf" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <pattern id="halftone-cyan" width="3" height="3" patternUnits="userSpaceOnUse">
+          <circle cx="1.5" cy="1.5" r="1.0" fill="currentColor"/>
+        </pattern>
+      </defs>
+    </svg>
+    <!-- a large halftone disc (the lamp) -->
+    <div class="ht-disc" id="htDisc"></div>
+    <!-- a wide bottom block of color (the floor) -->
+    <div class="block-floor" id="blockFloor"></div>
+    <!-- thin specs column on the right edge -->
+    <div class="specs-rule" id="specsRule"></div>
+  </div>
+
+  <!-- ─── pink plate: headlines and pull quote (sharing flow with black plate) ─── -->
+  <div class="plate plate--pink" id="platePink" aria-hidden="true">
+    <h1 class="masthead" id="masthead">
+      <span class="masthead__line">GRACE</span>
+      <span class="masthead__line">WEI-LI</span>
+      <span class="masthead__line">JUAN</span>
+    </h1>
+    <p class="kicker" id="kicker">
+      <span class="kicker__issue">PROOF · ISSUE <span id="issue">XII</span></span>
+      <span class="kicker__sep">·</span>
+      <span class="kicker__season"><span id="season">SPRING</span> · <span id="year">MMXXVI</span></span>
+    </p>
+    <p class="pull" id="pull">
+      &ldquo;<em>what would happen if the artifact were kind?</em>&rdquo;
+    </p>
+  </div>
+
+  <!-- ─── warm-black plate: text ─── -->
+  <div class="plate plate--black" id="plateBlack" aria-hidden="true">
+
+    <!-- ghost masthead + kicker + pull so the body flows below where the pink plate's headline lives -->
+    <h1 class="masthead masthead--ghost" aria-hidden="true">
+      <span class="masthead__line">GRACE</span>
+      <span class="masthead__line">WEI-LI</span>
+      <span class="masthead__line">JUAN</span>
+    </h1>
+    <p class="kicker kicker--ghost" aria-hidden="true">
+      <span class="kicker__issue">PROOF · ISSUE XII</span>
+      <span class="kicker__sep">·</span>
+      <span class="kicker__season">SPRING · MMXXVI</span>
+    </p>
+    <p class="pull pull--ghost" aria-hidden="true">
+      &ldquo;<em>what would happen if the artifact were kind?</em>&rdquo;
+    </p>
+
+    <div class="row">
+    <article class="body" id="body">
+      <p class="lede">
+        <span class="dropcap">A</span> brief life in software, ink, and language. Set in cyan, pink, and warm black. Pulled in your browser, while you watch.
+      </p>
+      <p>
+        Grace Wei-li Juan is a software engineer, polymath, and visual artist who lives at the intersection of several ways of making. She writes code that wants to be read like a poem, and essays that want to be compiled.
+      </p>
+      <p>
+        Her work asks a small, stubborn question: <em>what would happen if the artifact were kind?</em> The answer has looked, at various times, like a synthesizer, a loom, an essay about doing less, and an oil painting of a compiler in the act of parsing grief.
+      </p>
+      <p>
+        She is currently interested in the space between <em>the finished thing</em> and <em>the continuing thing</em> — programs that never quite terminate, scarves woven over a decade, paintings left out in the weather.
+      </p>
+
+      <h2>Works in this issue</h2>
+      <ul class="works">
+        <li><span class="folio">003</span><span class="work"><strong>hum</strong> — a synthesizer for people who cannot read music.</span></li>
+        <li><span class="folio">009</span><span class="work"><strong>slowcompiler</strong> — a compiler that prints a haiku at every pass.</span></li>
+        <li><span class="folio">015</span><span class="work"><strong>weft</strong> — a loom driven by git; one thread per commit.</span></li>
+        <li><span class="folio">021</span><span class="work"><strong>three bodies, orbiting a lamp</strong> — eight oil paintings.</span></li>
+      </ul>
+    </article>
+
+    <aside class="specs" id="specs">
+      <p class="specs__head">SPECS</p>
+      <p class="specs__line">paper · 80gsm cream</p>
+      <p class="specs__line">drums · cyan, fluo pink, warm black</p>
+      <p class="specs__line">heads · Anton 144pt</p>
+      <p class="specs__line">body · Fraunces 17pt</p>
+      <p class="specs__line">caption · Space Mono 11pt</p>
+      <p class="specs__line">misregistration · 3px nominal</p>
+      <p class="specs__line">pulled · <span id="pulledAt">—</span></p>
+    </aside>
+    </div>
+
+    <footer class="colophon">
+      <p>Correspondence: <a href="mailto:grayswan795@gmail.com">grayswan795@gmail.com</a> · <a href="https://github.com/grace-wj" rel="noopener">github.com/grace-wj</a></p>
+      <p class="colophon__line">Replies will be slow and, when they come, longer than they should be.</p>
+    </footer>
+  </div>
+
+</main>
+
+<script src="script.js" defer></script>
+</body>
+</html>

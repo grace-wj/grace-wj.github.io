@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Grace Wei-li Juan — forme</title>
+<meta name="description" content="A printer's forme of locked-up type, viewed in 3D. Drag to rotate. Click a piece of type to read." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Space+Mono:wght@400;700&display=swap" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- vertical edge marquee — riso convention -->
+<aside class="rails" aria-hidden="true">
+  <span class="rail">FORME · PROOF · PRESSED IN BROWSER · NOT FOR SALE · FORME · PROOF · </span>
+</aside>
+
+<!-- press-style HUD top-left -->
+<aside class="hud" id="hud">
+  <p class="hud__head"><span class="lab">forme</span> <span class="hud__sub">grace wei-li juan</span></p>
+  <p class="hud__line">drag to rotate · click a piece</p>
+  <p class="hud__line hud__angle" id="angle">θ −15° · φ −45°</p>
+</aside>
+
+<!-- registration crosses (corners) -->
+<svg class="reg reg--tl" viewBox="0 0 30 30" aria-hidden="true">
+  <circle cx="15" cy="15" r="6"/><line x1="15" y1="3" x2="15" y2="27"/><line x1="3" y1="15" x2="27" y2="15"/>
+</svg>
+<svg class="reg reg--tr" viewBox="0 0 30 30" aria-hidden="true">
+  <circle cx="15" cy="15" r="6"/><line x1="15" y1="3" x2="15" y2="27"/><line x1="3" y1="15" x2="27" y2="15"/>
+</svg>
+<svg class="reg reg--bl" viewBox="0 0 30 30" aria-hidden="true">
+  <circle cx="15" cy="15" r="6"/><line x1="15" y1="3" x2="15" y2="27"/><line x1="3" y1="15" x2="27" y2="15"/>
+</svg>
+<svg class="reg reg--br" viewBox="0 0 30 30" aria-hidden="true">
+  <circle cx="15" cy="15" r="6"/><line x1="15" y1="3" x2="15" y2="27"/><line x1="3" y1="15" x2="27" y2="15"/>
+</svg>
+
+<!-- masthead, top-center -->
+<header class="masthead">
+  <p class="kicker">PROOF · ISSUE XVII · WEI-LI PRESS · MMXXVI</p>
+  <h1 class="title">a forme<br/><em>of locked-up type</em></h1>
+  <p class="lede">
+    A printer's forme is a metal frame holding type ready for press. This one holds six pieces, each a small body of work. Drag to rotate the chase; click a piece of type and the spread will lift away and open beside you.
+  </p>
+</header>
+
+<!-- the scene -->
+<div class="scene" id="scene">
+  <div class="forme" id="forme" style="--rx: -45deg; --ry: -15deg;">
+
+    <!-- chase plate (the metal underneath) -->
+    <div class="chase-plate" aria-hidden="true"></div>
+
+    <!-- chase frame (the metal frame) -->
+    <div class="chase chase--top"    aria-hidden="true"></div>
+    <div class="chase chase--bot"    aria-hidden="true"></div>
+    <div class="chase chase--left"   aria-hidden="true"></div>
+    <div class="chase chase--right"  aria-hidden="true"></div>
+
+    <!-- title block — flush across the top of the forme -->
+    <div class="type type--title" data-piece="title" aria-hidden="true">
+      <span class="type__rule">WEI-LI</span>
+      <span class="type__rule type__rule--big">PRESS</span>
+    </div>
+
+    <!-- six pieces of type — each is a work -->
+    <button class="type type--piece type--pink" data-piece="hum" type="button"
+            style="--x:-260px; --y:-90px; --w:240px; --h:96px;">
+      <span class="type__head">hum</span>
+      <span class="type__sub">a synthesizer</span>
+      <span class="type__folio">003</span>
+    </button>
+
+    <button class="type type--piece type--cyan" data-piece="slowcompiler" type="button"
+            style="--x:20px; --y:-90px; --w:280px; --h:96px;">
+      <span class="type__head">slowcompiler</span>
+      <span class="type__sub">a compiler</span>
+      <span class="type__folio">009</span>
+    </button>
+
+    <button class="type type--piece type--black" data-piece="weft" type="button"
+            style="--x:-260px; --y:30px; --w:160px; --h:80px;">
+      <span class="type__head">weft</span>
+      <span class="type__sub">a loom</span>
+      <span class="type__folio">015</span>
+    </button>
+
+    <button class="type type--piece type--pink" data-piece="three-bodies" type="button"
+            style="--x:-80px; --y:30px; --w:380px; --h:80px;">
+      <span class="type__head">three&nbsp;bodies, orbiting</span>
+      <span class="type__sub">paintings</span>
+      <span class="type__folio">021</span>
+    </button>
+
+    <button class="type type--piece type--cyan" data-piece="on-stillness" type="button"
+            style="--x:-260px; --y:140px; --w:300px; --h:80px;">
+      <span class="type__head">on stillness</span>
+      <span class="type__sub">an essay</span>
+      <span class="type__folio">027</span>
+    </button>
+
+    <button class="type type--piece type--black" data-piece="letters" type="button"
+            style="--x:60px; --y:140px; --w:240px; --h:80px;">
+      <span class="type__head">letters</span>
+      <span class="type__sub">correspondence</span>
+      <span class="type__folio">032</span>
+    </button>
+
+    <!-- a few "furniture" pieces (the wooden blocks that fill empty space in a forme) -->
+    <div class="type type--furniture" style="--x:-100px; --y:-90px; --w:60px; --h:96px;" aria-hidden="true"></div>
+    <div class="type type--furniture" style="--x:-80px; --y:140px; --w:120px; --h:80px;" aria-hidden="true"></div>
+
+  </div>
+</div>
+
+<!-- drawer: opens when a piece is clicked -->
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <button class="drawer__close" id="drawerClose" type="button" aria-label="close">×</button>
+  <div class="drawer__content" id="drawerContent"></div>
+</aside>
+
+<!-- coda -->
+<footer class="coda">
+  <p>Set in <em>Anton</em> for the type, <em>Fraunces</em> italic for the lede, <em>Space Mono</em> for the folios. Pulled in your browser; rotated by your hand.</p>
+  <p>Grace Wei-li Juan · <a href="mailto:grayswan795@gmail.com">by post</a> · <a href="https://github.com/grace-wj" rel="noopener">in source</a></p>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

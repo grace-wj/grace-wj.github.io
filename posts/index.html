@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>writing — grace juan</title>
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<main>
+  <a class="back" href="../">&larr; home</a>
+  <h1>writing</h1>
+  <ul class="post-list" id="post-list"></ul>
+</main>
+
+<script src="../posts.js"></script>
+<script>
+  const list = document.getElementById('post-list');
+  const posts = (window.POSTS || []).slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  for (const post of posts) {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = post.slug + '.html';
+    a.textContent = post.title;
+    li.appendChild(a);
+    if (post.date) {
+      const d = document.createElement('span');
+      d.className = 'date';
+      d.textContent = ' · ' + post.date;
+      li.appendChild(d);
+    }
+    if (post.summary) {
+      const s = document.createElement('div');
+      s.className = 'desc';
+      s.textContent = post.summary;
+      li.appendChild(s);
+    }
+    list.appendChild(li);
+  }
+</script>
+
+</body>
+</html>

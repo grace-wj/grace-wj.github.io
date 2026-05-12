@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>grace juan</title>
+<meta name="description" content="grace juan — personal site" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<main>
+
+  <header class="intro">
+    <h1>grace juan</h1>
+    <p class="tagline">
+      <!-- TODO: replace with your own one-liner -->
+      software engineer. berkeley cs + cogsci '25. currently at c3 ai.
+    </p>
+    <p class="bio">
+      <!-- TODO: replace / expand. keep it short — a paragraph or two. -->
+      this is a placeholder bio. write a few sentences about what you do,
+      what you're interested in, and what you're working on right now.
+    </p>
+  </header>
+
+  <nav class="links" aria-label="elsewhere">
+    <a href="resume.pdf">resume (pdf)</a>
+    <a href="https://github.com/grace-wj">github</a>
+    <a href="#" data-todo>linkedin</a>
+    <a href="mailto:TODO@example.com" data-todo>email</a>
+  </nav>
+
+  <section id="projects" aria-labelledby="projects-h">
+    <h2 id="projects-h">projects</h2>
+    <ul class="project-list" id="project-list">
+      <!-- rendered from projects.js -->
+    </ul>
+  </section>
+
+  <section id="writing" aria-labelledby="writing-h">
+    <h2 id="writing-h">writing</h2>
+    <ul class="post-list" id="post-list">
+      <!-- rendered from posts.js (latest 5) -->
+    </ul>
+    <p class="more"><a href="posts/">all posts &rarr;</a></p>
+  </section>
+
+</main>
+
+<script src="posts.js"></script>
+<script src="projects.js"></script>
+<script>
+  // render projects
+  const projectList = document.getElementById('project-list');
+  for (const p of (window.PROJECTS || [])) {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = p.url || '#';
+    a.textContent = p.name;
+    li.appendChild(a);
+    if (p.year) {
+      const year = document.createElement('span');
+      year.className = 'year';
+      year.textContent = ' · ' + p.year;
+      li.appendChild(year);
+    }
+    if (p.description) {
+      const desc = document.createElement('div');
+      desc.className = 'desc';
+      desc.textContent = p.description;
+      li.appendChild(desc);
+    }
+    projectList.appendChild(li);
+  }
+
+  // render latest 5 posts
+  const postList = document.getElementById('post-list');
+  const posts = (window.POSTS || []).slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  for (const post of posts.slice(0, 5)) {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = 'posts/' + post.slug + '.html';
+    a.textContent = post.title;
+    li.appendChild(a);
+    if (post.date) {
+      const d = document.createElement('span');
+      d.className = 'date';
+      d.textContent = ' · ' + post.date;
+      li.appendChild(d);
+    }
+    postList.appendChild(li);
+  }
+</script>
+
+</body>
+</html>

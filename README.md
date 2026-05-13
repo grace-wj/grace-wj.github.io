@@ -28,7 +28,9 @@ Posts are individual HTML files in `posts/`, listed in `posts.js`.
 **Add a post:**
 1. Copy `posts/_template.html` to `posts/your-slug.html`.
 2. Edit the title, date, and content.
-3. Add an entry to `window.POSTS` in `posts.js` with a matching `slug`.
+3. Add an entry to `window.POSTS` in `posts.js` with a matching `slug` and one or more `tags`.
+
+**Tags:** `essay`, `review`, or `journal`. Each tag becomes a clickable chip in the post list that filters the archive (e.g. `/posts/?tag=essay`).
 
 **Remove a post:** Delete the file and remove its entry from `posts.js`.
 

@@ -131,6 +131,53 @@ ul.post-list li .desc {
   margin-top: 1rem;
 }
 
+/* tag chip — appears after title in post lists, clickable to filter */
+a.tag {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-decoration: none;
+  border: 1px solid var(--rule);
+  padding: 0.1em 0.45em;
+  margin-left: 0.5rem;
+  white-space: nowrap;
+  vertical-align: 0.1em;
+}
+a.tag:hover {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+  box-shadow: none;
+}
+
+/* filter row at top of archive */
+nav.tag-filter {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 0 0 2rem;
+}
+nav.tag-filter a {
+  color: var(--muted);
+  text-decoration: none;
+}
+nav.tag-filter a.active {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+nav.tag-filter a:hover {
+  background: var(--fg);
+  color: var(--bg);
+  text-decoration: none;
+  box-shadow: 0.15em 0 0 var(--fg), -0.15em 0 0 var(--fg);
+}
+
 .back {
   font-family: var(--mono);
   font-size: 0.78rem;

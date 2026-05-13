@@ -52,8 +52,14 @@ a {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-a:hover { color: var(--muted); }
+a:hover {
+  background: var(--fg);
+  color: var(--bg);
+  text-decoration: none;
+  box-shadow: 0.15em 0 0 var(--fg), -0.15em 0 0 var(--fg);
+}
 a[data-todo] { color: var(--muted); font-style: italic; }
+a[data-todo]:hover { background: var(--muted); color: var(--bg); box-shadow: 0.15em 0 0 var(--muted), -0.15em 0 0 var(--muted); }
 
 .tagline {
   font-family: var(--mono);

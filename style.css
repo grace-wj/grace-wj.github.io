@@ -190,19 +190,31 @@ article p, article li {
   font-feature-settings: "onum" 1;
 }
 
-/* lede + drop cap (first paragraph after first section heading) */
-article > h2:first-of-type + p {
+/* lede + drop cap. fires automatically on the first paragraph after the
+   first h2 (for sectioned essays), or on any paragraph with class="lede"
+   (for essays without section headings). */
+article > h2:first-of-type + p,
+article p.lede {
   font-size: 1.12rem;
   line-height: 1.55;
 }
 
-article > h2:first-of-type + p::first-letter {
+article > h2:first-of-type + p::first-letter,
+article p.lede::first-letter {
   font-family: var(--serif);
   font-size: 3.2em;
   font-weight: 600;
   float: left;
   line-height: 0.88;
   padding: 0.05em 0.1em 0 0;
+}
+
+/* section-break italic line: centered standalone phrase between paragraphs */
+article p.break {
+  text-align: center;
+  font-style: italic;
+  margin: 3rem 1.5rem;
+  color: var(--fg);
 }
 
 /* section labels with asterism between sections */

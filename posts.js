@@ -19,6 +19,12 @@ window.POSTS = [
     date: "2026-05-12",
     summary: "A review of the book."
   },
+  {
+    slug: "on-addiction",
+    title: "On Addiction",
+    date: "2026-05-13",
+    summary: "An essay."
+  },
   // {
   //   slug: "your-next-post",
   //   title: "your next post title",

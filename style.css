@@ -149,45 +149,106 @@ h1.label {
 /* ---- individual post pages ---- */
 
 article > header {
-  margin-bottom: 2rem;
+  text-align: center;
+  margin: 1rem 0 3.5rem;
 }
 
 article > header h1 {
   font-family: var(--serif);
-  font-size: 1.7rem;
+  font-size: 2rem;
   font-weight: 600;
-  text-transform: none;
-  letter-spacing: 0;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   color: var(--fg);
-  margin: 0;
+  margin: 0 0 0.9rem;
+  text-transform: none;
+}
+
+article > header .dek {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin: 0 0 1.25rem;
 }
 
 article > header .date {
   display: block;
   min-width: 0;
-  margin-top: 0.5rem;
-}
-
-article h2 {
-  font-family: var(--serif);
-  font-size: 1.2rem;
-  font-weight: 600;
-  text-transform: none;
-  letter-spacing: 0;
-  color: var(--fg);
-  margin: 2.25rem 0 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 0;
 }
 
 article p, article li {
-  font-size: 1.02rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  hyphens: auto;
+  font-feature-settings: "onum" 1;
 }
 
-article blockquote {
-  margin: 1.5rem 0;
-  padding-left: 1.5rem;
-  border-left: 1px solid var(--rule);
+/* lede + drop cap (first paragraph after first section heading) */
+article > h2:first-of-type + p {
+  font-size: 1.12rem;
+  line-height: 1.55;
+}
+
+article > h2:first-of-type + p::first-letter {
+  font-family: var(--serif);
+  font-size: 3.2em;
+  font-weight: 600;
+  float: left;
+  line-height: 0.88;
+  padding: 0.05em 0.1em 0 0;
+}
+
+/* section labels with asterism between sections */
+article h2 {
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
   color: var(--muted);
-  font-style: italic;
+  margin: 3.5rem 0 1.75rem;
 }
 
-article blockquote p { margin: 0.4rem 0; }
+article h2:not(:first-of-type)::before {
+  content: '* * *';
+  display: block;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  letter-spacing: 0.6em;
+  color: var(--muted);
+  text-indent: 0.6em;
+  margin-bottom: 2.5rem;
+}
+
+/* blockquote: indented italic with right-aligned mono citation */
+article blockquote {
+  margin: 1.75rem 1.5rem;
+  padding: 0;
+  border: none;
+  color: var(--fg);
+  font-style: italic;
+  font-size: 1.05rem;
+}
+
+article blockquote p { margin: 0.5rem 0; }
+
+article blockquote cite {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  text-align: right;
+  margin-top: 0.75rem;
+}

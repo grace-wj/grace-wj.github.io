@@ -4,13 +4,16 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>writing — grace juan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
 
 <main>
   <a class="back" href="../">&larr; home</a>
-  <h1>writing</h1>
+  <h1 class="label">writing</h1>
   <ul class="post-list" id="post-list"></ul>
 </main>
 
@@ -20,18 +23,18 @@
   const posts = (window.POSTS || []).slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
   for (const post of posts) {
     const li = document.createElement('li');
+    if (post.date) {
+      const d = document.createElement('span');
+      d.className = 'date';
+      d.textContent = post.date;
+      li.appendChild(d);
+    }
     const a = document.createElement('a');
     a.href = post.slug + '.html';
     a.textContent = post.title;
     li.appendChild(a);
-    if (post.date) {
-      const d = document.createElement('span');
-      d.className = 'date';
-      d.textContent = ' · ' + post.date;
-      li.appendChild(d);
-    }
     if (post.summary) {
-      const s = document.createElement('div');
+      const s = document.createElement('span');
       s.className = 'desc';
       s.textContent = post.summary;
       li.appendChild(s);

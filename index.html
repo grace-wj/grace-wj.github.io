@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>grace juan</title>
 <meta name="description" content="grace juan — personal site" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -25,7 +28,7 @@
   </header>
 
   <nav class="links" aria-label="elsewhere">
-    <a href="resume.pdf">resume (pdf)</a>
+    <a href="resume.pdf">resume</a>
     <a href="https://github.com/grace-wj">github</a>
     <a href="#" data-todo>linkedin</a>
     <a href="mailto:TODO@example.com" data-todo>email</a>
@@ -51,44 +54,45 @@
 <script src="posts.js"></script>
 <script src="projects.js"></script>
 <script>
-  // render projects
   const projectList = document.getElementById('project-list');
   for (const p of (window.PROJECTS || [])) {
     const li = document.createElement('li');
-    const a = document.createElement('a');
-    a.href = p.url || '#';
-    a.textContent = p.name;
-    li.appendChild(a);
     if (p.year) {
       const year = document.createElement('span');
       year.className = 'year';
-      year.textContent = ' · ' + p.year;
+      year.textContent = p.year;
       li.appendChild(year);
     }
+    const item = document.createElement('div');
+    item.className = 'item';
+    const a = document.createElement('a');
+    a.href = p.url || '#';
+    a.textContent = p.name;
+    item.appendChild(a);
     if (p.description) {
-      const desc = document.createElement('div');
+      const desc = document.createElement('span');
       desc.className = 'desc';
       desc.textContent = p.description;
-      li.appendChild(desc);
+      item.appendChild(desc);
     }
+    li.appendChild(item);
     projectList.appendChild(li);
   }
 
-  // render latest 5 posts
   const postList = document.getElementById('post-list');
   const posts = (window.POSTS || []).slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
   for (const post of posts.slice(0, 5)) {
     const li = document.createElement('li');
+    if (post.date) {
+      const d = document.createElement('span');
+      d.className = 'date';
+      d.textContent = post.date;
+      li.appendChild(d);
+    }
     const a = document.createElement('a');
     a.href = 'posts/' + post.slug + '.html';
     a.textContent = post.title;
     li.appendChild(a);
-    if (post.date) {
-      const d = document.createElement('span');
-      d.className = 'date';
-      d.textContent = ' · ' + post.date;
-      li.appendChild(d);
-    }
     postList.appendChild(li);
   }
 </script>

@@ -1,23 +1,24 @@
-/* bare-bones content branch styles. intentionally minimal. */
+/* hybrid: jetbrains mono for metadata + eb garamond for body. */
 
 :root {
   --fg: #1a1a1a;
-  --muted: #6b6b6b;
-  --bg: #fdfdfd;
-  --link: #2c4dff;
+  --muted: #7a7a7a;
+  --bg: #fefefe;
   --rule: #e6e6e6;
+  --serif: "EB Garamond", Georgia, "Times New Roman", serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 
 * { box-sizing: border-box; }
 
 body {
-  font-family: ui-serif, Georgia, "Times New Roman", serif;
-  font-size: 17px;
+  font-family: var(--serif);
+  font-size: 19px;
   line-height: 1.55;
   color: var(--fg);
   background: var(--bg);
   margin: 0;
-  padding: 2.5rem 1.25rem 5rem;
+  padding: 3rem 1.25rem 5rem;
 }
 
 main, article {
@@ -26,38 +27,39 @@ main, article {
 }
 
 h1 {
-  font-size: 1.9rem;
-  margin: 0 0 0.25rem;
+  font-family: var(--mono);
+  font-size: 1rem;
   font-weight: 600;
+  margin: 0 0 0.5rem;
 }
 
 h2 {
-  font-size: 1.15rem;
-  margin: 2.5rem 0 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
   font-weight: 600;
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 2.75rem 0 0.75rem;
 }
 
-h3 {
-  font-size: 1.05rem;
-  margin: 1.5rem 0 0.5rem;
-  font-weight: 600;
+p {
+  margin: 0.5rem 0 0.9rem;
 }
-
-p { margin: 0.5rem 0 0.9rem; }
 
 a {
-  color: var(--link);
+  color: var(--fg);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
 }
-a:hover { text-decoration: none; }
+a:hover { color: var(--muted); }
 a[data-todo] { color: var(--muted); font-style: italic; }
 
 .tagline {
+  font-family: var(--mono);
+  font-size: 0.82rem;
   color: var(--muted);
-  margin-top: 0;
+  margin: 0 0 1.5rem;
 }
 
 .bio {
@@ -65,11 +67,12 @@ a[data-todo] { color: var(--muted); font-style: italic; }
 }
 
 nav.links {
+  font-family: var(--mono);
+  font-size: 0.82rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: 1.5rem;
   margin: 1.5rem 0 0;
-  font-size: 0.95rem;
 }
 
 ul.project-list,
@@ -81,57 +84,104 @@ ul.post-list {
 
 ul.project-list li,
 ul.post-list li {
+  display: flex;
+  gap: 1rem;
   padding: 0.5rem 0;
-  border-bottom: 1px dotted var(--rule);
+  align-items: baseline;
 }
 
-ul.project-list li:last-child,
-ul.post-list li:last-child {
-  border-bottom: none;
+ul.project-list li .item,
+ul.post-list li .item {
+  flex: 1;
+  min-width: 0;
 }
 
-.year, .date {
+.date, .year {
+  font-family: var(--mono);
+  font-size: 0.78rem;
   color: var(--muted);
-  font-size: 0.9rem;
+  flex-shrink: 0;
+  min-width: 6rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .desc {
+  display: block;
   color: var(--muted);
-  font-size: 0.92rem;
-  margin-top: 0.15rem;
-}
-
-.more {
-  margin-top: 0.75rem;
+  font-style: italic;
+  margin-top: 0.1rem;
   font-size: 0.95rem;
 }
 
-/* post pages */
-article header {
-  margin-bottom: 1.5rem;
+ul.post-list li .desc {
+  display: inline;
+  margin-left: 0.5rem;
+  font-size: 0.92rem;
 }
-article header .date {
-  display: block;
-  margin-top: 0.25rem;
+
+.more {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  margin-top: 1rem;
 }
-article .back {
+
+.back {
+  font-family: var(--mono);
+  font-size: 0.78rem;
   display: inline-block;
-  margin-bottom: 2rem;
-  font-size: 0.9rem;
+  margin-bottom: 2.5rem;
   color: var(--muted);
 }
-article h1 {
-  font-size: 1.6rem;
+
+h1.label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 0 0 1.5rem;
 }
+
+/* ---- individual post pages ---- */
+
+article > header {
+  margin-bottom: 2rem;
+}
+
+article > header h1 {
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--fg);
+  margin: 0;
+}
+
+article > header .date {
+  display: block;
+  min-width: 0;
+  margin-top: 0.5rem;
+}
+
+article h2 {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--fg);
+  margin: 2.25rem 0 0.75rem;
+}
+
 article p, article li {
   font-size: 1.02rem;
 }
 
-footer {
-  max-width: 38rem;
-  margin: 4rem auto 0;
-  padding-top: 1rem;
-  border-top: 1px solid var(--rule);
-  font-size: 0.85rem;
+article blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--rule);
   color: var(--muted);
+  font-style: italic;
 }
+
+article blockquote p { margin: 0.4rem 0; }

@@ -13,6 +13,12 @@ window.POSTS = [
     date: "2026-05-12",
     summary: "first post on the new site. placeholder for now."
   },
+  {
+    slug: "metamorphosis-prime-intellect",
+    title: "The Metamorphosis of Prime Intellect",
+    date: "2026-05-12",
+    summary: "A review of the book."
+  },
   // {
   //   slug: "your-next-post",
   //   title: "your next post title",

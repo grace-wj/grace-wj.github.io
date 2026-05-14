@@ -25,8 +25,8 @@ window.POSTS = [
     tags: ["review"]
   },
   {
-    slug: "on-addiction",
-    title: "On Addiction",
+    slug: "on-drug-addiction",
+    title: "On Drug Addiction",
     date: "2026-05-13",
     summary: "An essay.",
     tags: ["essay"]

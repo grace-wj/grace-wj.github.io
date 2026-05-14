@@ -80,7 +80,20 @@
   }
 
   const postList = document.getElementById('post-list');
-  const posts = (window.POSTS || []).slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  // home shows a curated top 5: essays and reviews first (highest signal),
+  // then journal entries. within each group, newest first.
+  const TAG_PRIORITY = { essay: 0, review: 1, journal: 2 };
+  const priorityOf = (p) => {
+    const tags = p.tags || [];
+    let best = 3;
+    for (const t of tags) if (TAG_PRIORITY[t] !== undefined) best = Math.min(best, TAG_PRIORITY[t]);
+    return best;
+  };
+  const posts = (window.POSTS || []).slice().sort((a, b) => {
+    const pa = priorityOf(a), pb = priorityOf(b);
+    if (pa !== pb) return pa - pb;
+    return (b.date || '').localeCompare(a.date || '');
+  });
   for (const post of posts.slice(0, 5)) {
     const li = document.createElement('li');
     if (post.date) {

@@ -2,9 +2,9 @@
 
 :root {
   --fg: #1a1a1a;
-  --muted: #7a7a7a;
-  --bg: #fefefe;
-  --rule: #e6e6e6;
+  --muted: #8a8a86;
+  --bg: #fcfcfa;
+  --rule: #e8e8e4;
   --serif: "EB Garamond", Georgia, "Times New Roman", serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
@@ -27,18 +27,19 @@ main, article {
 }
 
 h1 {
-  font-family: var(--mono);
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0 0 0.5rem;
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  margin: 0 0 0.75rem;
 }
 
 h2 {
   font-family: var(--mono);
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.16em;
   color: var(--muted);
   margin: 2.75rem 0 0.75rem;
 }
@@ -50,6 +51,7 @@ p {
 a {
   color: var(--fg);
   text-decoration: underline;
+  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 a:hover {
@@ -58,14 +60,15 @@ a:hover {
   text-decoration: none;
   box-shadow: 0.15em 0 0 var(--fg), -0.15em 0 0 var(--fg);
 }
-a[data-todo] { color: var(--muted); font-style: italic; }
-a[data-todo]:hover { background: var(--muted); color: var(--bg); box-shadow: 0.15em 0 0 var(--muted), -0.15em 0 0 var(--muted); }
+/* unfinished links: hidden until wired up. remove the attribute to publish. */
+a[data-todo] { display: none; }
 
 .tagline {
   font-family: var(--mono);
   font-size: 0.82rem;
   color: var(--muted);
   margin: 0 0 1.5rem;
+  letter-spacing: 0;
 }
 
 .bio {
@@ -114,14 +117,13 @@ ul.post-list li .item {
 .desc {
   display: block;
   color: var(--muted);
-  font-style: italic;
   margin-top: 0.1rem;
   font-size: 0.95rem;
 }
 
 ul.post-list li .desc {
   display: inline;
-  margin-left: 0.5rem;
+  margin-left: 0.6rem;
   font-size: 0.92rem;
 }
 
@@ -131,25 +133,22 @@ ul.post-list li .desc {
   margin-top: 1rem;
 }
 
-/* tag chip — appears after title in post lists, clickable to filter */
+/* tag — small mono caps, no chrome. clickable to filter. */
 a.tag {
   font-family: var(--mono);
-  font-size: 0.65rem;
-  font-weight: 600;
+  font-size: 0.7rem;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   color: var(--muted);
   text-decoration: none;
-  border: 1px solid var(--rule);
-  padding: 0.1em 0.45em;
-  margin-left: 0.5rem;
+  margin-left: 0.6rem;
   white-space: nowrap;
-  vertical-align: 0.1em;
+  vertical-align: 0.08em;
 }
 a.tag:hover {
-  background: var(--fg);
-  color: var(--bg);
-  border-color: var(--fg);
+  color: var(--fg);
+  background: transparent;
   box-shadow: none;
 }
 
@@ -187,24 +186,26 @@ nav.tag-filter a:hover {
 }
 
 h1.label {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.16em;
   color: var(--muted);
-  margin: 0 0 1.5rem;
+  margin: 0 0 1.75rem;
 }
 
 /* ---- individual post pages ---- */
 
 article > header {
-  text-align: center;
   margin: 1rem 0 3.5rem;
 }
 
 article > header h1 {
   font-family: var(--serif);
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 1.15;
+  font-size: 2.25rem;
+  font-weight: 400;
+  line-height: 1.1;
   letter-spacing: -0.01em;
   color: var(--fg);
   margin: 0 0 0.9rem;
@@ -212,11 +213,11 @@ article > header h1 {
 }
 
 article > header .dek {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
   color: var(--muted);
   margin: 0 0 1.25rem;
 }
@@ -237,22 +238,15 @@ article p, article li {
   font-feature-settings: "onum" 1;
 }
 
-/* lede + drop cap. fires automatically on the first paragraph after the
-   first h2 (for sectioned essays), or on any paragraph with class="lede"
-   (for essays without section headings). */
-article > h2:first-of-type + p,
-article p.lede {
-  font-size: 1.12rem;
-  line-height: 1.55;
-}
-
+/* drop cap — the only opener device. fires on the first paragraph after the
+   first h2, or on any paragraph with class="lede". */
 article > h2:first-of-type + p::first-letter,
 article p.lede::first-letter {
   font-family: var(--serif);
-  font-size: 3.2em;
-  font-weight: 600;
+  font-size: 3.4em;
+  font-weight: 400;
   float: left;
-  line-height: 0.88;
+  line-height: 0.86;
   padding: 0.05em 0.1em 0 0;
 }
 
@@ -271,6 +265,18 @@ article hr {
   background: var(--rule);
   width: 5rem;
   margin: 2.5rem auto;
+}
+
+/* parallel paragraphs: two equal columns, collapses to one on narrow screens */
+article .two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 0.5rem 0 0.9rem;
+}
+article .two-column p { margin: 0; }
+@media (max-width: 520px) {
+  article .two-column { grid-template-columns: 1fr; }
 }
 
 article .refs {
@@ -301,37 +307,24 @@ article ul li::before {
   margin-right: 0.5rem;
 }
 
-/* section labels with asterism between sections */
+/* section labels — small mono caps, left-aligned. one device, not three. */
 article h2 {
-  text-align: center;
   font-family: var(--mono);
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.16em;
   color: var(--muted);
-  margin: 3.5rem 0 1.75rem;
+  margin: 3.5rem 0 1.5rem;
 }
 
-article h2:not(:first-of-type)::before {
-  content: '* * *';
-  display: block;
-  font-family: var(--serif);
-  font-size: 0.95rem;
-  letter-spacing: 0.6em;
-  color: var(--muted);
-  text-indent: 0.6em;
-  margin-bottom: 2.5rem;
-}
-
-/* blockquote: indented italic with right-aligned mono citation */
+/* blockquote: upright body, thin left rule, right-aligned mono citation. */
 article blockquote {
-  margin: 1.75rem 1.5rem;
-  padding: 0;
-  border: none;
+  margin: 1.75rem 0;
+  padding: 0.1rem 0 0.1rem 1.25rem;
+  border-left: 2px solid #c8c8c4;
   color: var(--fg);
-  font-style: italic;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
 }
 
 article blockquote p { margin: 0.5rem 0; }
@@ -339,12 +332,23 @@ article blockquote p { margin: 0.5rem 0; }
 article blockquote cite {
   display: block;
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.16em;
   color: var(--muted);
   text-align: right;
   margin-top: 0.75rem;
+}
+
+/* narrow screens: shrink the mono metadata column, let the tagline wrap. */
+@media (max-width: 520px) {
+  body { font-size: 18px; padding: 2rem 1rem 4rem; }
+  h1 { font-size: 1.75rem; }
+  .tagline { font-size: 0.78rem; word-break: break-word; }
+  ul.project-list li,
+  ul.post-list li { gap: 0.75rem; }
+  .date, .year { min-width: 4.75rem; font-size: 0.72rem; }
+  article > header h1 { font-size: 1.85rem; }
 }

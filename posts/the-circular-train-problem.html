@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Circular Train Problem — grace juan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<article>
+  <a class="back" href="../">&larr; home</a>
+
+  <header>
+    <h1>The Circular Train Problem</h1>
+    <span class="date">2026-05-14</span>
+  </header>
+
+  <blockquote>
+    <p>You find yourself trapped in a circular train composed of a finite number of identical train cars that you can walk between. Each train car contains a lightbulb that you can turn on or off. The initial state of each lightbulb is randomly set. You don&rsquo;t know how many train cars there are, but because the train is a circle, you know that if you walk long enough you&rsquo;ll eventually get back to the car you started from. Devise a method to figure out how many cars are in the train.</p>
+  </blockquote>
+
+  <h2>Assumptions</h2>
+
+  <ul>
+    <li>There are only 2 actions you can take:
+      <ul>
+        <li>Walk between cars</li>
+        <li>Turn lightbulbs on/off</li>
+      </ul>
+    </li>
+    <li>You have unlimited memory</li>
+    <li>You cannot see any other cars besides the one you are currently in</li>
+  </ul>
+
+  <p class="lede">I first heard this puzzle from a friend a couple of years ago (as far as I know, original credit belongs to Ben Tupper). Since then, I&rsquo;ve given the question to a number of friends, and I always enjoy hearing the variety of ideas they come up with in search of an answer. Interestingly, people&rsquo;s progression of thought is often quite similar&mdash;most of my friends have initially jumped right to vandalism. Smashing the lightbulb, defacing the train car, and breaking out of the train were all answers I heard before I started including &ldquo;NO BREAKING ANYTHING&rdquo; in my problem description.</p>
+
+  <p>The second idea most people come up with is probably the most intuitive answer: choose a direction, turn every car&rsquo;s lightbulb off (or on), and keep walking until every lightbulb you come across is off. In reality, this strategy would work reasonably well. With each turned-off lightbulb you see, the more confident you can be that you&rsquo;ve already looped around the train. Tim Black gives a formula to calculate the number of cars you&rsquo;d have to walk in order to determine the length of the train with 99% certainty. But with this method, you still cannot know for sure that the lightbulbs you&rsquo;re coming across weren&rsquo;t just off from the beginning and the true length of the train is greater than the distance you&rsquo;ve walked. For the sake of the puzzle, assume your solution must give the number of cars with 100% certainty.</p>
+
+  <p>Take some time to think of your own answer to this problem. There are multiple correct answers, but some are more efficient than others (by number of cars you must walk between). Try to find an optimal solution. When I was given the problem, it took me 30 minutes to come up with an answer that worked, but it was still relatively inefficient. I describe my algorithm below using this 8-car train as an example:</p>
+
+  <p>Incrementally turn each lightbulb to the right of your starting position on and each one to the left of your starting position off like so:</p>
+
+  <ul>
+    <li>Walk 1 car to your right and turn that lightbulb on (if it&rsquo;s on already, leave it on).</li>
+    <li>Walk 2 cars to your left and turn that lightbulb off.</li>
+    <li>Walk 3 cars to your right and turn that lightbulb on.</li>
+    <li>&hellip;</li>
+    <li>Continue in the same manner until one of two end conditions occurs:
+      <ul>
+        <li>You encounter a turned-off lightbulb on the right of the starting position which you had previously turned on</li>
+        <li>You encounter a turned-on lightbulb on the left of the starting position which you had previously turned off</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p>The number of cars you have to walk between before one of the end conditions occurs is given by <em>n(n + 1)/2 + n</em>, where <em>n</em> is the number of cars in the train. Thus, the distance you have to walk grows quadratically with <em>n</em>, and the algorithm&rsquo;s time complexity is O(n&sup2;).</p>
+
+  <p>As mentioned before, it&rsquo;s possible to do better&mdash;here, I&rsquo;ll model the linear time algorithm given by Ben Tupper on the same 8-car train.</p>
+
+  <p>Choose a direction and walk a certain number of cars, turning each car&rsquo;s lightbulb on as you go. When you stop, turn the current car&rsquo;s lightbulb off, then turn around and walk back to your starting car. If you increment the number of cars you walk by 1, the algorithm proceeds like so:</p>
+
+  <ul>
+    <li>Turn the starting car&rsquo;s lightbulb on. Walk 1 car to your right and turn that lightbulb off. Walk back to the starting car.</li>
+    <li>Walk 2 cars to your right, turning each light on as you go, and turn that lightbulb off. Walk back to the starting car.</li>
+    <li>Walk 3 cars to your right, turning each light on as you go, and turn that lightbulb off. Walk back to the starting car.</li>
+    <li>&hellip;</li>
+    <li>Continue in the same manner until the end condition occurs: you encounter a turned-off lightbulb on your walk back.</li>
+  </ul>
+
+  <p>With this incremental strategy, the number of cars you have to walk between before the end condition occurs is given by <em>n(n + 1)</em>, with O(n&sup2;) complexity. However, you can optimize the algorithm further by walking 2<sup>k</sup> cars on each iteration, for <em>k</em> = 1, 2, 3, &hellip; In the best case (<em>n</em> is a power of 2), you must walk 4<em>n</em> &minus; 2 cars. In the worst case (<em>n</em> is 1 greater than a power of 2), you must walk 7<em>n</em> &minus; 8 cars. So, we have found an efficient O(n) algorithm to determine the number of cars in the train!</p>
+
+  <p>I love this problem because it gives a practical and visualizable scenario. Anybody can imagine themselves walking around the circular train, and it&rsquo;s easy to start thinking of solutions without any prior knowledge or experience in algorithm design. While analyzing the efficiency of the solutions is a great exercise in computational complexity, an interest in algorithms isn&rsquo;t necessary to have fun solving the riddle, unlike other such puzzles I&rsquo;ve come across. I think I&rsquo;ll probably keep giving this riddle to friends until the day I die.</p>
+
+</article>
+
+</body>
+</html>

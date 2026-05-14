@@ -264,6 +264,43 @@ article p.break {
   color: var(--fg);
 }
 
+/* short centered hr used as a subtle divider between sections */
+article hr {
+  border: 0;
+  height: 1px;
+  background: var(--rule);
+  width: 5rem;
+  margin: 2.5rem auto;
+}
+
+article .refs {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+article .refs p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0.4rem 0;
+  text-indent: -1.5rem;
+  padding-left: 1.5rem;
+}
+
+article ul, article ol {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+article ul li, article ol li {
+  margin: 0.5rem 0;
+  padding-left: 0.25rem;
+}
+article ul { list-style: none; }
+article ul li::before {
+  content: '\2014';
+  color: var(--muted);
+  margin-left: -1.25rem;
+  margin-right: 0.5rem;
+}
+
 /* section labels with asterism between sections */
 article h2 {
   text-align: center;

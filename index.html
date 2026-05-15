@@ -7,113 +7,75 @@
 <meta name="description" content="grace juan — personal site" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="logo" href="/" aria-label="Home">
+      <svg viewBox="0 0 36 36" aria-hidden="true">
+        <!-- placeholder logo: replace this <svg> block with your own mark -->
+        <circle cx="18" cy="18" r="16" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="18" y="25" text-anchor="middle"
+              font-family="EB Garamond, serif" font-style="italic"
+              font-weight="700" font-size="20" fill="currentColor">g</text>
+      </svg>
+    </a>
+    <nav class="site-nav" aria-label="primary">
+      <a href="/posts/">Writing</a>
+      <a href="/reading/">Reading</a>
+      <a href="/#projects" aria-current="page">Projects</a>
+      <a href="/resume.pdf">Resume</a>
+      <a href="/design/">Design</a>
+    </nav>
+  </div>
+</header>
+
 <main>
 
   <header class="intro">
-    <h1>grace juan</h1>
     <p class="tagline">
-      <!-- TODO: replace with your own one-liner -->
       software engineer. berkeley cs + cogsci '25. currently at c3 ai.
     </p>
     <p class="bio">
-      <!-- TODO: replace / expand. keep it short — a paragraph or two. -->
-      this is a placeholder bio. write a few sentences about what you do,
-      what you're interested in, and what you're working on right now.
+      i like making interfaces that turn abstract systems into things you can
+      see and poke at — agent reasoning, search results, ideas. currently
+      working on aperture, a visual debugger for ai agents.
     </p>
   </header>
 
-  <nav class="links" aria-label="elsewhere">
-    <a href="resume.pdf">resume</a>
-    <a href="https://github.com/grace-wj">github</a>
-    <a href="#" data-todo>linkedin</a>
-    <a href="mailto:TODO@example.com" data-todo>email</a>
-  </nav>
-
-  <section id="projects" aria-labelledby="projects-h">
-    <h2 id="projects-h">projects</h2>
+  <section id="projects">
+    <hr class="section-rule" />
     <ul class="project-list" id="project-list">
       <!-- rendered from projects.js -->
     </ul>
   </section>
 
-  <section id="writing" aria-labelledby="writing-h">
-    <h2 id="writing-h">writing</h2>
-    <ul class="post-list" id="post-list">
-      <!-- rendered from posts.js (latest 5) -->
-    </ul>
-    <p class="more"><a href="posts/">all posts &rarr;</a></p>
-  </section>
-
 </main>
 
-<script src="posts.js"></script>
 <script src="projects.js"></script>
 <script>
   const projectList = document.getElementById('project-list');
   for (const p of (window.PROJECTS || [])) {
     const li = document.createElement('li');
-    if (p.year) {
-      const year = document.createElement('span');
-      year.className = 'year';
-      year.textContent = p.year;
-      li.appendChild(year);
-    }
-    const item = document.createElement('div');
-    item.className = 'item';
+    const year = document.createElement('span');
+    year.className = 'year';
+    year.textContent = p.year || '';
+    li.appendChild(year);
+    const titleBlock = document.createElement('div');
+    titleBlock.className = 'title-block';
     const a = document.createElement('a');
     a.href = p.url || '#';
     a.textContent = p.name;
-    item.appendChild(a);
-    if (p.description) {
-      const desc = document.createElement('span');
-      desc.className = 'desc';
-      desc.textContent = p.description;
-      item.appendChild(desc);
-    }
-    li.appendChild(item);
+    titleBlock.appendChild(a);
+    li.appendChild(titleBlock);
+    const desc = document.createElement('span');
+    desc.className = 'desc';
+    desc.textContent = p.description || '';
+    li.appendChild(desc);
     projectList.appendChild(li);
-  }
-
-  const postList = document.getElementById('post-list');
-  // home shows a curated top 5: essays and reviews first (highest signal),
-  // then journal entries. within each group, newest first.
-  const TAG_PRIORITY = { essay: 0, review: 1, journal: 2 };
-  const priorityOf = (p) => {
-    const tags = p.tags || [];
-    let best = 3;
-    for (const t of tags) if (TAG_PRIORITY[t] !== undefined) best = Math.min(best, TAG_PRIORITY[t]);
-    return best;
-  };
-  const posts = (window.POSTS || []).slice().sort((a, b) => {
-    const pa = priorityOf(a), pb = priorityOf(b);
-    if (pa !== pb) return pa - pb;
-    return (b.date || '').localeCompare(a.date || '');
-  });
-  for (const post of posts.slice(0, 5)) {
-    const li = document.createElement('li');
-    if (post.date) {
-      const d = document.createElement('span');
-      d.className = 'date';
-      d.textContent = post.date;
-      li.appendChild(d);
-    }
-    const a = document.createElement('a');
-    a.href = 'posts/' + post.slug + '.html';
-    a.textContent = post.title;
-    li.appendChild(a);
-    for (const tag of (post.tags || [])) {
-      const t = document.createElement('a');
-      t.className = 'tag';
-      t.href = 'posts/?tag=' + encodeURIComponent(tag);
-      t.textContent = tag;
-      li.appendChild(t);
-    }
-    postList.appendChild(li);
   }
 </script>
 

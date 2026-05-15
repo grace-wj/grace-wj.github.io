@@ -11,37 +11,109 @@
 
 * { box-sizing: border-box; }
 
+/* persistent site header — sticky band, logo mark + bold serif caps nav. */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  /* extend the bg full-width even though body has horizontal padding */
+  margin: 0 -1.25rem 3rem;
+  padding: 0 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+.site-header-inner {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0.9rem 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem 2.5rem;
+}
+.site-header .logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--fg);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.site-header .logo:hover {
+  background: transparent;
+  color: var(--fg);
+  box-shadow: none;
+  text-decoration: none;
+  opacity: 0.7;
+}
+.site-header .logo svg {
+  display: block;
+  width: 38px;
+  height: 38px;
+}
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+}
+.site-nav a {
+  font-family: var(--serif);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--fg);
+  line-height: 1;
+}
+/* when one tab is the current page, mute the inactive ones (but never the hovered one) */
+.site-nav:has(a[aria-current="page"]) a:not([aria-current="page"]):not(:hover) {
+  color: var(--muted);
+}
+.site-nav a:hover {
+  background: var(--fg);
+  color: var(--bg);
+  text-decoration: none;
+  box-shadow: 0.15em 0 0 var(--fg), -0.15em 0 0 var(--fg);
+}
+
 body {
   font-family: var(--serif);
-  font-size: 19px;
-  line-height: 1.55;
+  font-size: 25px;
+  line-height: 1.5;
   color: var(--fg);
   background: var(--bg);
   margin: 0;
-  padding: 3rem 1.25rem 5rem;
+  padding: 0 1.25rem 5rem;
 }
 
 main, article {
-  max-width: 38rem;
+  max-width: 46rem;
   margin: 0 auto;
 }
 
 h1 {
   font-family: var(--serif);
-  font-size: 2rem;
-  font-weight: 400;
-  letter-spacing: -0.005em;
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
   margin: 0 0 0.75rem;
 }
 
 h2 {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--muted);
-  margin: 2.75rem 0 0.75rem;
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  margin: 3rem 0 1.25rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--fg);
 }
 
 p {
@@ -63,16 +135,14 @@ a:hover {
 /* unfinished links: hidden until wired up. remove the attribute to publish. */
 a[data-todo] { display: none; }
 
-.tagline {
+.bio,
+.reading-intro,
+.writing-intro {
   font-family: var(--mono);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   color: var(--muted);
-  margin: 0 0 1.5rem;
-  letter-spacing: 0;
-}
-
-.bio {
-  margin-top: 1rem;
+  margin: 0 0 2rem;
+  max-width: 36rem;
 }
 
 nav.links {
@@ -84,6 +154,12 @@ nav.links {
   margin: 1.5rem 0 0;
 }
 
+hr.section-rule {
+  border: 0;
+  border-top: 2px solid var(--fg);
+  margin: 3rem 0 1.25rem;
+}
+
 ul.project-list,
 ul.post-list {
   list-style: none;
@@ -93,38 +169,41 @@ ul.post-list {
 
 ul.project-list li,
 ul.post-list li {
-  display: flex;
-  gap: 1rem;
-  padding: 0.5rem 0;
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1.35fr) minmax(0, 1fr);
   align-items: baseline;
+  gap: 0.4rem 1.5rem;
+  padding: 0.7rem 0;
 }
 
-ul.project-list li .item,
-ul.post-list li .item {
-  flex: 1;
+.title-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.6rem;
   min-width: 0;
+}
+
+/* titles in lists — slightly larger serif at regular weight, with link underline. */
+ul.project-list li a:not(.tag),
+ul.post-list li a:not(.tag) {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.25;
 }
 
 .date, .year {
   font-family: var(--mono);
   font-size: 0.78rem;
   color: var(--muted);
-  flex-shrink: 0;
-  min-width: 6rem;
   font-variant-numeric: tabular-nums;
 }
 
 .desc {
   display: block;
   color: var(--muted);
-  margin-top: 0.1rem;
   font-size: 0.95rem;
-}
-
-ul.post-list li .desc {
-  display: inline;
-  margin-left: 0.6rem;
-  font-size: 0.92rem;
+  margin: 0;
 }
 
 .more {
@@ -152,29 +231,40 @@ a.tag:hover {
   box-shadow: none;
 }
 
-/* filter row at top of archive */
+/* filter row at top of archive — styled like an h2 section header. */
 nav.tag-filter {
-  font-family: var(--mono);
-  font-size: 0.78rem;
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
-  margin: 0 0 2rem;
+  gap: 1.5rem;
+  margin: 3rem 0 1.25rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--fg);
 }
 nav.tag-filter a {
   color: var(--muted);
   text-decoration: none;
+  font-weight: 700;
 }
 nav.tag-filter a.active {
   color: var(--fg);
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 nav.tag-filter a:hover {
-  background: var(--fg);
-  color: var(--bg);
+  color: var(--fg);
+  background: transparent;
+  box-shadow: none;
   text-decoration: none;
-  box-shadow: 0.15em 0 0 var(--fg), -0.15em 0 0 var(--fg);
+}
+
+.tag-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--muted);
+  margin: -0.5rem 0 1.5rem;
 }
 
 .back {
@@ -186,13 +276,16 @@ nav.tag-filter a:hover {
 }
 
 h1.label {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--muted);
-  margin: 0 0 1.75rem;
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  text-transform: none;
+  color: var(--fg);
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--fg);
 }
 
 /* ---- individual post pages ---- */
@@ -203,10 +296,10 @@ article > header {
 
 article > header h1 {
   font-family: var(--serif);
-  font-size: 2.25rem;
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
+  font-size: 2.85rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   color: var(--fg);
   margin: 0 0 0.9rem;
   text-transform: none;
@@ -214,12 +307,13 @@ article > header h1 {
 
 article > header .dek {
   font-family: var(--serif);
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 400;
   text-transform: none;
   letter-spacing: 0;
-  color: var(--muted);
+  color: var(--fg);
   margin: 0 0 1.25rem;
+  opacity: 0.7;
 }
 
 article > header .date {
@@ -232,8 +326,8 @@ article > header .date {
 }
 
 article p, article li {
-  font-size: 1.05rem;
-  line-height: 1.65;
+  font-size: 1.2rem;
+  line-height: 1.6;
   hyphens: auto;
   font-feature-settings: "onum" 1;
 }
@@ -261,10 +355,10 @@ article p.break {
 /* short centered hr used as a subtle divider between sections */
 article hr {
   border: 0;
-  height: 1px;
-  background: var(--rule);
-  width: 5rem;
-  margin: 2.5rem auto;
+  height: 3px;
+  background: var(--fg);
+  width: 3rem;
+  margin: 2.75rem auto;
 }
 
 /* parallel paragraphs: two equal columns, collapses to one on narrow screens */
@@ -307,22 +401,24 @@ article ul li::before {
   margin-right: 0.5rem;
 }
 
-/* section labels — small mono caps, left-aligned. one device, not three. */
+/* section headings — big serif with a hard rule underneath. */
 article h2 {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--muted);
-  margin: 3.5rem 0 1.5rem;
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  margin: 3.25rem 0 1.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 3px solid var(--fg);
 }
 
-/* blockquote: upright body, thin left rule, right-aligned mono citation. */
+/* blockquote: upright body, thick left rule, right-aligned mono citation. */
 article blockquote {
   margin: 1.75rem 0;
-  padding: 0.1rem 0 0.1rem 1.25rem;
-  border-left: 2px solid #c8c8c4;
+  padding: 0.15rem 0 0.15rem 1.5rem;
+  border-left: 4px solid var(--fg);
   color: var(--fg);
   font-size: 1.02rem;
 }
@@ -342,13 +438,229 @@ article blockquote cite {
   margin-top: 0.75rem;
 }
 
-/* narrow screens: shrink the mono metadata column, let the tagline wrap. */
-@media (max-width: 520px) {
-  body { font-size: 18px; padding: 2rem 1rem 4rem; }
-  h1 { font-size: 1.75rem; }
-  .tagline { font-size: 0.78rem; word-break: break-word; }
+/* ---- reading page ---- */
+
+ul.book-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.book-list li {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1.35fr) minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.4rem 1.5rem;
+  padding: 0.7rem 0;
+}
+
+ul.book-list .book-title {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+ul.book-list .book-author {
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+section.book-quotes {
+  margin: 0 0 2.5rem;
+}
+
+section.book-quotes h3 {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+section.book-quotes h3 .byline {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+section.book-quotes blockquote {
+  margin: 1.25rem 0;
+  padding: 0.15rem 0 0.15rem 1.5rem;
+  border-left: 4px solid var(--fg);
+  color: var(--fg);
+}
+
+section.book-quotes blockquote p {
+  margin: 0.4rem 0;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+section.book-quotes blockquote cite {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  text-align: right;
+  margin-top: 0.5rem;
+}
+
+/* ---- design archive + case studies ---- */
+
+.design-intro {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 0 0 2rem;
+  max-width: 36rem;
+}
+
+ul.design-grid {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem 1.25rem;
+}
+ul.design-grid li { display: block; }
+ul.design-grid a {
+  display: block;
+  text-decoration: none;
+  color: var(--fg);
+}
+ul.design-grid a:hover {
+  background: transparent;
+  box-shadow: none;
+}
+ul.design-grid a:hover .thumb {
+  opacity: 0.85;
+}
+ul.design-grid a:hover .title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+ul.design-grid .thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  margin: 0 0 0.6rem;
+  transition: opacity 120ms ease;
+}
+ul.design-grid .title {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  line-height: 1.2;
+  font-weight: 400;
+  margin: 0.2rem 0 0.15rem;
+}
+ul.design-grid .meta {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+/* case study body: borrow article styling, add image figures. */
+article .client {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  display: block;
+  margin: 0 0 0.4rem;
+}
+
+article figure.case {
+  margin: 2.25rem 0;
+}
+article figure.case img,
+article figure.case video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+article figure.case figcaption {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 0.6rem 0 0;
+}
+article figure.case.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+article figure.case.two figcaption {
+  grid-column: 1 / -1;
+}
+article figure.case.three {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+}
+article figure.case.three figcaption {
+  grid-column: 1 / -1;
+}
+
+/* tall image (e.g. instagram story 9:16) — center and constrain width
+   so it doesn't render as a screen-tall block. */
+article figure.case.tall {
+  max-width: 20rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* stack: multiple images in one figure, vertical, with a small gap.
+   use for wide artifacts (e.g. flyer front/back) that don't fit two-up. */
+article figure.case.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* narrow screens: shrink mono metadata column, let nav wrap. */
+@media (max-width: 640px) {
+  body { font-size: 20px; padding: 2rem 1rem 4rem; }
+  h1 { font-size: 1.85rem; }
+  h2 { font-size: 1.3rem; }
+  .tagline { font-size: 0.82rem; word-break: break-word; }
   ul.project-list li,
-  ul.post-list li { gap: 0.75rem; }
-  .date, .year { min-width: 4.75rem; font-size: 0.72rem; }
-  article > header h1 { font-size: 1.85rem; }
+  ul.post-list li,
+  ul.book-list li {
+    grid-template-columns: 4.5rem 1fr;
+    gap: 0.3rem 1rem;
+  }
+  ul.project-list li .desc,
+  ul.post-list li .desc,
+  ul.book-list li .desc {
+    grid-column: 2;
+    text-align: left;
+  }
+  .date, .year { font-size: 0.72rem; }
+  article > header h1 { font-size: 1.95rem; }
+  article p, article li { font-size: 1.05rem; }
+
+  .site-header { margin: 0 -1rem 2.25rem; padding: 0 1rem; }
+  .site-header-inner { padding: 0.7rem 0; gap: 0.75rem 1.25rem; }
+  .site-header .logo svg { width: 32px; height: 32px; }
+  .site-nav { gap: 1rem 1.1rem; }
+  .site-nav a { font-size: 1.15rem; letter-spacing: 0.02em; }
+
+  ul.design-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
+  article figure.case.two,
+  article figure.case.three { grid-template-columns: 1fr; }
 }

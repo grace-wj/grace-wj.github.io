@@ -6,8 +6,15 @@
 //
 // the latest 5 posts (by date) appear on the home page; all posts appear at /posts/.
 //
-// tags: array of strings. recognized: "essay" | "review" | "journal".
+// tags: array of strings. recognized: "essay" | "review" | "personal".
 // posts can be filtered by tag at /posts/?tag=essay etc.
+//
+// private: true  — hide from the /posts/ archive and tag filter. the file
+// at posts/<slug>.html still resolves if anyone has the direct URL, so the
+// content stays intact; it just isn't listed publicly.
+//
+// FIXME: the "top" view on /posts/ renders this array in order. reorder the
+// entries below to put your strongest pieces first.
 
 window.POSTS = [
   {
@@ -29,14 +36,15 @@ window.POSTS = [
     title: "On Drug Addiction",
     date: "2026-05-13",
     summary: "An essay.",
-    tags: ["essay"]
+    tags: ["essay"],
+    private: true
   },
   {
     slug: "cigarettes",
     title: "Cigarettes",
     date: "2026-05-14",
     summary: "A friend's father, lung cancer, and the smell that lingers.",
-    tags: ["journal"]
+    tags: ["personal"]
   },
   {
     slug: "palm-trees",
@@ -57,7 +65,7 @@ window.POSTS = [
     title: "On Pleasure",
     date: "2026-05-14",
     summary: "From a journal entry on what gives life meaning.",
-    tags: ["journal"]
+    tags: ["personal"]
   },
   {
     slug: "memory-palaces",
@@ -92,7 +100,7 @@ window.POSTS = [
     title: "The Line Grows Blurrier",
     date: "2026-05-14",
     summary: "On art, logic, and growing up.",
-    tags: ["journal"]
+    tags: ["personal"]
   },
   // {
   //   slug: "your-next-post",

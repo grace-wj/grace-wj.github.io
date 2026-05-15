@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>reading — grace juan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="logo" href="/" aria-label="Home">
+      <svg viewBox="0 0 36 36" aria-hidden="true">
+        <!-- placeholder logo: replace this <svg> block with your own mark -->
+        <circle cx="18" cy="18" r="16" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="18" y="25" text-anchor="middle"
+              font-family="EB Garamond, serif" font-style="italic"
+              font-weight="700" font-size="20" fill="currentColor">g</text>
+      </svg>
+    </a>
+    <nav class="site-nav" aria-label="primary">
+      <a href="/posts/">Writing</a>
+      <a href="/reading/" aria-current="page">Reading</a>
+      <a href="/#projects">Projects</a>
+      <a href="/resume.pdf">Resume</a>
+      <a href="/design/">Design</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <p class="reading-intro">
+    books that have shaped how i think, and lines from them i keep coming back to.
+  </p>
+
+  <!--
+    ============================================================
+    FAVORITES — short curated list. add an <li> per book.
+      year:        when you read it (optional)
+      book-title:  the book's title
+      book-author: " — author name"
+      desc:        one-line note (optional)
+    ============================================================
+  -->
+  <h2>favorites</h2>
+  <ul class="book-list">
+
+    <li>
+      <span class="year">2024</span>
+      <div class="title-block">
+        <span class="book-title">Example Book</span>
+        <span class="book-author">— Author Name</span>
+      </div>
+      <span class="desc">one-line note about why this stuck.</span>
+    </li>
+
+  </ul>
+
+  <!--
+    ============================================================
+    QUOTES — one <section> per book. inside:
+      <h3>Book Title <span class="byline">— Author</span></h3>
+      <blockquote>
+        <p>"the quote text"</p>
+        <cite>p. 42</cite>     (optional)
+      </blockquote>
+    add as many blockquotes per book as you want.
+    ============================================================
+  -->
+  <h2>quotes</h2>
+
+  <section class="book-quotes">
+    <h3>Example Book <span class="byline">— Author Name</span></h3>
+
+    <blockquote>
+      <p>"An example quote from the book, with a page reference."</p>
+      <cite>p. 12</cite>
+    </blockquote>
+
+    <blockquote>
+      <p>"Another quote — this one without a citation."</p>
+    </blockquote>
+  </section>
+
+</main>
+
+</body>
+</html>

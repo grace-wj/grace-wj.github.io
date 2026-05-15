@@ -6,15 +6,39 @@
 <title>writing — grace juan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
 
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="logo" href="/" aria-label="Home">
+      <svg viewBox="0 0 36 36" aria-hidden="true">
+        <!-- placeholder logo: replace this <svg> block with your own mark -->
+        <circle cx="18" cy="18" r="16" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="18" y="25" text-anchor="middle"
+              font-family="EB Garamond, serif" font-style="italic"
+              font-weight="700" font-size="20" fill="currentColor">g</text>
+      </svg>
+    </a>
+    <nav class="site-nav" aria-label="primary">
+      <a href="/posts/" aria-current="page">Writing</a>
+      <a href="/reading/">Reading</a>
+      <a href="/#projects">Projects</a>
+      <a href="/resume.pdf">Resume</a>
+      <a href="/design/">Design</a>
+    </nav>
+  </div>
+</header>
+
 <main>
-  <a class="back" href="../">&larr; home</a>
-  <h1 class="label">writing</h1>
+  <p class="writing-intro">
+    <!-- TODO: replace. a few sentences about what you write about and why. -->
+    this is a placeholder. a few sentences about what you write about and why.
+  </p>
   <nav class="tag-filter" id="tag-filter"></nav>
+  <p class="tag-note" id="tag-note" hidden></p>
   <ul class="post-list" id="post-list"></ul>
 </main>
 
@@ -22,17 +46,30 @@
 <script>
   const params = new URLSearchParams(window.location.search);
   const activeTag = params.get('tag');
+  const isRecent = params.get('sort') === 'recent';
+
+  // posts marked { private: true } in posts.js are excluded from the archive
+  // and tag filter. their files still resolve by direct URL.
+  const visiblePosts = (window.POSTS || []).filter(p => !p.private);
 
   // build tag filter row from all tags present in posts.js
   const allTags = Array.from(new Set(
-    (window.POSTS || []).flatMap(p => p.tags || [])
+    visiblePosts.flatMap(p => p.tags || [])
   )).sort();
   const filterEl = document.getElementById('tag-filter');
-  const allLink = document.createElement('a');
-  allLink.href = './';
-  allLink.textContent = 'all';
-  if (!activeTag) allLink.classList.add('active');
-  filterEl.appendChild(allLink);
+
+  const topLink = document.createElement('a');
+  topLink.href = './';
+  topLink.textContent = 'top';
+  if (!activeTag && !isRecent) topLink.classList.add('active');
+  filterEl.appendChild(topLink);
+
+  const recentLink = document.createElement('a');
+  recentLink.href = '?sort=recent';
+  recentLink.textContent = 'recent';
+  if (isRecent) recentLink.classList.add('active');
+  filterEl.appendChild(recentLink);
+
   for (const tag of allTags) {
     const a = document.createElement('a');
     a.href = '?tag=' + encodeURIComponent(tag);
@@ -41,37 +78,46 @@
     filterEl.appendChild(a);
   }
 
-  // render filtered post list
+  if (activeTag === 'personal') {
+    const note = document.getElementById('tag-note');
+    note.textContent = 'want to get to know me?';
+    note.hidden = false;
+  }
+
+  // render filtered post list. "top" and tag views preserve the order defined
+  // in posts.js; "recent" re-sorts by date descending.
+  // FIXME: curate the order of posts in posts.js — "top" reflects that order.
   const list = document.getElementById('post-list');
-  const posts = (window.POSTS || [])
+  const posts = visiblePosts
     .filter(p => !activeTag || (p.tags || []).includes(activeTag))
-    .slice()
-    .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+    .slice();
+  if (isRecent) {
+    posts.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  }
   for (const post of posts) {
     const li = document.createElement('li');
-    if (post.date) {
-      const d = document.createElement('span');
-      d.className = 'date';
-      d.textContent = post.date;
-      li.appendChild(d);
-    }
+    const d = document.createElement('span');
+    d.className = 'date';
+    d.textContent = post.date || '';
+    li.appendChild(d);
+    const titleBlock = document.createElement('div');
+    titleBlock.className = 'title-block';
     const a = document.createElement('a');
     a.href = post.slug + '.html';
     a.textContent = post.title;
-    li.appendChild(a);
+    titleBlock.appendChild(a);
     for (const tag of (post.tags || [])) {
       const t = document.createElement('a');
       t.className = 'tag';
       t.href = '?tag=' + encodeURIComponent(tag);
       t.textContent = tag;
-      li.appendChild(t);
+      titleBlock.appendChild(t);
     }
-    if (post.summary) {
-      const s = document.createElement('span');
-      s.className = 'desc';
-      s.textContent = post.summary;
-      li.appendChild(s);
-    }
+    li.appendChild(titleBlock);
+    const desc = document.createElement('span');
+    desc.className = 'desc';
+    desc.textContent = post.summary || '';
+    li.appendChild(desc);
     list.appendChild(li);
   }
 </script>

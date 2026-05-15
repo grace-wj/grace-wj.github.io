@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>404 — grace juan</title>
+<meta name="description" content="page not found" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css" />
+<style>
+  .notfound {
+    margin: 4rem 0 2rem;
+  }
+  .notfound .code {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+  }
+  .notfound h1 {
+    font-size: 3.5rem;
+    line-height: 1;
+    margin: 0 0 1.25rem;
+  }
+  .notfound p.lede {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--fg);
+    max-width: 32rem;
+    margin: 0 0 2.5rem;
+  }
+  .notfound nav.links {
+    margin-top: 2rem;
+  }
+  @media (max-width: 640px) {
+    .notfound { margin: 2.5rem 0 1.5rem; }
+    .notfound h1 { font-size: 2.4rem; }
+    .notfound p.lede { font-size: 1.05rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="logo" href="/" aria-label="Home">
+      <svg viewBox="0 0 36 36" aria-hidden="true">
+        <circle cx="18" cy="18" r="16" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="18" y="25" text-anchor="middle"
+              font-family="EB Garamond, serif" font-style="italic"
+              font-weight="700" font-size="20" fill="currentColor">g</text>
+      </svg>
+    </a>
+    <nav class="site-nav" aria-label="primary">
+      <a href="/posts/">Writing</a>
+      <a href="/reading/">Reading</a>
+      <a href="/#projects">Projects</a>
+      <a href="/resume.pdf">Resume</a>
+      <a href="/design/">Design</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="notfound">
+    <p class="code">404 — page not found</p>
+    <h1>nothing here.</h1>
+    <p class="lede">
+      either this page never existed, or it used to and i moved it. either way,
+      sorry for the dead end.
+    </p>
+    <nav class="links">
+      <a href="/">home</a>
+      <a href="/posts/">writing</a>
+      <a href="/reading/">reading</a>
+      <a href="/#projects">projects</a>
+    </nav>
+  </section>
+
+</main>
+
+</body>
+</html>

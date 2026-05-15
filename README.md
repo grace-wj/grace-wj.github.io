@@ -30,7 +30,9 @@ Posts are individual HTML files in `posts/`, listed in `posts.js`.
 2. Edit the title, date, and content.
 3. Add an entry to `window.POSTS` in `posts.js` with a matching `slug` and one or more `tags`.
 
-**Tags:** `essay`, `review`, or `journal`. Each tag becomes a clickable chip in the post list that filters the archive (e.g. `/posts/?tag=essay`).
+**Tags:** `essay`, `review`, or `personal`. Each tag becomes a clickable chip in the post list that filters the archive (e.g. `/posts/?tag=essay`).
+
+**Make a post private:** Add `private: true` to its entry in `posts.js`. The post is excluded from the `/posts/` archive and the tag filter, but the file at `posts/<slug>.html` still resolves — so the content stays intact and the URL still works for anyone who has it directly.
 
 **Remove a post:** Delete the file and remove its entry from `posts.js`.
 

@@ -42,7 +42,7 @@
     <nav class="site-nav" aria-label="primary">
       <a href="/posts/">Writing</a>
       <a href="/reading/">Reading</a>
-      <a href="/#projects" aria-current="page">Projects</a>
+      <a href="/#projects">Projects</a>
       <a href="/resume.pdf">Resume</a>
       <a href="/design/">Design</a>
     </nav>
@@ -57,22 +57,47 @@
     </p>
     <p class="bio">
       i like making interfaces that turn abstract systems into things you can
-      see and poke at — agent reasoning, search results, ideas. currently
-      working on aperture, a visual debugger for ai agents.
+      see and poke at — agent reasoning, search results, ideas. figuring out
+      what's next.
     </p>
+    <!-- TODO: confirm which email to expose publicly before sharing the site widely -->
+    <p class="contact">
+      <a href="mailto:grayswan795@gmail.com">email</a>
+    </p>
+
+    <dl class="now" aria-label="currently">
+      <dt>building</dt>
+      <dd>aperture — a visual debugger for ai agent traces</dd>
+      <!-- TODO: one short line. e.g. "evals as a design problem, not a scoring problem" -->
+      <dt>thinking about</dt>
+      <dd>—</dd>
+      <!-- TODO: current book. -->
+      <dt>reading</dt>
+      <dd>—</dd>
+    </dl>
   </header>
 
   <section id="projects">
-    <hr class="section-rule" />
+    <h2>projects</h2>
     <ul class="project-list" id="project-list">
       <!-- rendered from projects.js -->
     </ul>
   </section>
 
+  <section id="writing">
+    <h2>writing</h2>
+    <ul class="post-list" id="post-list">
+      <!-- rendered from posts.js: 3 most recent non-private posts -->
+    </ul>
+    <p class="more"><a href="/posts/">archive →</a></p>
+  </section>
+
 </main>
 
 <script src="projects.js"></script>
+<script src="posts.js"></script>
 <script>
+  // projects — render in the order defined in projects.js
   const projectList = document.getElementById('project-list');
   for (const p of (window.PROJECTS || [])) {
     const li = document.createElement('li');
@@ -92,6 +117,41 @@
     desc.textContent = p.description || '';
     li.appendChild(desc);
     projectList.appendChild(li);
+  }
+
+  // writing — 3 most recent public posts, by date descending
+  const recentPosts = (window.POSTS || [])
+    .filter(p => !p.private)
+    .slice()
+    .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+    .slice(0, 3);
+
+  const postList = document.getElementById('post-list');
+  for (const post of recentPosts) {
+    const li = document.createElement('li');
+    const d = document.createElement('span');
+    d.className = 'date';
+    d.textContent = post.date || '';
+    li.appendChild(d);
+    const titleBlock = document.createElement('div');
+    titleBlock.className = 'title-block';
+    const a = document.createElement('a');
+    a.href = '/posts/' + post.slug + '.html';
+    a.textContent = post.title;
+    titleBlock.appendChild(a);
+    for (const tag of (post.tags || [])) {
+      const t = document.createElement('a');
+      t.className = 'tag';
+      t.href = '/posts/?tag=' + encodeURIComponent(tag);
+      t.textContent = tag;
+      titleBlock.appendChild(t);
+    }
+    li.appendChild(titleBlock);
+    const desc = document.createElement('span');
+    desc.className = 'desc';
+    desc.textContent = post.summary || '';
+    li.appendChild(desc);
+    postList.appendChild(li);
   }
 </script>
 

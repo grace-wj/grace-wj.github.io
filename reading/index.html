@@ -24,11 +24,11 @@
       </svg>
     </a>
     <nav class="site-nav" aria-label="primary">
+      <a href="/projects/">Projects</a>
       <a href="/posts/">Writing</a>
+      <a href="/design/">Design</a>
       <a href="/reading/" aria-current="page">Reading</a>
       <a href="/quotes/">Quotes</a>
-      <a href="/projects/">Projects</a>
-      <a href="/design/">Design</a>
     </nav>
   </div>
 </header>
@@ -36,57 +36,54 @@
 <main>
 
   <p class="reading-intro">
-    books that have shaped how i think, and lines from them i keep coming back to.
+    books that have shaped how i think. for lines i keep coming back to, see <a href="/quotes/">quotes</a>.
   </p>
 
   <!--
     ============================================================
     FAVORITES — short curated list. add an <li> per book.
-      year:        when you read it (optional)
+      year:        when you read it (optional; leave empty if unsure)
       book-title:  the book's title
       book-author: " — author name"
       desc:        one-line note (optional)
     ============================================================
   -->
   <h2>favorites</h2>
-  <ul class="book-list">
+  <ul class="book-grid">
 
     <li>
-      <span class="year">2024</span>
-      <div class="title-block">
-        <span class="book-title">Example Book</span>
-        <span class="book-author">— Author Name</span>
-      </div>
-      <span class="desc">one-line note about why this stuck.</span>
+      <img class="cover" src="covers/atomic-habits-cover.jpg"
+           alt="Atomic Habits by James Clear" loading="lazy" />
+      <span class="book-title">Atomic Habits</span>
+      <span class="book-author">James Clear</span>
+      <span class="desc"></span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/psychology-of-money-cover.jpg"
+           alt="The Psychology of Money by Morgan Housel" loading="lazy" />
+      <span class="book-title">The Psychology of Money</span>
+      <span class="book-author">Morgan Housel</span>
+      <span class="desc"></span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/start-with-why-cover.jpg"
+           alt="Start With Why by Simon Sinek" loading="lazy" />
+      <span class="book-title">Start With Why</span>
+      <span class="book-author">Simon Sinek</span>
+      <span class="desc"></span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/history-of-intelligence-cover.jpg"
+           alt="A Brief History of Intelligence by Max Bennett" loading="lazy" />
+      <span class="book-title">A Brief History of Intelligence</span>
+      <span class="book-author">Max Bennett</span>
+      <span class="desc"></span>
     </li>
 
   </ul>
-
-  <!--
-    ============================================================
-    QUOTES — one <section> per book. inside:
-      <h3>Book Title <span class="byline">— Author</span></h3>
-      <blockquote>
-        <p>"the quote text"</p>
-        <cite>p. 42</cite>     (optional)
-      </blockquote>
-    add as many blockquotes per book as you want.
-    ============================================================
-  -->
-  <h2>quotes</h2>
-
-  <section class="book-quotes">
-    <h3>Example Book <span class="byline">— Author Name</span></h3>
-
-    <blockquote>
-      <p>"An example quote from the book, with a page reference."</p>
-      <cite>p. 12</cite>
-    </blockquote>
-
-    <blockquote>
-      <p>"Another quote — this one without a citation."</p>
-    </blockquote>
-  </section>
 
 </main>
 

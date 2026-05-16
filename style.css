@@ -544,6 +544,57 @@ article blockquote cite {
 
 /* ---- reading page ---- */
 
+ul.book-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.25rem 1.75rem;
+}
+
+ul.book-grid li {
+  display: flex;
+  flex-direction: column;
+}
+
+ul.book-grid .cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  background: var(--rule);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06),
+              0 10px 22px rgba(0, 0, 0, 0.12);
+  margin-bottom: 0.85rem;
+}
+
+ul.book-grid .book-title {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+ul.book-grid .book-author {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+ul.book-grid .desc {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+ul.book-grid .desc:empty {
+  display: none;
+}
+
 ul.book-list {
   list-style: none;
   padding: 0;
@@ -620,12 +671,15 @@ section.book-quotes blockquote cite {
   font-family: var(--mono);
   font-size: 0.78rem;
   color: var(--muted);
-  margin: 0 0 3rem;
+  margin: 0 0 2rem;
   max-width: 36rem;
 }
 
 /* random surface — three quotes presented like found pages.
    no chrome, generous whitespace, separated by a thin centered rule. */
+.quote-surface {
+  margin: 0 0 4rem;
+}
 .quote-surface blockquote {
   border: 0;
   padding: 0;
@@ -652,26 +706,28 @@ section.book-quotes blockquote cite {
   border-top: 1px solid var(--rule);
 }
 
-.surface-controls {
-  display: flex;
-  justify-content: center;
-  margin: 0 0 4rem;
-}
-.shuffle-btn {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-  background: transparent;
-  border: 1px solid var(--rule);
-  padding: 0.55rem 1.1rem;
-  cursor: pointer;
-  transition: color 120ms ease, border-color 120ms ease;
-}
-.shuffle-btn:hover {
+/* surface heading: styled like h2 ("archive") but it's the clickable
+   shuffle action. parallel section header to the archive below. */
+.surface-heading {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.01em;
   color: var(--fg);
-  border-color: var(--fg);
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--fg);
+  margin: 0 0 1.25rem;
+  padding: 0 0 0.4rem;
+  cursor: pointer;
+  transition: color 120ms ease;
+}
+.surface-heading:hover {
+  color: var(--muted);
 }
 
 .archive-heading {
@@ -747,10 +803,54 @@ section.book-quotes blockquote cite {
   margin: 0.4rem 0;
 }
 
+/* section label between archive sub-sections (single lines, fragments) */
+.archive-section-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  border: 0;
+  padding: 0;
+  margin: 2.5rem 0 1rem;
+}
+
+/* singletons — flat list, no click required. each entry: quote + attribution. */
+.singletons {
+  margin: 0 0 1rem;
+}
+.single-line {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.single-line:last-child { border-bottom: 0; }
+.single-line blockquote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.single-line blockquote p {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  margin: 0 0 0.55rem;
+}
+.single-line blockquote cite {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
 @media (max-width: 640px) {
   .quote-surface blockquote p { font-size: 1.1rem; }
   .archive-group .archive-label { font-size: 1.05rem; }
   .archive-quotes { padding-left: 0.8rem; }
+  .single-line blockquote p { font-size: 1rem; }
 }
 
 /* ---- design archive + case studies ---- */
@@ -887,6 +987,10 @@ article figure.case.stack {
   ul.home-list li {
     grid-template-columns: 4.5rem 1fr;
     gap: 0.3rem 1rem;
+  }
+  ul.book-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1.25rem;
   }
   .home .lead { font-size: 1.05rem; }
   .home .hero { margin-bottom: 2.5rem; }

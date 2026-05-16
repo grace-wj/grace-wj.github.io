@@ -21,16 +21,16 @@ window.PROJECTS = [
     description: "informational site on the importance of sleep, with original illustrations and interactive elements. html/css/js."
   },
   {
-    name: "constellations",
-    url: "/projects/constellations.html",
-    year: "2022",
-    description: "a personality quiz that maps you to a constellation. react."
-  },
-  {
     name: "jay-zam",
     url: "/projects/jay-zam.html",
     year: "2022",
     description: "a shazam-like song-identification app, scoped to jay-z's discography. python, flask, docker."
+  },
+  {
+    name: "great ideas",
+    url: "/great-ideas.pdf",
+    year: "2018",
+    description: "a survey of philosophers and schools of thought. ~30,000 words. pdf."
   },
   // {
   //   name: "project name",

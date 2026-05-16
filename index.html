@@ -42,54 +42,54 @@
     <nav class="site-nav" aria-label="primary">
       <a href="/posts/">Writing</a>
       <a href="/reading/">Reading</a>
-      <a href="/#projects">Projects</a>
-      <a href="/resume.pdf">Resume</a>
+      <a href="/quotes/">Quotes</a>
+      <a href="/projects/">Projects</a>
       <a href="/design/">Design</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main class="home">
 
-  <header class="intro">
-    <p class="tagline">
-      software engineer. berkeley cs + cogsci '25. currently at c3 ai.
+  <section class="hero">
+    <h1>grace juan</h1>
+    <p class="lead">
+      i make interfaces that turn abstract systems into things you can see and
+      poke at — agent reasoning, search results, ideas. software engineer at
+      c3 ai, berkeley cs + cogsci '25. figuring out what's next.
     </p>
-    <p class="bio">
-      i like making interfaces that turn abstract systems into things you can
-      see and poke at — agent reasoning, search results, ideas. figuring out
-      what's next.
-    </p>
-    <!-- TODO: confirm which email to expose publicly before sharing the site widely -->
-    <p class="contact">
+    <p class="links">
+      <!-- TODO: confirm which email to expose publicly before sharing the site widely -->
       <a href="mailto:grayswan795@gmail.com">email</a>
+      <span class="sep" aria-hidden="true">·</span>
+      <!-- TODO: confirm github URL -->
+      <a href="https://github.com/grace-wj">github</a>
+      <span class="sep" aria-hidden="true">·</span>
+      <!-- TODO: linkedin URL -->
+      <a href="#">linkedin</a>
+      <span class="sep" aria-hidden="true">·</span>
+      <a href="/resume.pdf">résumé</a>
     </p>
+  </section>
 
-    <dl class="now" aria-label="currently">
-      <dt>building</dt>
-      <dd>aperture — a visual debugger for ai agent traces</dd>
-      <!-- TODO: one short line. e.g. "evals as a design problem, not a scoring problem" -->
-      <dt>thinking about</dt>
-      <dd>—</dd>
-      <!-- TODO: current book. -->
-      <dt>reading</dt>
-      <dd>—</dd>
-    </dl>
-  </header>
-
-  <section id="projects">
-    <h2>projects</h2>
-    <ul class="project-list" id="project-list">
-      <!-- rendered from projects.js -->
+  <section class="home-teaser">
+    <div class="home-teaser-head">
+      <h2 class="home-label">recent writing</h2>
+      <a class="home-all" href="/posts/">all writing →</a>
+    </div>
+    <ul class="home-list" id="post-list">
+      <!-- rendered from posts.js: 3 most recent non-private posts -->
     </ul>
   </section>
 
-  <section id="writing">
-    <h2>writing</h2>
-    <ul class="post-list" id="post-list">
-      <!-- rendered from posts.js: 3 most recent non-private posts -->
+  <section class="home-teaser">
+    <div class="home-teaser-head">
+      <h2 class="home-label">recent projects</h2>
+      <a class="home-all" href="/projects/">all projects →</a>
+    </div>
+    <ul class="home-list" id="project-list">
+      <!-- rendered from projects.js -->
     </ul>
-    <p class="more"><a href="/posts/">archive →</a></p>
   </section>
 
 </main>
@@ -97,25 +97,18 @@
 <script src="projects.js"></script>
 <script src="posts.js"></script>
 <script>
-  // projects — render in the order defined in projects.js
+  // projects — top 3 from projects.js (full list lives at /projects/)
   const projectList = document.getElementById('project-list');
-  for (const p of (window.PROJECTS || [])) {
+  for (const p of (window.PROJECTS || []).slice(0, 3)) {
     const li = document.createElement('li');
     const year = document.createElement('span');
     year.className = 'year';
     year.textContent = p.year || '';
     li.appendChild(year);
-    const titleBlock = document.createElement('div');
-    titleBlock.className = 'title-block';
     const a = document.createElement('a');
     a.href = p.url || '#';
     a.textContent = p.name;
-    titleBlock.appendChild(a);
-    li.appendChild(titleBlock);
-    const desc = document.createElement('span');
-    desc.className = 'desc';
-    desc.textContent = p.description || '';
-    li.appendChild(desc);
+    li.appendChild(a);
     projectList.appendChild(li);
   }
 
@@ -133,24 +126,10 @@
     d.className = 'date';
     d.textContent = post.date || '';
     li.appendChild(d);
-    const titleBlock = document.createElement('div');
-    titleBlock.className = 'title-block';
     const a = document.createElement('a');
     a.href = '/posts/' + post.slug + '.html';
     a.textContent = post.title;
-    titleBlock.appendChild(a);
-    for (const tag of (post.tags || [])) {
-      const t = document.createElement('a');
-      t.className = 'tag';
-      t.href = '/posts/?tag=' + encodeURIComponent(tag);
-      t.textContent = tag;
-      titleBlock.appendChild(t);
-    }
-    li.appendChild(titleBlock);
-    const desc = document.createElement('span');
-    desc.className = 'desc';
-    desc.textContent = post.summary || '';
-    li.appendChild(desc);
+    li.appendChild(a);
     postList.appendChild(li);
   }
 </script>

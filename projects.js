@@ -10,25 +10,25 @@ window.PROJECTS = [
   },
   {
     name: "debaterhub 3d search",
-    url: "projects/debaterhub.html",
+    url: "/projects/debaterhub.html",
     year: "2025",
     description: "3d planet ui for exploring database search results. three.js + gsap."
   },
   {
     name: "sleep heals",
-    url: "projects/sleep-heals.html",
+    url: "/projects/sleep-heals.html",
     year: "2024",
     description: "informational site on the importance of sleep, with original illustrations and interactive elements. html/css/js."
   },
   {
     name: "constellations",
-    url: "projects/constellations.html",
+    url: "/projects/constellations.html",
     year: "2022",
     description: "a personality quiz that maps you to a constellation. react."
   },
   {
     name: "jay-zam",
-    url: "projects/jay-zam.html",
+    url: "/projects/jay-zam.html",
     year: "2022",
     description: "a shazam-like song-identification app, scoped to jay-z's discography. python, flask, docker."
   },

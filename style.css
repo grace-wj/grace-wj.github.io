@@ -137,7 +137,8 @@ a[data-todo] { display: none; }
 
 .bio,
 .reading-intro,
-.writing-intro {
+.writing-intro,
+.projects-intro {
   font-family: var(--mono);
   font-size: 0.78rem;
   color: var(--muted);
@@ -208,7 +209,8 @@ ul.post-list li {
 
 /* titles in lists — slightly larger serif at regular weight, with link underline. */
 ul.project-list li a:not(.tag),
-ul.post-list li a:not(.tag) {
+ul.post-list li a:not(.tag),
+ul.home-list li a {
   font-size: 1.2rem;
   font-weight: 400;
   line-height: 1.25;
@@ -295,6 +297,86 @@ nav.tag-filter a:hover {
   display: inline-block;
   margin-bottom: 2.5rem;
   color: var(--muted);
+}
+
+/* ---- home page ---- */
+
+/* hero: name + serif lead bio + contact strip. the portrait that opens the site. */
+.home .hero {
+  margin: 0.5rem 0 3.5rem;
+}
+.home .hero h1 {
+  margin: 0 0 1.25rem;
+}
+.home .lead {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.45;
+  color: var(--fg);
+  margin: 0 0 1.5rem;
+  max-width: 36rem;
+}
+.home .links {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.55rem;
+}
+.home .links a { color: var(--fg); }
+.home .links .sep { color: var(--muted); }
+
+/* teaser: quiet mono label + thin rule + "all →" anchored right.
+   intentionally lighter than the h2+thick-rule treatment used on archive pages. */
+.home-teaser { margin: 0 0 2.75rem; }
+.home-teaser-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--rule);
+  margin: 0 0 0.4rem;
+}
+.home-label {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.home-all {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.home-all:hover {
+  color: var(--fg);
+  background: transparent;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+ul.home-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+ul.home-list li {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  align-items: baseline;
+  gap: 0.4rem 1.5rem;
+  padding: 0.55rem 0;
 }
 
 h1.label {
@@ -532,6 +614,145 @@ section.book-quotes blockquote cite {
   margin-top: 0.5rem;
 }
 
+/* ---- quotes page ---- */
+
+.quotes-intro {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 0 0 3rem;
+  max-width: 36rem;
+}
+
+/* random surface — three quotes presented like found pages.
+   no chrome, generous whitespace, separated by a thin centered rule. */
+.quote-surface blockquote {
+  border: 0;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  font-family: var(--serif);
+}
+.quote-surface blockquote p {
+  font-size: 1.25rem;
+  line-height: 1.55;
+  margin: 0 0 0.6rem;
+}
+.quote-surface blockquote cite {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  margin-top: 0.9rem;
+}
+.quote-surface blockquote + blockquote {
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+.surface-controls {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 4rem;
+}
+.shuffle-btn {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--rule);
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  transition: color 120ms ease, border-color 120ms ease;
+}
+.shuffle-btn:hover {
+  color: var(--fg);
+  border-color: var(--fg);
+}
+
+.archive-heading {
+  /* matches h2 in style — already set globally */
+}
+.archive-note {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: -0.5rem 0 1.5rem;
+}
+
+/* archive accordion — one <details> per source, native disclosure. */
+.quote-archive {
+  margin: 0 0 3rem;
+}
+.archive-group {
+  border-bottom: 1px solid var(--rule);
+}
+.archive-group > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.85rem 0;
+  font-family: var(--serif);
+}
+.archive-group > summary::-webkit-details-marker { display: none; }
+.archive-group > summary::before {
+  content: '+';
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-right: 0.6rem;
+  width: 0.8em;
+  display: inline-block;
+}
+.archive-group[open] > summary::before { content: '−'; color: var(--fg); }
+
+.archive-group .archive-label {
+  font-size: 1.15rem;
+  font-weight: 400;
+  flex: 1;
+  min-width: 0;
+}
+.archive-group[open] .archive-label { font-weight: 700; }
+.archive-group .archive-count {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.archive-group.fragments > summary {
+  font-style: italic;
+  color: var(--muted);
+}
+.archive-group.fragments[open] > summary .archive-label { color: var(--fg); }
+
+.archive-quotes {
+  padding: 0.5rem 0 1.5rem 1.4rem;
+}
+.archive-quotes blockquote {
+  margin: 1.1rem 0;
+  padding: 0.1rem 0 0.1rem 1.1rem;
+  border-left: 2px solid var(--rule);
+}
+.archive-quotes blockquote p {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  margin: 0.4rem 0;
+}
+
+@media (max-width: 640px) {
+  .quote-surface blockquote p { font-size: 1.1rem; }
+  .archive-group .archive-label { font-size: 1.05rem; }
+  .archive-quotes { padding-left: 0.8rem; }
+}
+
 /* ---- design archive + case studies ---- */
 
 .design-intro {
@@ -662,10 +883,13 @@ article figure.case.stack {
   .tagline { font-size: 0.82rem; word-break: break-word; }
   ul.project-list li,
   ul.post-list li,
-  ul.book-list li {
+  ul.book-list li,
+  ul.home-list li {
     grid-template-columns: 4.5rem 1fr;
     gap: 0.3rem 1rem;
   }
+  .home .lead { font-size: 1.05rem; }
+  .home .hero { margin-bottom: 2.5rem; }
   ul.project-list li .desc,
   ul.post-list li .desc,
   ul.book-list li .desc {

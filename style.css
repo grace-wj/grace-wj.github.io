@@ -802,6 +802,16 @@ section.book-quotes blockquote cite {
   line-height: 1.55;
   margin: 0.4rem 0;
 }
+.archive-quotes blockquote cite {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  margin-top: 0.6rem;
+}
 
 /* section label between archive sub-sections (single lines, fragments) */
 .archive-section-label {

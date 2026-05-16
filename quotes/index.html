@@ -135,125 +135,58 @@
   document.getElementById('shuffle').addEventListener('click', renderSurface);
   renderSurface();
 
-  // ---- archive: grouped by source, accordion ----
-  function sourceKey(source) {
-    if (!source) return '__untagged__';
-    return [source.title || '', source.author || ''].join('|');
-  }
-  function sourceLabel(source) {
-    if (!source) return 'fragments';
-    const bits = [];
-    if (source.title) bits.push(source.title);
-    if (source.author) bits.push(source.author);
-    return bits.join(' — ');
+  // ---- archive: grouped by theme, accordion ----
+  // a quote with multiple themes appears under each one.
+  const THEMES = ['mind', 'choice', 'art', 'desire', 'time', 'self', 'power'];
+
+  // used to collapse consecutive quotes from the same source within a theme
+  function sourceKey(s) {
+    if (!s) return '';
+    return (s.title || '') + '|' + (s.author || '');
   }
 
-  const groups = new Map();
+  const byTheme = new Map(THEMES.map(t => [t, []]));
   for (const q of QUOTES) {
-    const key = sourceKey(q.source);
-    if (!groups.has(key)) {
-      groups.set(key, { source: q.source, quotes: [] });
+    for (const t of (q.themes || [])) {
+      if (byTheme.has(t)) byTheme.get(t).push(q);
     }
-    groups.get(key).quotes.push(q);
   }
-
-  // sort: tagged groups by quote count desc, then alpha; untagged last
-  const ordered = Array.from(groups.values()).sort((a, b) => {
-    if (!a.source && b.source) return 1;
-    if (a.source && !b.source) return -1;
-    if (b.quotes.length !== a.quotes.length) return b.quotes.length - a.quotes.length;
-    return sourceLabel(a.source).localeCompare(sourceLabel(b.source));
-  });
-
-  // partition: multi-quote sources (accordion), singletons (flat list),
-  // fragments (accordion with all untagged).
-  const multiGroups = ordered.filter(g => g.source && g.quotes.length > 1);
-  const singletonGroups = ordered.filter(g => g.source && g.quotes.length === 1);
-  const untaggedGroup = groups.get('__untagged__');
-  const untaggedCount = untaggedGroup ? untaggedGroup.quotes.length : 0;
 
   const note = document.getElementById('archive-note');
-  const noteBits = [
-    `${QUOTES.length} quotes across ${multiGroups.length + singletonGroups.length} sources`,
-  ];
-  if (untaggedCount) noteBits.push(`${untaggedCount} still untagged in fragments`);
-  note.textContent = noteBits.join(' — ') + '.';
+  note.textContent = `${QUOTES.length} quotes across ${THEMES.length} themes — some appear under more than one.`;
 
   const archive = document.getElementById('quote-archive');
 
-  function addSectionLabel(text) {
-    const h = document.createElement('h3');
-    h.className = 'archive-section-label';
-    h.textContent = text;
-    archive.appendChild(h);
-  }
+  for (const theme of THEMES) {
+    const quotes = byTheme.get(theme);
+    if (!quotes.length) continue;
 
-  // ---- multi-quote accordion ----
-  for (const group of multiGroups) {
     const details = document.createElement('details');
     details.className = 'archive-group';
 
     const summary = document.createElement('summary');
     const label = document.createElement('span');
     label.className = 'archive-label';
-    label.textContent = sourceLabel(group.source);
+    label.textContent = theme;
     summary.appendChild(label);
     const count = document.createElement('span');
     count.className = 'archive-count';
-    count.textContent = group.quotes.length;
+    count.textContent = quotes.length;
     summary.appendChild(count);
     details.appendChild(summary);
 
     const inner = document.createElement('div');
     inner.className = 'archive-quotes';
-    for (const q of group.quotes) {
-      // inside a group, don't repeat the attribution on every quote
-      renderQuote(q, inner, { showAttribution: false });
+    // collapse runs of consecutive quotes from the same source: show attribution
+    // only on the last quote in each run (or when the source is null/untagged).
+    for (let i = 0; i < quotes.length; i++) {
+      const q = quotes[i];
+      const next = quotes[i + 1];
+      const showAttr = !next || sourceKey(q.source) !== sourceKey(next.source);
+      renderQuote(q, inner, { showAttribution: showAttr });
     }
     details.appendChild(inner);
 
-    archive.appendChild(details);
-  }
-
-  // ---- singletons: flat list, no click required ----
-  if (singletonGroups.length) {
-    addSectionLabel('single lines');
-    const wrap = document.createElement('div');
-    wrap.className = 'singletons';
-    for (const group of singletonGroups) {
-      const item = document.createElement('div');
-      item.className = 'single-line';
-      const bq = document.createElement('blockquote');
-      renderText(group.quotes[0].text, bq);
-      renderAttribution(group.source, bq);
-      item.appendChild(bq);
-      wrap.appendChild(item);
-    }
-    archive.appendChild(wrap);
-  }
-
-  // ---- fragments (untagged), if any ----
-  if (untaggedGroup) {
-    addSectionLabel('fragments');
-    const details = document.createElement('details');
-    details.className = 'archive-group fragments';
-    const summary = document.createElement('summary');
-    const label = document.createElement('span');
-    label.className = 'archive-label';
-    label.textContent = `${untaggedCount} untagged`;
-    summary.appendChild(label);
-    const count = document.createElement('span');
-    count.className = 'archive-count';
-    count.textContent = untaggedCount;
-    summary.appendChild(count);
-    details.appendChild(summary);
-
-    const inner = document.createElement('div');
-    inner.className = 'archive-quotes';
-    for (const q of untaggedGroup.quotes) {
-      renderQuote(q, inner, { showAttribution: false });
-    }
-    details.appendChild(inner);
     archive.appendChild(details);
   }
 </script>

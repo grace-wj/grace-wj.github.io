@@ -18,13 +18,6 @@
 
 window.POSTS = [
   {
-    slug: "hello-world",
-    title: "hello, world",
-    date: "2026-05-12",
-    summary: "first post on the new site. placeholder for now.",
-    tags: []
-  },
-  {
     slug: "metamorphosis-prime-intellect",
     title: "The Metamorphosis of Prime Intellect",
     date: "2026-05-12",

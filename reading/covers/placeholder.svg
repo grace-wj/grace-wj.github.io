@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="book cover placeholder">
+  <rect width="200" height="300" fill="#efeae0"/>
+  <rect x="0" y="0" width="5" height="300" fill="#cfc6b3"/>
+  <line x1="24" y1="38" x2="170" y2="38" stroke="#d6cebc" stroke-width="1"/>
+  <line x1="24" y1="48" x2="170" y2="48" stroke="#d6cebc" stroke-width="1"/>
+  <line x1="24" y1="58" x2="140" y2="58" stroke="#d6cebc" stroke-width="1"/>
+  <text x="100" y="160" font-family="EB Garamond, Georgia, serif" font-style="italic"
+        font-size="22" text-anchor="middle" fill="#a89e89">book</text>
+  <line x1="24" y1="244" x2="170" y2="244" stroke="#d6cebc" stroke-width="1"/>
+  <line x1="24" y1="254" x2="110" y2="254" stroke="#d6cebc" stroke-width="1"/>
+</svg>

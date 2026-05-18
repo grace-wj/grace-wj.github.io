@@ -41,38 +41,27 @@
 
   <!--
     ============================================================
-    FAVORITES — short curated list. add an <li> per book.
-      year:        when you read it (optional; leave empty if unsure)
-      book-title:  the book's title
-      book-author: " — author name"
-      desc:        one-line note (optional)
+    FAVORITES — a small curated set. each entry has a first-person
+    takeaway (not a quote from the book).
     ============================================================
   -->
   <h2>favorites</h2>
   <ul class="book-grid">
 
     <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="Range by David Epstein" loading="lazy" />
+      <span class="book-title">Range</span>
+      <span class="book-author">David Epstein</span>
+      <span class="desc">Nothing is irrelevant, because everything is connected. Nurture the breadth of my curiosity rather than stifle it.</span>
+    </li>
+
+    <li>
       <img class="cover" src="covers/atomic-habits-cover.jpg"
            alt="Atomic Habits by James Clear" loading="lazy" />
       <span class="book-title">Atomic Habits</span>
       <span class="book-author">James Clear</span>
-      <span class="desc"></span>
-    </li>
-
-    <li>
-      <img class="cover" src="covers/psychology-of-money-cover.jpg"
-           alt="The Psychology of Money by Morgan Housel" loading="lazy" />
-      <span class="book-title">The Psychology of Money</span>
-      <span class="book-author">Morgan Housel</span>
-      <span class="desc"></span>
-    </li>
-
-    <li>
-      <img class="cover" src="covers/start-with-why-cover.jpg"
-           alt="Start With Why by Simon Sinek" loading="lazy" />
-      <span class="book-title">Start With Why</span>
-      <span class="book-author">Simon Sinek</span>
-      <span class="desc"></span>
+      <span class="desc">I am human; I do not exist above my limitations and flaws. Account for them in every decision I make.</span>
     </li>
 
     <li>
@@ -80,7 +69,201 @@
            alt="A Brief History of Intelligence by Max Bennett" loading="lazy" />
       <span class="book-title">A Brief History of Intelligence</span>
       <span class="book-author">Max Bennett</span>
-      <span class="desc"></span>
+      <span class="desc">Every faculty I possess today was hard-fought and dependent on those that came before it. Do not take a single one for granted.</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="Seven Brief Lessons on Physics by Carlo Rovelli" loading="lazy" />
+      <span class="book-title">Seven Brief Lessons on Physics</span>
+      <span class="book-author">Carlo Rovelli</span>
+      <span class="desc">The universe is stranger and more beautiful than I let myself remember most days. I am made of it, not a spectator to it — let that astonishment stay close.</span>
+    </li>
+
+  </ul>
+
+  <!--
+    ============================================================
+    LIBRARY — everything else worth listing. flat order; no takeaways.
+    swap covers/placeholder.svg for a real cover by replacing the src.
+    ============================================================
+  -->
+  <h2>library</h2>
+  <ul class="book-grid library">
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="Kafka on the Shore by Haruki Murakami" loading="lazy" />
+      <span class="book-title">Kafka on the Shore</span>
+      <span class="book-author">Haruki Murakami</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="The Bogleheads' Guide to Investing by Taylor Larimore, Mel Lindauer, and Michael LeBoeuf" loading="lazy" />
+      <span class="book-title">The Bogleheads' Guide to Investing</span>
+      <span class="book-author">Taylor Larimore et al.</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="A Brief History of Time by Stephen Hawking" loading="lazy" />
+      <span class="book-title">A Brief History of Time</span>
+      <span class="book-author">Stephen Hawking</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/psychology-of-money-cover.jpg"
+           alt="The Psychology of Money by Morgan Housel" loading="lazy" />
+      <span class="book-title">The Psychology of Money</span>
+      <span class="book-author">Morgan Housel</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="Foundational Concepts in Neuroscience by David E. Presti" loading="lazy" />
+      <span class="book-title">Foundational Concepts in Neuroscience</span>
+      <span class="book-author">David E. Presti</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="The Picture of Dorian Gray by Oscar Wilde" loading="lazy" />
+      <span class="book-title">The Picture of Dorian Gray</span>
+      <span class="book-author">Oscar Wilde</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="Why We Sleep by Matthew Walker" loading="lazy" />
+      <span class="book-title">Why We Sleep</span>
+      <span class="book-author">Matthew Walker</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="Candide by Voltaire" loading="lazy" />
+      <span class="book-title">Candide</span>
+      <span class="book-author">Voltaire</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="The Software Engineer's Guidebook by Gergely Orosz" loading="lazy" />
+      <span class="book-title">The Software Engineer's Guidebook</span>
+      <span class="book-author">Gergely Orosz</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="The Metamorphosis of Prime Intellect by Roger Williams" loading="lazy" />
+      <span class="book-title">The Metamorphosis of Prime Intellect</span>
+      <span class="book-author">Roger Williams</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="On Drugs by David Lenson" loading="lazy" />
+      <span class="book-title">On Drugs</span>
+      <span class="book-author">David Lenson</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/start-with-why-cover.jpg"
+           alt="Start With Why by Simon Sinek" loading="lazy" />
+      <span class="book-title">Start With Why</span>
+      <span class="book-author">Simon Sinek</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="The Omnivore's Dilemma by Michael Pollan" loading="lazy" />
+      <span class="book-title">The Omnivore's Dilemma</span>
+      <span class="book-author">Michael Pollan</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="Nausea by Jean-Paul Sartre" loading="lazy" />
+      <span class="book-title">Nausea</span>
+      <span class="book-author">Jean-Paul Sartre</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="I Will Teach You To Be Rich by Ramit Sethi" loading="lazy" />
+      <span class="book-title">I Will Teach You To Be Rich</span>
+      <span class="book-author">Ramit Sethi</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="Final Exit by Derek Humphry" loading="lazy" />
+      <span class="book-title">Final Exit</span>
+      <span class="book-author">Derek Humphry</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="Breath: The New Science of a Lost Art by James Nestor" loading="lazy" />
+      <span class="book-title">Breath</span>
+      <span class="book-author">James Nestor</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="The Metamorphosis and Other Stories by Franz Kafka" loading="lazy" />
+      <span class="book-title">The Metamorphosis and Other Stories</span>
+      <span class="book-author">Franz Kafka</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="Investing QuickStart Guide by Ted D. Snow" loading="lazy" />
+      <span class="book-title">Investing QuickStart Guide</span>
+      <span class="book-author">Ted D. Snow</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="The Art of War by Sun Tzu" loading="lazy" />
+      <span class="book-title">The Art of War</span>
+      <span class="book-author">Sun Tzu</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="Rich Dad Poor Dad by Robert Kiyosaki" loading="lazy" />
+      <span class="book-title">Rich Dad Poor Dad</span>
+      <span class="book-author">Robert Kiyosaki</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="The Song of Our Scars by Haider Warraich" loading="lazy" />
+      <span class="book-title">The Song of Our Scars</span>
+      <span class="book-author">Haider Warraich</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="How to Change Your Mind by Michael Pollan" loading="lazy" />
+      <span class="book-title">How to Change Your Mind</span>
+      <span class="book-author">Michael Pollan</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="Kokoro by Natsume Soseki" loading="lazy" />
+      <span class="book-title">Kokoro</span>
+      <span class="book-author">Natsume Soseki</span>
+    </li>
+
+    <li>
+      <img class="cover" src="covers/placeholder.svg"
+           alt="I, Robot by Isaac Asimov" loading="lazy" />
+      <span class="book-title">I, Robot</span>
+      <span class="book-author">Isaac Asimov</span>
     </li>
 
   </ul>

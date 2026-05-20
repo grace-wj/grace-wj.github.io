@@ -102,7 +102,6 @@
 
   // render filtered post list. "top" and tag views preserve the order defined
   // in posts.js; "recent" re-sorts by date descending.
-  // FIXME: curate the order of posts in posts.js — "top" reflects that order.
   const list = document.getElementById('post-list');
   const posts = visiblePosts
     .filter(p => !activeTag || (p.tags || []).includes(activeTag))

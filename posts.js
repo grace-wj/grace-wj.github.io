@@ -13,16 +13,78 @@
 // at posts/<slug>.html still resolves if anyone has the direct URL, so the
 // content stays intact; it just isn't listed publicly.
 //
-// FIXME: the "top" view on /posts/ renders this array in order. reorder the
-// entries below to put your strongest pieces first.
+// the "top" view on /posts/ renders this array in order — strongest first.
 
 window.POSTS = [
   {
+    slug: "the-circular-train-problem",
+    title: "The Circular Train Problem",
+    date: "2024-08-27",
+    summary: "A logic puzzle and an algorithm for it.",
+    tags: ["essay"]
+  },
+  {
     slug: "metamorphosis-prime-intellect",
     title: "The Metamorphosis of Prime Intellect",
-    date: "2026-05-12",
+    date: "2022-10-23",
     summary: "A review of the book.",
     tags: ["review"]
+  },
+  {
+    slug: "memory-palaces",
+    title: "Memory Palaces",
+    date: "2024-08-25",
+    summary: "How to memorize 100 digits of pi.",
+    tags: ["essay"]
+  },
+  {
+    slug: "thoughts-on-korean-values",
+    title: "Thoughts on Korean Values",
+    date: "2024-03-17",
+    summary: "On filial piety and modesty.",
+    tags: ["essay"]
+  },
+  {
+    slug: "for-a-diversity-of-consciousness",
+    title: "For a Diversity of Consciousness",
+    date: "2022-11-19",
+    summary: "On consciousness, psychedelics, and the hard problem.",
+    tags: ["essay"]
+  },
+  {
+    slug: "the-line-grows-blurrier",
+    title: "The Line Grows Blurrier",
+    date: "2023-12-31",
+    summary: "On art, logic, and growing up.",
+    tags: ["personal"]
+  },
+  {
+    slug: "on-pleasure",
+    title: "On Pleasure",
+    date: "2024-07-27",
+    summary: "From a journal entry on what gives life meaning.",
+    tags: ["personal"]
+  },
+  {
+    slug: "cigarettes",
+    title: "Cigarettes",
+    date: "2022-10-14",
+    summary: "A friend's father, lung cancer, and the smell that lingers.",
+    tags: ["personal"]
+  },
+  {
+    slug: "palm-trees",
+    title: "Palm Trees (and Bougainvillea)",
+    date: "2022-10-14",
+    summary: "On moving from Missouri to California.",
+    tags: ["essay"]
+  },
+  {
+    slug: "on-inebriants",
+    title: "On Inebriants",
+    date: "2022-10-20",
+    summary: "On art, passion, and intoxication.",
+    tags: ["essay"]
   },
   {
     slug: "on-drug-addiction",
@@ -31,69 +93,6 @@ window.POSTS = [
     summary: "An essay.",
     tags: ["essay"],
     private: true
-  },
-  {
-    slug: "cigarettes",
-    title: "Cigarettes",
-    date: "2026-05-14",
-    summary: "A friend's father, lung cancer, and the smell that lingers.",
-    tags: ["personal"]
-  },
-  {
-    slug: "palm-trees",
-    title: "Palm Trees (and Bougainvillea)",
-    date: "2026-05-14",
-    summary: "On moving from Missouri to California.",
-    tags: ["essay"]
-  },
-  {
-    slug: "thoughts-on-korean-values",
-    title: "Thoughts on Korean Values",
-    date: "2026-05-14",
-    summary: "On filial piety and modesty.",
-    tags: ["essay"]
-  },
-  {
-    slug: "on-pleasure",
-    title: "On Pleasure",
-    date: "2026-05-14",
-    summary: "From a journal entry on what gives life meaning.",
-    tags: ["personal"]
-  },
-  {
-    slug: "memory-palaces",
-    title: "Memory Palaces",
-    date: "2026-05-14",
-    summary: "How to memorize 100 digits of pi.",
-    tags: ["essay"]
-  },
-  {
-    slug: "on-inebriants",
-    title: "On Inebriants",
-    date: "2026-05-14",
-    summary: "On art, passion, and intoxication.",
-    tags: ["essay"]
-  },
-  {
-    slug: "for-a-diversity-of-consciousness",
-    title: "For a Diversity of Consciousness",
-    date: "2026-05-14",
-    summary: "On consciousness, psychedelics, and the hard problem.",
-    tags: ["essay"]
-  },
-  {
-    slug: "the-circular-train-problem",
-    title: "The Circular Train Problem",
-    date: "2026-05-14",
-    summary: "A logic puzzle and an algorithm for it.",
-    tags: ["essay"]
-  },
-  {
-    slug: "the-line-grows-blurrier",
-    title: "The Line Grows Blurrier",
-    date: "2026-05-14",
-    summary: "On art, logic, and growing up.",
-    tags: ["personal"]
   },
   // {
   //   slug: "your-next-post",

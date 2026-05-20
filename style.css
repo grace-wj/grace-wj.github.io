@@ -542,6 +542,18 @@ article blockquote cite {
   margin-top: 0.75rem;
 }
 
+article .pink-image {
+  width: 75%;
+  margin: 2rem auto;
+  display: block;
+}
+
+article .major-system {
+  width: 40%;
+  margin: 2rem auto;
+  display: block;
+}
+
 /* ---- reading page ---- */
 
 ul.book-grid {

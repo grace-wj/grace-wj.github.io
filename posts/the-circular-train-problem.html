@@ -63,34 +63,69 @@
 
   <p>Take some time to think of your own answer to this problem. There are multiple correct answers, but some are more efficient than others (by number of cars you must walk between). Try to find an optimal solution. When I was given the problem, it took me 30 minutes to come up with an answer that worked, but it was still relatively inefficient. I describe my algorithm below using this 8-car train as an example:</p>
 
+  <figure class="diagram solo">
+    <img src="img/circular-train/setup.png" alt="An 8-car circular train with the START car at the bottom and a mix of lit and unlit lightbulbs around the circle." />
+  </figure>
+
   <p>Incrementally turn each lightbulb to the right of your starting position on and each one to the left of your starting position off like so:</p>
 
-  <ul>
-    <li>Walk 1 car to your right and turn that lightbulb on (if it&rsquo;s on already, leave it on).</li>
-    <li>Walk 2 cars to your left and turn that lightbulb off.</li>
-    <li>Walk 3 cars to your right and turn that lightbulb on.</li>
-    <li>&hellip;</li>
-    <li>Continue in the same manner until one of two end conditions occurs:
-      <ul>
-        <li>You encounter a turned-off lightbulb on the right of the starting position which you had previously turned on</li>
-        <li>You encounter a turned-on lightbulb on the left of the starting position which you had previously turned off</li>
-      </ul>
-    </li>
-  </ul>
+  <figure class="diagram step">
+    <img src="img/circular-train/quad-step-1.png" alt="Walk one car right from START; that car's lightbulb is turned on." />
+    <figcaption>Walk 1 car to your right and turn that lightbulb on (if it&rsquo;s on already, leave it on).</figcaption>
+  </figure>
+
+  <figure class="diagram step">
+    <img src="img/circular-train/quad-step-2.png" alt="Walk two cars left from START; that car's lightbulb is turned off." />
+    <figcaption>Walk 2 cars to your left and turn that lightbulb off.</figcaption>
+  </figure>
+
+  <figure class="diagram step">
+    <img src="img/circular-train/quad-step-3.png" alt="Walk three cars right from START; that car's lightbulb is turned on." />
+    <figcaption>Walk 3 cars to your right and turn that lightbulb on.</figcaption>
+  </figure>
+
+  <p>Continue in the same manner until one of two end conditions occurs:</p>
+
+  <ol>
+    <li>You encounter a turned-off lightbulb to the right of the starting position which you had previously turned on</li>
+    <li>You encounter a turned-on lightbulb to the left of the starting position which you had previously turned off</li>
+  </ol>
+
+  <figure class="diagram trio">
+    <img src="img/circular-train/quad-end-a.png" alt="End-state diagram: the walker has looped clockwise around the train and encounters a previously turned-on lightbulb." />
+    <img src="img/circular-train/quad-end-b.png" alt="End-state diagram: the walker has looped around and encounters a previously turned-off lightbulb marked with an X." />
+    <img src="img/circular-train/quad-end-c.png" alt="End-state diagram: the walker reaches the end condition, with one car flagged with an exclamation mark." />
+  </figure>
 
   <p>The number of cars you have to walk between before one of the end conditions occurs is given by <em>n(n + 1)/2 + n</em>, where <em>n</em> is the number of cars in the train. Thus, the distance you have to walk grows quadratically with <em>n</em>, and the algorithm&rsquo;s time complexity is O(n&sup2;).</p>
 
   <p>As mentioned before, it&rsquo;s possible to do better&mdash;here, I&rsquo;ll model the linear time algorithm given by Ben Tupper on the same 8-car train.</p>
 
+  <figure class="diagram solo">
+    <img src="img/circular-train/setup.png" alt="The same 8-car circular train, reset to its initial randomized state for the linear algorithm." />
+  </figure>
+
   <p>Choose a direction and walk a certain number of cars, turning each car&rsquo;s lightbulb on as you go. When you stop, turn the current car&rsquo;s lightbulb off, then turn around and walk back to your starting car. If you increment the number of cars you walk by 1, the algorithm proceeds like so:</p>
 
-  <ul>
-    <li>Turn the starting car&rsquo;s lightbulb on. Walk 1 car to your right and turn that lightbulb off. Walk back to the starting car.</li>
-    <li>Walk 2 cars to your right, turning each light on as you go, and turn that lightbulb off. Walk back to the starting car.</li>
-    <li>Walk 3 cars to your right, turning each light on as you go, and turn that lightbulb off. Walk back to the starting car.</li>
-    <li>&hellip;</li>
-    <li>Continue in the same manner until the end condition occurs: you encounter a turned-off lightbulb on your walk back.</li>
-  </ul>
+  <figure class="diagram step">
+    <img src="img/circular-train/linear-step-1.png" alt="Starting car's lightbulb is turned on; walker steps one car right and turns that lightbulb off, then walks back." />
+    <figcaption>Turn the starting car&rsquo;s lightbulb on. Walk 1 car to your right and turn that lightbulb off. Walk back to the starting car.</figcaption>
+  </figure>
+
+  <figure class="diagram step">
+    <img src="img/circular-train/linear-step-2.png" alt="Walker steps two cars right, lighting each as they go, turns the second off, then walks back." />
+    <figcaption>Walk 2 cars to your right, turning each light on as you go, and turn that lightbulb off. Walk back to the starting car.</figcaption>
+  </figure>
+
+  <figure class="diagram step">
+    <img src="img/circular-train/linear-step-3.png" alt="Walker steps three cars right, lighting each as they go, turns the third off, then walks back." />
+    <figcaption>Walk 3 cars to your right, turning each light on as you go, and turn that lightbulb off. Walk back to the starting car.</figcaption>
+  </figure>
+
+  <figure class="diagram step">
+    <img src="img/circular-train/linear-final.png" alt="Walker completes a full loop around the train, finds a turned-off lightbulb on the walk back, and stops." />
+    <figcaption>Continue in the same manner until the end condition occurs: you encounter a turned-off lightbulb on your walk back.</figcaption>
+  </figure>
 
   <p>With this incremental strategy, the number of cars you have to walk between before the end condition occurs is given by <em>n(n + 1)</em>, with O(n&sup2;) complexity. However, you can optimize the algorithm further by walking 2<sup>k</sup> cars on each iteration, for <em>k</em> = 1, 2, 3, &hellip; In the best case (<em>n</em> is a power of 2), you must walk 4<em>n</em> &minus; 2 cars. In the worst case (<em>n</em> is 1 greater than a power of 2), you must walk 7<em>n</em> &minus; 8 cars. So, we have found an efficient O(n) algorithm to determine the number of cars in the train!</p>
 

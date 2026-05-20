@@ -1017,6 +1017,47 @@ article figure.case.stack {
   gap: 0.75rem;
 }
 
+/* inline diagrams for post bodies: hand-drawn illustrations interleaved
+   with prose. three layouts: solo (centered setup shot), step (image +
+   caption side-by-side), trio (three diagrams in a row). */
+article figure.diagram {
+  margin: 2rem 0;
+}
+article figure.diagram img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+article figure.diagram.solo {
+  text-align: center;
+}
+article figure.diagram.solo img {
+  max-width: 22rem;
+  margin: 0 auto;
+}
+article figure.diagram.step {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+}
+article figure.diagram.step img {
+  max-width: 20rem;
+  margin: 0 auto;
+}
+article figure.diagram.step figcaption {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--fg);
+}
+article figure.diagram.trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  align-items: center;
+}
+
 /* narrow screens: shrink mono metadata column, let nav wrap. */
 @media (max-width: 640px) {
   body { font-size: 20px; padding: 2rem 1rem 4rem; }
@@ -1059,4 +1100,6 @@ article figure.case.stack {
   ul.design-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
   article figure.case.two,
   article figure.case.three { grid-template-columns: 1fr; }
+  article figure.diagram.step { grid-template-columns: 1fr; gap: 0.75rem; }
+  article figure.diagram.step figcaption { text-align: center; }
 }

@@ -34,11 +34,11 @@
 }
 .site-nav {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  gap: 1rem 1.5rem;
+  gap: 1rem 1.25rem;
 }
 .site-nav a {
   font-family: var(--serif);
@@ -371,12 +371,12 @@ nav.tag-filter a:hover {
   color: var(--muted);
   margin: 0;
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.2rem 0.55rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
 }
 .home .links a { color: var(--fg); }
-.home .links .sep { color: var(--muted); }
+.home .links .sep { display: none; }
 
 /* teaser: quiet mono label + thin rule + "all →" anchored right.
    intentionally lighter than the h2+thick-rule treatment used on archive pages. */
@@ -1149,7 +1149,7 @@ article figure.diagram.trio {
 
   .site-header { margin: 0 -1rem 2.25rem; padding: 0 1rem; }
   .site-header-inner { padding: 0.7rem 0; gap: 0.75rem 1.25rem; }
-  .site-nav { gap: 1rem 1.1rem; justify-content: flex-start; }
+  .site-nav { flex-wrap: wrap; gap: 1rem 1.1rem; justify-content: flex-start; }
   .site-nav a { font-size: 1.15rem; letter-spacing: 0.02em; }
 
   ul.design-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }

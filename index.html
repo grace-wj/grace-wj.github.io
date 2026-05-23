@@ -49,24 +49,44 @@
   </div>
 </header>
 
+<!-- warp filter for the masthead morph (driven by wordmark.js) -->
+<svg class="wm-defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <filter id="wm-warp" x="-30%" y="-30%" width="160%" height="160%"
+          color-interpolation-filters="sRGB">
+    <feTurbulence id="wm-turb" type="fractalNoise" baseFrequency="0.008"
+                  numOctaves="2" seed="4" result="noise"/>
+    <feDisplacementMap id="wm-disp" in="SourceGraphic" in2="noise" scale="0"
+                       xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
 <main class="home">
 
   <section class="hero">
-    <h1>grace juan</h1>
-    <p class="lead">
-      i make interfaces that turn abstract systems into things you can see and
-      poke at — agent reasoning, search results, ideas. software engineer at
-      c3 ai, berkeley cs + cogsci '25. figuring out what's next.
-    </p>
-    <p class="links">
-      <a href="mailto:grayswan795@gmail.com">email</a>
-      <span class="sep" aria-hidden="true">·</span>
-      <a href="https://github.com/grace-wj" target="_blank" rel="noopener">github</a>
-      <span class="sep" aria-hidden="true">·</span>
-      <a href="https://www.linkedin.com/in/grace-juan/" target="_blank" rel="noopener">linkedin</a>
-      <span class="sep" aria-hidden="true">·</span>
-      <a href="/resume.pdf" target="_blank" rel="noopener">résumé</a>
-    </p>
+    <h1 class="visually-hidden">grace juan</h1>
+    <div class="hero-row">
+      <button class="masthead" id="masthead" type="button"
+              aria-label="Morph the grace juan wordmark"
+              title="click to morph">
+        <img id="masthead-img" alt="" decoding="async" />
+      </button>
+      <div class="hero-text">
+        <p class="lead">
+          i make interfaces that turn abstract systems into things you can see and
+          poke at — agent reasoning, search results, ideas. software engineer at
+          c3 ai, berkeley cs + cogsci '25. figuring out what's next.
+        </p>
+        <p class="links">
+          <a href="mailto:grayswan795@gmail.com">email</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="https://github.com/grace-wj" target="_blank" rel="noopener">github</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="https://www.linkedin.com/in/grace-juan/" target="_blank" rel="noopener">linkedin</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="/resume.pdf" target="_blank" rel="noopener">résumé</a>
+        </p>
+      </div>
+    </div>
   </section>
 
   <section class="home-teaser">
@@ -91,6 +111,7 @@
 
 </main>
 
+<script src="wordmark.js"></script>
 <script src="projects.js"></script>
 <script src="posts.js"></script>
 <script>

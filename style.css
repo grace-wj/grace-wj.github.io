@@ -299,14 +299,82 @@ nav.tag-filter a:hover {
   color: var(--muted);
 }
 
+/* screen-reader-only: kept in the a11y/SEO tree but visually removed. */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 /* ---- home page ---- */
 
-/* hero: name + serif lead bio + contact strip. the portrait that opens the site. */
+/* hero: morphing wordmark masthead (left) + serif lead bio & contact strip (right).
+   pulled up tight under the nav. */
 .home .hero {
-  margin: 0.5rem 0 3.5rem;
+  margin: -4rem 0 3.5rem;
 }
-.home .hero h1 {
+
+/* two-column hero row; stacks on narrow screens (see media query below). */
+.hero-row {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+.hero-text {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.hero-text .lead {
+  max-width: none;
   margin: 0 0 1.25rem;
+}
+.hero-text .links {
+  margin: 0;
+}
+
+/* masthead: hand-lettered wordmark, ~2/3 of the column, left-aligned.
+   click/tap morphs between designs (see wordmark.js). */
+.masthead {
+  --wm-x: -1.5rem;              /* visual nudge left (negative = toward page gutter) */
+  --wm-y: -0.75rem;             /* visual nudge up (negative = toward nav) */
+  /* it's a <button>: strip the native chrome so only the wordmark shows */
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  overflow: visible;            /* don't clip the warp displacement */
+  flex: 0 0 auto;
+  width: 64%;                   /* ~2/3 of the content column */
+  aspect-ratio: 1795 / 1311;    /* matches the tightly-cropped wordmark canvas */
+  margin: 0;
+  transform: translate(var(--wm-x), var(--wm-y));
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.masthead:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 6px;
+  border-radius: 4px;
+}
+.masthead img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Below ~820px the content column stops being full-width, so the two-column hero
+   would crush the bio and the left nudge would run off-screen. Stack instead:
+   wordmark full-width over the bio, no nudge. */
+@media (max-width: 820px) {
+  .home .hero { margin-top: -1.25rem; }   /* gentler pull; nav can wrap taller here */
+  .hero-row { flex-direction: column; align-items: stretch; gap: 1.5rem; }
+  .masthead { width: 100%; --wm-x: 0rem; --wm-y: 0rem; }   /* no shift when stacked */
 }
 .home .lead {
   font-family: var(--serif);

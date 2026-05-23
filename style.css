@@ -1035,6 +1035,13 @@ article figure.diagram.solo img {
   max-width: 22rem;
   margin: 0 auto;
 }
+article figure.diagram.hero {
+  text-align: center;
+}
+article figure.diagram.hero img {
+  max-width: 32rem;
+  margin: 0 auto;
+}
 article figure.diagram.step {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);

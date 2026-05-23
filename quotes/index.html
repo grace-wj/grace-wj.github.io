@@ -46,10 +46,10 @@
     lines from books, essays, and poems that have stuck with me. browse the full index below.
   </p>
 
-  <button type="button" id="shuffle" class="surface-heading">shuffle 3 random ↻</button>
+  <button type="button" id="shuffle" class="surface-heading">shuffle random ↻</button>
 
-  <!-- random surface: 3 quotes picked on load -->
-  <section class="quote-surface" id="quote-surface" aria-label="three quotes, picked at random"></section>
+  <!-- random surface: 1 quote picked on load -->
+  <section class="quote-surface" id="quote-surface" aria-label="one quote, picked at random"></section>
 
   <!-- indexed archive: grouped by source, accordion -->
   <h2 class="archive-heading">archive</h2>
@@ -103,7 +103,7 @@
 
   // ---- random surface ----
   const QUOTES = window.QUOTES || [];
-  const N_SURFACE = 3;
+  const N_SURFACE = 1;
 
   function pickRandom(arr, n) {
     const pool = arr.slice();

@@ -43,9 +43,7 @@
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   function pickNext() {
-    let to = Math.floor(Math.random() * (WORDMARKS.length - 1));
-    if (to >= cur) to++;       // uniformly random, never the current one
-    return to;
+    return (cur + 1) % WORDMARKS.length;   // step through the cycle, in order
   }
 
   // ---- hover / focus shimmer ----------------------------------------------

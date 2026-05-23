@@ -1,0 +1,21 @@
+# OS / Finder cruft
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+
+# Editor / IDE
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Local tooling & agent state (machine-specific, not site content)
+.claude/
+.playwright-mcp/
+
+# Logs & temp
+*.log
+*.tmp

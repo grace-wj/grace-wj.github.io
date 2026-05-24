@@ -64,7 +64,7 @@
       </button>
       <div class="hero-text">
         <p class="lead">
-          forward deployed engineer at c3 ai, berkeley cs + cogsci '25.<br>reading, writing, designing on the side.<br>figuring out what's next.
+          forward deployed engineer at <a href="https://c3.ai/" target="_blank" rel="noopener">c3 ai</a>, berkeley cs + cogsci '25.<br>reading, writing, designing on the side.<br>figuring out what's next.
         </p>
         <p class="links">
           <a href="mailto:grayswan795@gmail.com">email</a>
@@ -79,25 +79,27 @@
     </div>
   </section>
 
-  <section class="home-teaser">
-    <div class="home-teaser-head">
-      <h2 class="home-label">recent projects</h2>
+  <div class="home-teasers">
+    <section class="home-teaser">
+      <div class="home-teaser-head">
+        <h2 class="home-label">recent projects</h2>
+      </div>
+      <ul class="home-list" id="project-list">
+        <!-- rendered from projects.js -->
+      </ul>
       <a class="home-all" href="/projects/">all projects →</a>
-    </div>
-    <ul class="home-list" id="project-list">
-      <!-- rendered from projects.js -->
-    </ul>
-  </section>
+    </section>
 
-  <section class="home-teaser">
-    <div class="home-teaser-head">
-      <h2 class="home-label">recent writing</h2>
+    <section class="home-teaser">
+      <div class="home-teaser-head">
+        <h2 class="home-label">recent writing</h2>
+      </div>
+      <ul class="home-list" id="post-list">
+        <!-- rendered from posts.js: 3 most recent non-private posts -->
+      </ul>
       <a class="home-all" href="/posts/">all writing →</a>
-    </div>
-    <ul class="home-list" id="post-list">
-      <!-- rendered from posts.js: 3 most recent non-private posts -->
-    </ul>
-  </section>
+    </section>
+  </div>
 
 </main>
 

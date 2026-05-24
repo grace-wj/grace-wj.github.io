@@ -11,6 +11,12 @@
 
 * { box-sizing: border-box; }
 
+/* page-wide type scale. everything sized in rem keys off this, so bumping it
+   scales the whole site uniformly (column width, headings, body, lists, spacing).
+   the nav is pinned in px (see .site-nav a) so it stays put. reset to 16px on
+   narrow screens (see the mobile media query) to preserve the tuned phone layout. */
+html { font-size: 17.75px; }
+
 /* persistent site header — sticky band, logo mark + bold serif caps nav. */
 .site-header {
   position: sticky;
@@ -44,7 +50,9 @@
   font-family: var(--serif);
   font-style: normal;
   font-weight: 700;
-  font-size: 1.5rem;
+  /* held at a fixed px so the page-wide root scale-up doesn't enlarge the nav;
+     the band still widens with the content, spreading as whitespace between links. */
+  font-size: 24px;
   text-transform: uppercase;
   letter-spacing: 0.02em;
   text-decoration: none;
@@ -64,7 +72,7 @@
 
 body {
   font-family: var(--serif);
-  font-size: 25px;
+  font-size: 1.5625rem; /* 25px at the base scale; scales with the root */
   line-height: 1.5;
   color: var(--fg);
   background: var(--bg);
@@ -386,14 +394,19 @@ nav.tag-filter a:hover {
 .home .links a { color: var(--fg); }
 .home .links .sep { display: none; }
 
-/* teaser: quiet mono label + thin rule + "all →" anchored right.
-   intentionally lighter than the h2+thick-rule treatment used on archive pages. */
-.home-teaser { margin: 0 0 2.75rem; }
+/* the two teasers sit side-by-side at the foot of the home page. */
+.home-teasers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 3rem;
+}
+
+/* teaser: quiet mono label + thin rule, with the "all →" link sitting below the
+   list. intentionally lighter than the h2+thick-rule treatment on archive pages. */
+.home-teaser { margin: 0; }
 .home-teaser-head {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
   padding-bottom: 0.55rem;
   border-bottom: 1px solid var(--rule);
   margin: 0 0 0.4rem;
@@ -409,12 +422,15 @@ nav.tag-filter a:hover {
   padding: 0;
   border: 0;
 }
+/* "all → " sits beneath its list, quiet mono, nudged in line with the titles. */
 .home-all {
   font-family: var(--mono);
   font-size: 0.78rem;
   color: var(--muted);
   text-decoration: none;
   white-space: nowrap;
+  display: inline-block;
+  margin-top: 1.6rem;
 }
 .home-all:hover {
   color: var(--fg);
@@ -1131,6 +1147,8 @@ article figure.diagram.trio {
 
 /* narrow screens: shrink mono metadata column, let nav wrap. */
 @media (max-width: 640px) {
+  /* drop back to the base scale so the phone layout stays exactly as tuned. */
+  html { font-size: 16px; }
   body { font-size: 20px; padding: 2rem 1rem 4rem; }
   h1 { font-size: 1.85rem; }
   h2 { font-size: 1.3rem; }
@@ -1152,6 +1170,8 @@ article figure.diagram.trio {
   }
   .home .lead { font-size: 1.05rem; }
   .home .hero { margin-bottom: 2.5rem; }
+  /* stack the two teasers again on narrow screens */
+  .home-teasers { grid-template-columns: 1fr; gap: 2.5rem 0; }
   ul.project-list li .desc,
   ul.post-list li .desc,
   ul.book-list li .desc {

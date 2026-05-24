@@ -356,6 +356,14 @@ nav.tag-filter a:hover {
   .home .hero { margin-top: -1.25rem; }   /* gentler pull; nav can wrap taller here */
   .hero-row { flex-direction: column; align-items: stretch; gap: 1.5rem; }
   .masthead { width: 100%; --wm-x: 0rem; --wm-y: 0rem; }   /* no shift when stacked */
+  /* Full-bleed here, so each design's baked-in top/left whitespace shows. Scale +
+     shift it tight into the top-left to fill the width. Vars are set per-design by
+     wordmark.js; the fallbacks are identity, so this is inert if they're ever unset.
+     Desktop (>820px) never matches this rule, so its layout is untouched. */
+  .masthead img {
+    transform-origin: top left;
+    transform: scale(var(--wm-fill-s, 1)) translate(var(--wm-fill-x, 0), var(--wm-fill-y, 0));
+  }
 }
 .home .lead {
   font-family: var(--serif);

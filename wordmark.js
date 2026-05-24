@@ -18,6 +18,31 @@
     '/wordmarks/wordmark-4.svg',
   ];
 
+  // Mobile-only fit correction (consumed ONLY by the max-width:820px rule in
+  // style.css; desktop computes transform:none, so its layout is untouched).
+  // Each design sits differently inside the shared 0 0 1795 1311 viewBox, leaving
+  // uneven top/left whitespace — invisible at desktop size, glaring full-bleed on
+  // mobile. These per-design constants scale + shift the art tight into the
+  // top-left so it fills the width. They're static geometry, so they're hardcoded
+  // (not measured at runtime) — correct on first paint, no extra fetch, no race.
+  //   s = viewBox.width / contentBBox.width    (scale to fill width)
+  //   x = -contentBBox.x / viewBox.width  (%)  (pull the left gap off the edge)
+  //   y = -contentBBox.y / viewBox.height (%)  (pull the top gap off the edge)
+  // For a NEW design, run this in devtools with the SVG path reachable and record
+  // the result here (order must match WORDMARKS):
+  //   fetch(SRC).then(r=>r.text()).then(t=>{const s=new DOMParser()
+  //     .parseFromString(t,'image/svg+xml').documentElement;
+  //     s.style.cssText='position:absolute;left:-9999px;visibility:hidden';
+  //     document.body.append(s);const v=s.viewBox.baseVal,b=s.getBBox();s.remove();
+  //     console.log({s:+(v.width/b.width).toFixed(4),x:+(-b.x/v.width*100).toFixed(2),
+  //     y:+(-b.y/v.height*100).toFixed(2)});});
+  const FILLS = [
+    { s: 1.0144, x: -0.92,  y: -3.60  },
+    { s: 1.0939, x: -8.05,  y: -15.43 },
+    { s: 1.0717, x: -6.02,  y: -11.21 },
+    { s: 1.0872, x: -7.72,  y: -13.70 },
+  ];
+
   const DURATION = 700;        // ms, full morph (out + in)
   const PEAK_SCALE = 90;       // max displacement at the midpoint
 
@@ -35,8 +60,18 @@
   // preload so the mid-morph swap is instant (the warp hides any decode hitch anyway)
   WORDMARKS.forEach((src) => { const p = new Image(); p.src = src; });
 
+  // Set the mobile fit vars for design i (synchronous: correct on first paint).
+  function applyFill(i) {
+    const f = FILLS[i];
+    if (!f) return;
+    img.style.setProperty('--wm-fill-s', f.s);
+    img.style.setProperty('--wm-fill-x', f.x + '%');
+    img.style.setProperty('--wm-fill-y', f.y + '%');
+  }
+
   let cur = Math.floor(Math.random() * WORDMARKS.length);   // random design on load
   img.src = WORDMARKS[cur];
+  applyFill(cur);
 
   let animating = false;       // a morph or the load-tease currently owns the filter
   let hovering = false;        // pointer over / keyboard focus on the mark
@@ -95,6 +130,7 @@
       img.style.opacity = '0';
       setTimeout(() => {
         img.src = WORDMARKS[to];
+        applyFill(to);
         img.style.opacity = '1';
         cur = to;
         setTimeout(() => { img.style.transition = ''; animating = false; }, 180);
@@ -115,6 +151,7 @@
 
       if (!swapped && p >= 0.5) {                    // swap under maximum distortion
         img.src = WORDMARKS[to];
+        applyFill(to);
         swapped = true;
       }
 

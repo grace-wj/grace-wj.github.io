@@ -70,6 +70,44 @@ html { font-size: 17.75px; }
   box-shadow: 0.15em 0 0 var(--fg), -0.15em 0 0 var(--fg);
 }
 
+/* persistent site footer — injected by footer.js. mirrors the header band:
+   full-bleed hairline rule, content held to the same 46rem column. */
+.site-footer {
+  flex: 0 0 auto;
+  margin: 4rem -1.25rem 0;
+  padding: 1.4rem 1.25rem;
+  border-top: 1px solid var(--rule);
+  background: var(--bg);
+}
+.site-footer-inner {
+  max-width: 46rem;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+.footer-name,
+.footer-links a {
+  color: var(--muted);
+}
+.footer-links a {
+  text-decoration: none;
+}
+.footer-links a:hover {
+  color: var(--fg);
+  text-decoration: underline;
+}
+
 body {
   font-family: var(--serif);
   font-size: 1.5625rem; /* 25px at the base scale; scales with the root */
@@ -83,6 +121,23 @@ body {
 main, article {
   max-width: 46rem;
   margin: 0 auto;
+}
+
+/* sticky footer — footer.js injects .site-footer on every page except home.
+   make those pages a flex column so short ones push the footer to the bottom of
+   the viewport instead of leaving dead space. scoped via :has() so the home
+   page (no footer) keeps its original natural-height layout — adding it there
+   shifted the hero, which we don't want. */
+body:has(.site-footer) {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2.5rem;
+}
+body:has(.site-footer) main,
+body:has(.site-footer) article {
+  width: 100%;
+  flex: 1 0 auto; /* grow to fill, anchoring the footer to the bottom */
 }
 
 h1 {
@@ -187,6 +242,24 @@ ul.post-list li {
   align-items: baseline;
   gap: 0.4rem 1.5rem;
   padding: 0.7rem 0;
+}
+
+/* writing entries carry a category tag; give it its own column so titles of any
+   length stay on one row and the tags line up in a tidy strip (instead of the
+   tag wrapping under a long title and making the rows ragged). */
+ul.post-list li {
+  /* fixed tag column (not auto) so tags align to one x across every row —
+     each <li> is its own grid, so an auto column would resolve per-row. */
+  grid-template-columns: 5.5rem minmax(0, 1.4fr) 5rem minmax(0, 1fr);
+}
+ul.post-list .tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+ul.post-list .tags a.tag {
+  margin-left: 0;
 }
 
 .title-block {
@@ -1174,10 +1247,14 @@ article figure.diagram.trio {
   .home-teasers { grid-template-columns: 1fr; gap: 2.5rem 0; }
   ul.project-list li .desc,
   ul.post-list li .desc,
-  ul.book-list li .desc {
+  ul.book-list li .desc,
+  ul.post-list li .tags {
     grid-column: 2;
     text-align: left;
   }
+  /* footer stacks below the column gutter on phones */
+  .site-footer { margin: 3rem -1rem 0; padding: 1.25rem 1rem; }
+  .site-footer-inner { flex-direction: column; gap: 0.75rem; }
   .date, .year { font-size: 0.72rem; }
   article > header h1 { font-size: 1.95rem; }
   article p, article li { font-size: 1.05rem; }

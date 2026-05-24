@@ -113,14 +113,18 @@
     a.href = post.slug + '.html';
     a.textContent = post.title;
     titleBlock.appendChild(a);
+    li.appendChild(titleBlock);
+    // tags get their own grid cell so they align in a column regardless of title length
+    const tags = document.createElement('span');
+    tags.className = 'tags';
     for (const tag of (post.tags || [])) {
       const t = document.createElement('a');
       t.className = 'tag';
       t.href = '?tag=' + encodeURIComponent(tag);
       t.textContent = tag;
-      titleBlock.appendChild(t);
+      tags.appendChild(t);
     }
-    li.appendChild(titleBlock);
+    li.appendChild(tags);
     const desc = document.createElement('span');
     desc.className = 'desc';
     desc.textContent = post.summary || '';
@@ -128,6 +132,7 @@
     list.appendChild(li);
   }
 </script>
+<script src="/footer.js"></script>
 
 </body>
 </html>

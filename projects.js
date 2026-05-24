@@ -10,6 +10,12 @@ window.PROJECTS = [
   //   description: "visual debugger for ai agent traces. (in progress — TODO link)"
   // },
   {
+    name: "claude-bot",
+    url: "/projects/claude-bot.html",
+    year: "2026",
+    description: "a coding agent you drive from telegram — text it a task and it works on real github repos. typescript, claude agent sdk, self-hosted on a hardened vps."
+  },
+  {
     name: "debaterhub 3d search",
     url: "/projects/debaterhub.html",
     year: "2025",

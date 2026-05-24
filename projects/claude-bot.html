@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>claude-bot — grace juan</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <nav class="site-nav" aria-label="primary">
+      <a href="/">Home</a>
+      <a href="/projects/" aria-current="page">Projects</a>
+      <a href="/posts/">Writing</a>
+      <a href="/design/">Design</a>
+      <a href="/reading/">Reading</a>
+      <a href="/quotes/">Quotes</a>
+    </nav>
+  </div>
+</header>
+
+<article>
+
+  <header>
+    <span class="client">Personal project &middot; 2026</span>
+    <h1>claude-bot</h1>
+    <p class="dek">A coding agent I run from my phone. I text it a task over Telegram and it works on my real GitHub repos — from anywhere, no laptop open.</p>
+  </header>
+
+  <p class="lede">claude-bot turns a Telegram chat into a full coding agent. I message it a task — fix a bug, add a feature, refactor a file — and it works directly on my GitHub repositories: cloning the repo, editing code, running commands, and pushing commits or opening a pull request. Because it lives on an always-on server and talks over Telegram, I can ship real changes from my phone, anywhere, without opening a laptop.</p>
+
+  <h2>See it work</h2>
+
+  <p>A real example: from my phone, I asked it to add a "focus areas" section to a portfolio site — and it opened a pull request with the change, written to match the site's existing style.</p>
+
+  <!-- WALKTHROUGH MEDIA — the captions live here on the page, so the clips need NO voiceover and NO burned-in text.
+       Capture (raw, no editing needed):
+         • claude-bot-demo.mp4  (+ optional claude-bot-demo-poster.png, just a first-frame screenshot) — phone recording of the Telegram exchange
+         • claude-bot-pr.png    — screenshot of the resulting GitHub pull request / diff
+         • claude-bot-vps.png   — (optional) screenshot of the VPS terminal: `systemctl status claude-bot` + `journalctl -u claude-bot -f`
+       Want finer captions on the phone part? Record it as two short clips (the ask / the result) and tell me — I'll split this into two captioned figures. -->
+
+  <figure class="case tall">
+    <video controls preload="metadata" playsinline poster="claude-bot-demo-poster.png">
+      <source src="claude-bot-demo.mp4" type="video/mp4" />
+      Your browser does not support embedded video.
+      <a href="claude-bot-demo.mp4">Download the clip (mp4)</a>.
+    </video>
+    <figcaption><strong>From my phone.</strong> I point the bot at a repo with <code>/repo</code>, describe the change in plain English, and it gets to work — cloning the repo, editing files, and running commands on the server while the replies stream back.</figcaption>
+  </figure>
+
+  <figure class="case">
+    <img src="claude-bot-pr.png" alt="GitHub pull request opened by the bot, showing the new focus-areas section in the diff." />
+    <figcaption><strong>The result.</strong> Minutes later, a real pull request — reviewed and merged like any other, but created entirely from my phone.</figcaption>
+  </figure>
+
+  <!-- OPTIONAL infra shot — delete this whole figure if you skip it.
+  <figure class="case">
+    <img src="claude-bot-vps.png" alt="VPS terminal showing the claude-bot systemd service active and live logs of the task." />
+    <figcaption><strong>Where it runs.</strong> The same task in the server logs — the bot runs 24/7 as a hardened service on a €5/month VPS.</figcaption>
+  </figure>
+  -->
+
+  <h2>How it works</h2>
+
+  <p>The system has four moving parts that hand work down the chain from a text message to a committed change:</p>
+
+  <ul>
+    <li><strong>Telegram as the interface.</strong> Every message from an allow-listed account becomes a task, and replies stream back as the agent works. There's no app to build and it works on any device I already have.</li>
+    <li><strong>The bot process.</strong> A TypeScript service (grammy + the Claude Agent SDK) long-polls Telegram, so it needs no inbound ports. Each chat keeps its own persistent session, model choice, and working repo in a local SQLite store.</li>
+    <li><strong>The agent and workspace.</strong> Each task spawns a Claude agent turn against a freshly cloned GitHub repo. The agent has real tools — file edits, a shell, git, and browser automation over MCP — so it can make changes and open pull requests, not just chat.</li>
+    <li><strong>The host.</strong> Everything runs on a small Hetzner VPS as a managed background service that stays up between messages.</li>
+  </ul>
+
+  <!-- ARCHITECTURE DIAGRAM (optional): drop claude-bot-arch.png here and uncomment.
+  <figure class="diagram solo">
+    <img src="claude-bot-arch.png" alt="Architecture: phone to Telegram to VPS bot process to Claude Agent SDK to cloned GitHub repo." />
+    <figcaption>End to end: a phone message becomes a commit on GitHub.</figcaption>
+  </figure>
+  -->
+
+  <h2>Running it in production</h2>
+
+  <p>I deployed it on a €5/month Hetzner VPS as a hardened <code>systemd</code> service: it runs as an unprivileged user with a read-only filesystem, a tmpfs home, and a 2&nbsp;GB memory cap, and restarts automatically on failure. Deploys are a <code>git pull</code>, build, and service restart, with live logs over <code>journalctl</code>. Because the bot only makes outbound connections to poll Telegram, the server needs no open inbound ports beyond SSH.</p>
+
+  <h2>Reliability &amp; cost controls</h2>
+
+  <p>A coding agent left running on a server can wedge or quietly run up a bill, so I built in guardrails:</p>
+
+  <ul>
+    <li>a per-chat message <strong>queue with rate limiting</strong>, so back-to-back tasks run in order instead of colliding;</li>
+    <li>a hard <strong>daily spend cap</strong> (USD per UTC day) that refuses new turns once it's hit;</li>
+    <li><strong>idle and wall-clock timeouts</strong> that abort a turn if it stalls or runs too long;</li>
+    <li>a <strong>watchdog</strong> that restarts the process if it hangs, plus graceful shutdown on deploy so nothing is left half-done;</li>
+    <li>in-chat controls — <code>/stop</code>, <code>/queue</code>, <code>/drain</code>, <code>/cost</code>, <code>/usage</code>, <code>/repo</code>, <code>/model</code> — to inspect and steer it all from the conversation.</li>
+  </ul>
+
+  <p><a href="https://github.com/grace-wj/claude-bot">Source on GitHub &rarr;</a></p>
+
+</article>
+
+</body>
+</html>

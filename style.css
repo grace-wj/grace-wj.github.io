@@ -493,6 +493,13 @@ article p, article li {
   font-feature-settings: "onum" 1;
 }
 
+/* inline code: monospace has a larger x-height than the serif body, so drop
+   the size to keep it from looming over the surrounding text. */
+article code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+}
+
 /* drop cap — the only opener device. fires on the first paragraph after the
    first h2, or on any paragraph with class="lede". */
 article > h2:first-of-type + p::first-letter,

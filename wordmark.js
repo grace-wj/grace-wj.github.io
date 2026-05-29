@@ -16,6 +16,10 @@
     '/wordmarks/wordmark-2.svg',
     '/wordmarks/wordmark-3.svg',
     '/wordmarks/wordmark-4.svg',
+    '/wordmarks/wordmark-5.svg',
+    '/wordmarks/wordmark-6.svg',
+    '/wordmarks/wordmark-7.svg',
+    '/wordmarks/wordmark-8.svg',
   ];
 
   // Mobile-only fit correction (consumed ONLY by the max-width:820px rule in
@@ -41,6 +45,10 @@
     { s: 1.0939, x: -8.05,  y: -15.43 },
     { s: 1.0717, x: -6.02,  y: -11.21 },
     { s: 1.0872, x: -7.72,  y: -13.70 },
+    { s: 1.1108, x: -5.07,  y: -12.05 },
+    { s: 1.0813, x: -3.79,  y: -11.44 },
+    { s: 1.0596, x: -2.90,  y: -10.53 },
+    { s: 1.0781, x: -3.62,  y: -11.21 },
   ];
 
   const DURATION = 700;        // ms, full morph (out + in)

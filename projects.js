@@ -2,13 +2,12 @@
 // fields: name (required), url, year, description (one-liner).
 
 window.PROJECTS = [
-  // hidden until built — unhide when ready
-  // {
-  //   name: "aperture",
-  //   url: "",
-  //   year: "2026",
-  //   description: "visual debugger for ai agent traces. (in progress — TODO link)"
-  // },
+  {
+    name: "aperture",
+    url: "/projects/aperture.html",
+    year: "2026",
+    description: "a visual debugger for ai agent traces — drop in a run and see its shape as a tree and timeline, then replay it step by step. vite + react, three.js, zustand, zod. no backend."
+  },
   {
     name: "texting claude",
     url: "/projects/claude-bot.html",

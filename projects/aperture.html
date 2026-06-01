@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>aperture — grace juan</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <nav class="site-nav" aria-label="primary">
+      <a href="/">Home</a>
+      <a href="/projects/" aria-current="page">Projects</a>
+      <a href="/posts/">Writing</a>
+      <a href="/design/">Design</a>
+      <a href="/reading/">Reading</a>
+      <a href="/quotes/">Quotes</a>
+    </nav>
+  </div>
+</header>
+
+<article>
+
+  <header>
+    <span class="client">Personal project &middot; 2026</span>
+    <h1>aperture</h1>
+    <p class="dek">A visual debugger for AI agent traces. Drop in a run, see its shape as a tree and a timeline, and replay it step by step — no backend.</p>
+  </header>
+
+  <p class="lede">When an agent does something weird — wrong tool, runaway loop, hallucinated argument — all you usually have is a JSON dump of the run: thousands of lines, deeply nested, hard to scan. Aperture renders that JSON as a tree and a timeline. You see the shape of the run at a glance, then click into any span for its prompt, response, and tool I/O. An agent tells a customer their order is canceled when it isn't? The tree shows two <code>lookup_order</code> calls; the assistant turn between them reveals the model misread the order ID the second time. About ninety seconds, instead of scrolling for fifteen minutes.</p>
+
+  <h2>See it work</h2>
+
+  <p>A ~90-second walkthrough: dropping a trace, navigating the tree and timeline, searching and filtering, and replaying the run span by span.</p>
+
+  <!-- SCREENCAST PLACEHOLDER — record per /Users/grace/Desktop/aperture-launch-guide.md, then:
+       1. drop aperture-demo.mp4 (+ aperture-demo-poster.png first-frame) into this projects/ folder
+       2. delete the placeholder <div> below and uncomment the <video> block
+  <figure class="case">
+    <video controls preload="metadata" playsinline poster="aperture-demo-poster.png">
+      <source src="aperture-demo.mp4" type="video/mp4" />
+      Your browser does not support embedded video.
+      <a href="aperture-demo.mp4">Download the demo (mp4)</a>.
+    </video>
+    <figcaption>Demo: drop a trace, navigate the tree + timeline, then replay the run step by step.</figcaption>
+  </figure>
+  -->
+  <figure class="case">
+    <div role="img" aria-label="Screencast placeholder"
+         style="display:flex;align-items:center;justify-content:center;aspect-ratio:16/10;border:1px dashed var(--muted);border-radius:4px;font-family:var(--mono);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);background:rgba(0,0,0,0.02);">
+      screencast coming soon
+    </div>
+    <figcaption>Demo: drop a trace, navigate the tree + timeline, then replay the run step by step.</figcaption>
+  </figure>
+
+  <h2>How it works</h2>
+
+  <p>Aperture is local-first: drop a trace JSON file on the page and three views light up from the same selection.</p>
+
+  <ul>
+    <li><strong>Tree, timeline, and detail — one selection.</strong> The tree shows the call hierarchy, the timeline shows when each span ran and how long it took, and the detail panel shows the selected span's content blocks — thinking, tool calls, prompts, and results. Click anywhere and all three stay in sync.</li>
+    <li><strong>Search and filter, like a real debugger.</strong> Type a query and non-matching spans dim while matches highlight and their ancestor path auto-expands; toggle "errors only" to collapse the run down to just what failed.</li>
+    <li><strong>Subagent boundaries.</strong> Delegated work renders as its own span on the timeline, so a subagent's input and result read as a unit instead of disappearing into the parent's stream.</li>
+    <li><strong>Step-through replay.</strong> Reset to the start and play the run forward span by span — the tree expands and scrolls, the detail panel narrates each turn. Pause on any step, jump elsewhere, and resume from there. Agent execution becomes a navigable sequence.</li>
+    <li><strong>Concurrency without overlap.</strong> Parallel spans pack into sub-lanes on the timeline, so four simultaneous tool calls render side by side instead of stacking on top of each other.</li>
+  </ul>
+
+  <h2>Bring your own trace format</h2>
+
+  <p>Aperture is built for traces from the <a href="https://github.com/anthropics/claude-agent-sdk-typescript" target="_blank" rel="noopener">Claude Agent SDK</a>, but the internal schema is small and documented. Any other harness can be ingested with a short adapter — a ~30-line function that maps your events to the <code>Span</code>/<code>Trace</code> shape — with no changes to the app itself, since it validates any object matching the schema on drop.</p>
+
+  <h2>Stack</h2>
+
+  <p>Vite + React 19 + TypeScript, with Zustand for app state and Zod for schema validation. The timeline canvas uses Three.js and GSAP. There's no backend — everything runs in the browser, and a trace never leaves your machine.</p>
+
+  <p><a href="https://gracejuan.com/aperture/">Try it live &rarr;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/grace-wj/aperture" target="_blank" rel="noopener">Source on GitHub &rarr;</a></p>
+
+</article>
+<script src="/footer.js"></script>
+
+</body>
+</html>

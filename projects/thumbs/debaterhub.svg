@@ -1,0 +1,16 @@
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="debaterhub 3d search — placeholder thumbnail">
+  <rect width="320" height="200" rx="6" fill="#fcfcfa"/>
+  <rect x="0.75" y="0.75" width="318.5" height="198.5" rx="5.5" fill="none" stroke="#e8e8e4" stroke-width="1.5"/>
+  <!-- orbits -->
+  <g fill="none" stroke="#dcdcd7" stroke-width="3">
+    <ellipse cx="160" cy="100" rx="34" ry="14"/>
+    <ellipse cx="160" cy="100" rx="62" ry="26"/>
+    <ellipse cx="160" cy="100" rx="90" ry="38"/>
+  </g>
+  <!-- sun + planets -->
+  <circle cx="160" cy="100" r="13" fill="#1a1a1a"/>
+  <circle cx="194" cy="100" r="7" fill="#1a1a1a"/>
+  <circle cx="106" cy="86" r="6" fill="#8a8a86"/>
+  <circle cx="232" cy="118" r="5" fill="#8a8a86"/>
+  <circle cx="160" cy="62" r="5" fill="#1a1a1a"/>
+</svg>

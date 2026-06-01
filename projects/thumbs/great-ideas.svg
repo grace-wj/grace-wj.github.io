@@ -1,0 +1,18 @@
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="great ideas — placeholder thumbnail">
+  <rect width="320" height="200" rx="6" fill="#fcfcfa"/>
+  <rect x="0.75" y="0.75" width="318.5" height="198.5" rx="5.5" fill="none" stroke="#e8e8e4" stroke-width="1.5"/>
+  <!-- open book: two pages meeting at a center spine -->
+  <path d="M160 64 C 132 52, 96 52, 72 60 L 72 138 C 96 130, 132 130, 160 142 Z"
+        fill="#fcfcfa" stroke="#1a1a1a" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M160 64 C 188 52, 224 52, 248 60 L 248 138 C 224 130, 188 130, 160 142 Z"
+        fill="#fcfcfa" stroke="#1a1a1a" stroke-width="6" stroke-linejoin="round"/>
+  <!-- text lines -->
+  <g stroke="#8a8a86" stroke-width="4" stroke-linecap="round">
+    <line x1="88"  y1="78"  x2="146" y2="84"/>
+    <line x1="88"  y1="94"  x2="146" y2="100"/>
+    <line x1="88"  y1="110" x2="146" y2="116"/>
+    <line x1="174" y1="84"  x2="232" y2="78"/>
+    <line x1="174" y1="100" x2="232" y2="94"/>
+    <line x1="174" y1="116" x2="232" y2="110"/>
+  </g>
+</svg>

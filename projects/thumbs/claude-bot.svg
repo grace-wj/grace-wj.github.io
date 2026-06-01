@@ -1,0 +1,13 @@
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="texting claude — placeholder thumbnail">
+  <rect width="320" height="200" rx="6" fill="#fcfcfa"/>
+  <rect x="0.75" y="0.75" width="318.5" height="198.5" rx="5.5" fill="none" stroke="#e8e8e4" stroke-width="1.5"/>
+  <!-- chat bubble with tail -->
+  <path d="M82 50 h156 a14 14 0 0 1 14 14 v52 a14 14 0 0 1 -14 14 h-118 l-22 22 v-22 h-16 a14 14 0 0 1 -14 -14 v-52 a14 14 0 0 1 14 -14 z"
+        fill="#fcfcfa" stroke="#1a1a1a" stroke-width="6" stroke-linejoin="round"/>
+  <!-- message lines + terminal caret -->
+  <g fill="#8a8a86">
+    <rect x="100" y="74" width="120" height="9" rx="4.5"/>
+    <rect x="100" y="96" width="78" height="9" rx="4.5"/>
+  </g>
+  <rect x="188" y="93" width="12" height="16" fill="#1a1a1a"/>
+</svg>

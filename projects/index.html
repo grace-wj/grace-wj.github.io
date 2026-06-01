@@ -56,21 +56,38 @@
   const projectList = document.getElementById('project-list');
   for (const p of (window.PROJECTS || [])) {
     const li = document.createElement('li');
+
+    const thumbLink = document.createElement('a');
+    thumbLink.className = 'project-thumb';
+    thumbLink.href = p.url || '#';
+    thumbLink.setAttribute('aria-hidden', 'true');
+    thumbLink.tabIndex = -1;
+    const img = document.createElement('img');
+    img.src = p.thumb || '';
+    img.alt = '';
+    img.loading = 'lazy';
+    thumbLink.appendChild(img);
+    li.appendChild(thumbLink);
+
+    const text = document.createElement('div');
+    text.className = 'project-meta';
+    const top = document.createElement('div');
+    top.className = 'project-meta-top';
     const year = document.createElement('span');
     year.className = 'year';
     year.textContent = p.year || '';
-    li.appendChild(year);
-    const titleBlock = document.createElement('div');
-    titleBlock.className = 'title-block';
+    top.appendChild(year);
     const a = document.createElement('a');
     a.href = p.url || '#';
     a.textContent = p.name;
-    titleBlock.appendChild(a);
-    li.appendChild(titleBlock);
+    top.appendChild(a);
+    text.appendChild(top);
     const desc = document.createElement('span');
     desc.className = 'desc';
     desc.textContent = p.description || '';
-    li.appendChild(desc);
+    text.appendChild(desc);
+    li.appendChild(text);
+
     projectList.appendChild(li);
   }
 </script>

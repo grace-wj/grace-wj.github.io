@@ -1,0 +1,15 @@
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="jay-zam — placeholder thumbnail">
+  <rect width="320" height="200" rx="6" fill="#fcfcfa"/>
+  <rect x="0.75" y="0.75" width="318.5" height="198.5" rx="5.5" fill="none" stroke="#e8e8e4" stroke-width="1.5"/>
+  <!-- waveform / equalizer bars, centered on y=100 -->
+  <g stroke-linecap="round" stroke-width="11">
+    <line x1="92"  y1="78"  x2="92"  y2="122" stroke="#8a8a86"/>
+    <line x1="114" y1="62"  x2="114" y2="138" stroke="#1a1a1a"/>
+    <line x1="136" y1="84"  x2="136" y2="116" stroke="#8a8a86"/>
+    <line x1="158" y1="50"  x2="158" y2="150" stroke="#1a1a1a"/>
+    <line x1="180" y1="72"  x2="180" y2="128" stroke="#8a8a86"/>
+    <line x1="202" y1="58"  x2="202" y2="142" stroke="#1a1a1a"/>
+    <line x1="224" y1="86"  x2="224" y2="114" stroke="#8a8a86"/>
+    <line x1="246" y1="68"  x2="246" y2="132" stroke="#1a1a1a"/>
+  </g>
+</svg>

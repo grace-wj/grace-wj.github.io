@@ -1,0 +1,19 @@
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="sleep heals — placeholder thumbnail">
+  <rect width="320" height="200" rx="6" fill="#fcfcfa"/>
+  <rect x="0.75" y="0.75" width="318.5" height="198.5" rx="5.5" fill="none" stroke="#e8e8e4" stroke-width="1.5"/>
+  <!-- crescent moon (mask) -->
+  <defs>
+    <mask id="crescent">
+      <rect width="320" height="200" fill="black"/>
+      <circle cx="142" cy="102" r="44" fill="white"/>
+      <circle cx="162" cy="90" r="40" fill="black"/>
+    </mask>
+  </defs>
+  <rect width="320" height="200" fill="#1a1a1a" mask="url(#crescent)"/>
+  <!-- z's -->
+  <g fill="#8a8a86" font-family="Georgia, serif" font-style="italic">
+    <text x="206" y="78" font-size="26">z</text>
+    <text x="226" y="62" font-size="20">z</text>
+    <text x="242" y="50" font-size="15">z</text>
+  </g>
+</svg>

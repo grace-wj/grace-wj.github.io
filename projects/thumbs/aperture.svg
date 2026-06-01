@@ -1,0 +1,21 @@
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="aperture — placeholder thumbnail">
+  <rect width="320" height="200" rx="6" fill="#fcfcfa"/>
+  <rect x="0.75" y="0.75" width="318.5" height="198.5" rx="5.5" fill="none" stroke="#e8e8e4" stroke-width="1.5"/>
+  <!-- tree (left): dots + indented lines -->
+  <g fill="#1a1a1a">
+    <circle cx="60" cy="66" r="5"/>
+    <circle cx="74" cy="100" r="5"/>
+    <circle cx="74" cy="134" r="5"/>
+  </g>
+  <g stroke="#8a8a86" stroke-width="6" stroke-linecap="round">
+    <line x1="74" y1="66" x2="128" y2="66"/>
+    <line x1="88" y1="100" x2="120" y2="100"/>
+    <line x1="88" y1="134" x2="112" y2="134"/>
+  </g>
+  <!-- timeline (right): stacked bars -->
+  <g>
+    <rect x="158" y="58" width="92" height="16" rx="8" fill="#1a1a1a"/>
+    <rect x="176" y="92" width="74" height="16" rx="8" fill="#8a8a86"/>
+    <rect x="158" y="126" width="60" height="16" rx="8" fill="#1a1a1a"/>
+  </g>
+</svg>

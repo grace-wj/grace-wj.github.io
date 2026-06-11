@@ -55,6 +55,15 @@ window.DESIGNS = [
     thumb: "img/codeology-industry-thumb.jpg",
     tags: ["campaign", "editorial"]
   },
+  {
+    slug: "sketchbook",
+    title: "Sketchbook",
+    year: "",
+    client: "Personal work",
+    summary: "Traditional drawing — graphite and ballpoint studies from observation.",
+    thumb: "img/sketchbook-thumb.jpg",
+    tags: ["illustration"]
+  },
   // {
   //   slug: "your-next-project",
   //   title: "title",

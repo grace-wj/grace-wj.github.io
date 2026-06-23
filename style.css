@@ -436,6 +436,22 @@ nav.tag-filter a:hover {
 .hero-text .links {
   margin: 0;
 }
+/* easter-egg link under the wordmark → the making-of page */
+.wm-colophon {
+  display: inline-block;
+  margin: 0.75rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-decoration: none;
+}
+.wm-colophon:hover,
+.wm-colophon:focus-visible {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
 /* masthead: hand-lettered wordmark, ~2/3 of the column, left-aligned.
    click/tap morphs between designs (see wordmark.js). */

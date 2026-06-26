@@ -17,6 +17,13 @@
 
 window.POSTS = [
   {
+    slug: "the-urge-of-creation",
+    title: "The Urge of Creation",
+    date: "2026-06-26",
+    summary: "On observation, ego, and art as connection rather than self-expression.",
+    tags: ["essay"]
+  },
+  {
     slug: "the-circular-train-problem",
     title: "The Circular Train Problem",
     date: "2024-08-27",

@@ -77,7 +77,8 @@ window.POSTS = [
     title: "Cigarettes",
     date: "2022-10-14",
     summary: "A friend's father, lung cancer, and the smell that lingers.",
-    tags: ["personal"]
+    tags: ["personal"],
+    private: true
   },
   {
     slug: "palm-trees",

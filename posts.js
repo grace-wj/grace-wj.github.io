@@ -85,7 +85,7 @@ window.POSTS = [
     title: "Palm Trees (and Bougainvillea)",
     date: "2022-10-14",
     summary: "On moving from Missouri to California.",
-    tags: ["essay"]
+    tags: ["personal"]
   },
   {
     slug: "on-inebriants",

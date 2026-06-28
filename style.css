@@ -1274,6 +1274,25 @@ article figure.diagram.trio {
   align-items: center;
 }
 
+/* sketchbook gallery: single images run full-width with the caption below,
+   instead of the side-by-side step layout (which left tall whitespace). */
+article.sketchbook figure.diagram.step {
+  display: block;
+}
+article.sketchbook figure.diagram.step img {
+  width: 100%;
+  max-width: 100%;
+}
+article.sketchbook figure.diagram.step figcaption {
+  margin-top: 0.85rem;
+}
+/* narrow: standalone images that read better smaller than full-width. */
+article.sketchbook figure.diagram.step.narrow img {
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* narrow screens: shrink mono metadata column, let nav wrap. */
 @media (max-width: 640px) {
   /* drop back to the base scale so the phone layout stays exactly as tuned. */

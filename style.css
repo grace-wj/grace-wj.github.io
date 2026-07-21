@@ -5,9 +5,79 @@
   --muted: #8a8a86;
   --bg: #fcfcfa;
   --rule: #e8e8e4;
+  /* ink for the recolored wordmark silhouette (see .masthead #masthead-img).
+     defaults to fg so the base black-and-white theme stays black. */
+  --wm-ink: #1a1a1a;
   --serif: "EB Garamond", Georgia, "Times New Roman", serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
+
+/* ---- color themes -------------------------------------------------------
+   The site rotates between palettes via a text control on the home page
+   (see theme.js). Each theme only remaps the four surface variables plus the
+   wordmark ink; every rem/size stays put. Palettes reference Monkeytype's
+   themes. mono (default black-and-white) needs no block — it's :root above.
+   Four light, four dark. --wm-ink is the accent so the masthead pops. */
+
+/* cheesecake — warm cream + magenta (light) */
+:root[data-theme="cheesecake"] {
+  --fg: #4a3340;
+  --muted: #a98b6f;
+  --bg: #f6ead1;
+  --rule: #e5d3ac;
+  --wm-ink: #c0396f;
+}
+/* milkshake — soft bone + rosé (light) */
+:root[data-theme="milkshake"] {
+  --fg: #2c2a33;
+  --muted: #9b94a6;
+  --bg: #f6f3ef;
+  --rule: #e4dee6;
+  --wm-ink: #e58ba0;
+}
+/* sage — pale green + botanical (light) */
+:root[data-theme="sage"] {
+  --fg: #33403a;
+  --muted: #849184;
+  --bg: #e7ebdd;
+  --rule: #d2d8c3;
+  --wm-ink: #5e8b6a;
+}
+/* serika — charcoal + amber (dark) */
+:root[data-theme="serika"] {
+  --fg: #d1d0c5;
+  --muted: #7d7f7a;
+  --bg: #323437;
+  --rule: #47494c;
+  --wm-ink: #e2b714;
+}
+/* dracula — indigo + violet (dark) */
+:root[data-theme="dracula"] {
+  --fg: #f8f8f2;
+  --muted: #6272a4;
+  --bg: #282a36;
+  --rule: #44475a;
+  --wm-ink: #bd93f9;
+}
+/* nord — slate + frost cyan (dark) */
+:root[data-theme="nord"] {
+  --fg: #d8dee9;
+  --muted: #7b8494;
+  --bg: #2e3440;
+  --rule: #434c5e;
+  --wm-ink: #88c0d0;
+}
+/* moonlight — deep navy + blossom pink (dark) */
+:root[data-theme="moonlight"] {
+  --fg: #cad3f5;
+  --muted: #6e738d;
+  --bg: #1e2030;
+  --rule: #363a4f;
+  --wm-ink: #f5bde6;
+}
+
+/* recolor smoothly when the theme changes */
+body { transition: background-color 200ms ease, color 200ms ease; }
 
 * { box-sizing: border-box; }
 
@@ -436,10 +506,18 @@ nav.tag-filter a:hover {
 .hero-text .links {
   margin: 0;
 }
+/* row under the wordmark: making-of link (left) + theme rotator (right) */
+.wm-colophon-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0.75rem 0 0;
+}
 /* easter-egg link under the wordmark → the making-of page */
 .wm-colophon {
   display: inline-block;
-  margin: 0.75rem 0 0;
+  margin: 0;
   font-family: var(--mono);
   font-size: 0.7rem;
   letter-spacing: 0.04em;
@@ -451,6 +529,32 @@ nav.tag-filter a:hover {
   color: var(--fg);
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+/* theme rotator — a text snippet styled to match .wm-colophon, not a button.
+   click cycles to the next color theme (see theme.js). */
+.theme-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-decoration: none;
+  cursor: pointer;
+  text-align: right;
+  -webkit-tap-highlight-color: transparent;
+}
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  outline: none;
 }
 
 /* masthead: hand-lettered wordmark, ~2/3 of the column, left-aligned.
@@ -479,11 +583,16 @@ nav.tag-filter a:hover {
 .masthead:focus-visible {
   outline: none;
 }
-.masthead img {
+/* the wordmark is a single-color SVG rendered as a mask so the theme's --wm-ink
+   paints the silhouette (external <img> SVGs can't be recolored by page CSS).
+   wordmark.js sets --wm-src to the current design's url. */
+.masthead #masthead-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
   display: block;
+  background-color: var(--wm-ink, #1a1a1a);
+  -webkit-mask: var(--wm-src) center / contain no-repeat;
+  mask: var(--wm-src) center / contain no-repeat;
 }
 
 /* Below ~820px the content column stops being full-width, so the two-column hero
@@ -497,7 +606,7 @@ nav.tag-filter a:hover {
      shift it tight into the top-left to fill the width. Vars are set per-design by
      wordmark.js; the fallbacks are identity, so this is inert if they're ever unset.
      Desktop (>820px) never matches this rule, so its layout is untouched. */
-  .masthead img {
+  .masthead #masthead-img {
     transform-origin: top left;
     transform: scale(var(--wm-fill-s, 1)) translate(var(--wm-fill-x, 0), var(--wm-fill-y, 0));
   }

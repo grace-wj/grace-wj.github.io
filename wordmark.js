@@ -61,6 +61,10 @@
 
   const stage = document.getElementById('masthead');
   const img = document.getElementById('masthead-img');
+
+  // the mark is painted as a CSS mask (so the theme's --wm-ink colors it); swap
+  // the design by pointing --wm-src at its SVG rather than setting an <img> src.
+  function setSrc(src) { img.style.setProperty('--wm-src', 'url("' + src + '")'); }
   const disp = document.getElementById('wm-disp');
   const turb = document.getElementById('wm-turb');
   if (!stage || !img || !disp || !turb) return;
@@ -78,7 +82,7 @@
   }
 
   let cur = Math.floor(Math.random() * WORDMARKS.length);   // random design on load
-  img.src = WORDMARKS[cur];
+  setSrc(WORDMARKS[cur]);
   applyFill(cur);
 
   let animating = false;       // a morph or the load-tease currently owns the filter
@@ -137,7 +141,7 @@
       img.style.transition = 'opacity .18s ease';
       img.style.opacity = '0';
       setTimeout(() => {
-        img.src = WORDMARKS[to];
+        setSrc(WORDMARKS[to]);
         applyFill(to);
         img.style.opacity = '1';
         cur = to;
@@ -158,7 +162,7 @@
       turb.setAttribute('baseFrequency', (0.008 + peak * 0.02).toFixed(4));
 
       if (!swapped && p >= 0.5) {                    // swap under maximum distortion
-        img.src = WORDMARKS[to];
+        setSrc(WORDMARKS[to]);
         applyFill(to);
         swapped = true;
       }

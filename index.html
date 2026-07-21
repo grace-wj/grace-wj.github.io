@@ -25,6 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css" />
+<script src="/theme.js"></script>
 </head>
 <body>
 
@@ -60,7 +61,7 @@
       <button class="masthead" id="masthead" type="button"
               aria-label="Morph the grace juan wordmark"
               title="click to morph">
-        <img id="masthead-img" alt="" decoding="async" />
+        <span id="masthead-img" aria-hidden="true"></span>
       </button>
       <div class="hero-text">
         <p class="lead">
@@ -77,7 +78,10 @@
         </p>
       </div>
     </div>
-    <a class="wm-colophon" href="/design/wordmark.html">how'd i make this?</a>
+    <div class="wm-colophon-row">
+      <a class="wm-colophon" href="/design/wordmark.html">how'd i make this?</a>
+      <button class="theme-toggle" id="theme-toggle" type="button">prefer color?</button>
+    </div>
   </section>
 
   <div class="home-teasers">

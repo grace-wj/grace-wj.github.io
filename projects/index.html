@@ -63,11 +63,10 @@
     thumbLink.href = p.url || '#';
     thumbLink.setAttribute('aria-hidden', 'true');
     thumbLink.tabIndex = -1;
-    const img = document.createElement('img');
-    img.src = p.thumb || '';
-    img.alt = '';
-    img.loading = 'lazy';
-    thumbLink.appendChild(img);
+    const thumbFill = document.createElement('span');
+    thumbFill.className = 'thumb-fill';
+    if (p.thumb) thumbFill.style.setProperty('--thumb-src', 'url("' + p.thumb + '")');
+    thumbLink.appendChild(thumbFill);
     li.appendChild(thumbLink);
 
     const text = document.createElement('div');

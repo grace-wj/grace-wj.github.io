@@ -55,6 +55,11 @@
 <script src="../projects.js"></script>
 <script>
   const projectList = document.getElementById('project-list');
+  // the thumbs are painted as masks; their SVGs were recolored in place (same
+  // filenames), so browsers holding the pre-recolor copy under GitHub Pages'
+  // max-age=600 mask the full old white rect until it expires. Bump THUMB_VER
+  // whenever a thumb SVG changes to force a fresh fetch (new URL = cache miss).
+  const THUMB_VER = '2';
   for (const p of (window.PROJECTS || [])) {
     const li = document.createElement('li');
 
@@ -65,7 +70,10 @@
     thumbLink.tabIndex = -1;
     const thumbFill = document.createElement('span');
     thumbFill.className = 'thumb-fill';
-    if (p.thumb) thumbFill.style.setProperty('--thumb-src', 'url("' + p.thumb + '")');
+    if (p.thumb) {
+      const sep = p.thumb.indexOf('?') === -1 ? '?' : '&';
+      thumbFill.style.setProperty('--thumb-src', 'url("' + p.thumb + sep + 'v=' + THUMB_VER + '")');
+    }
     thumbLink.appendChild(thumbFill);
     li.appendChild(thumbLink);
 

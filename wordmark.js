@@ -65,6 +65,11 @@
   // the mark is painted as a CSS mask (so the theme's --wm-ink colors it); swap
   // the design by pointing --wm-src at its SVG rather than setting an <img> src.
   function setSrc(src) { img.style.setProperty('--wm-src', 'url("' + src + '")'); }
+  // the warp runs on the stage, not on img: CSS applies `filter` before `mask`,
+  // so filtering the masked span would only displace its flat --wm-ink fill and
+  // leave the (unwarped) mask shape crisp. Filtering the parent displaces the
+  // already-masked letterform instead. (.masthead has overflow:visible for this.)
+  function setWarp(on) { stage.style.filter = on ? 'url(#wm-warp)' : 'none'; }
   const disp = document.getElementById('wm-disp');
   const turb = document.getElementById('wm-turb');
   if (!stage || !img || !disp || !turb) return;
@@ -106,7 +111,7 @@
 
     if (!hovering && shimmerScale < 0.1) {         // settled back to crisp rest
       disp.setAttribute('scale', '0');
-      img.style.filter = 'none';
+      setWarp(false);
       shimmerScale = 0;
       shimmerRAF = 0;
       return;
@@ -116,7 +121,7 @@
     const crawl = 0.012 + 0.004 * Math.sin(now * 0.004);   // noise field drifts
     disp.setAttribute('scale', (shimmerScale * breathe).toFixed(2));
     turb.setAttribute('baseFrequency', crawl.toFixed(4));
-    img.style.filter = 'url(#wm-warp)';
+    setWarp(true);
     shimmerRAF = requestAnimationFrame(shimmerLoop);
   }
 
@@ -152,7 +157,7 @@
 
     const start = performance.now();
     let swapped = false;
-    img.style.filter = 'url(#wm-warp)';
+    setWarp(true);
 
     function frame(now) {
       let p = (now - start) / DURATION;
@@ -174,7 +179,7 @@
         cur = to;
         animating = false;
         if (hovering) { shimmerScale = 0; startShimmer(); }  // ease back into the hover shimmer
-        else img.style.filter = 'none';                      // crisp at rest
+        else setWarp(false);                                 // crisp at rest
       }
     }
     requestAnimationFrame(frame);
@@ -185,7 +190,7 @@
   function teaseOnce() {
     if (animating || hovering || reduce.matches) return;
     animating = true;
-    img.style.filter = 'url(#wm-warp)';
+    setWarp(true);
     turb.setAttribute('baseFrequency', '0.012');
     const start = performance.now();
     function step(now) {
@@ -198,7 +203,7 @@
         disp.setAttribute('scale', '0');
         animating = false;
         if (hovering) { shimmerScale = 0; startShimmer(); }
-        else img.style.filter = 'none';
+        else setWarp(false);
       }
     }
     requestAnimationFrame(step);

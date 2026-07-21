@@ -553,6 +553,8 @@ nav.tag-filter a:hover {
   text-decoration: none;
   cursor: pointer;
   text-align: right;
+  -webkit-user-select: none;
+  user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
 .theme-toggle:hover,

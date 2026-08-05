@@ -178,6 +178,9 @@ html { font-size: 17.75px; }
   text-decoration: none;
 }
 .footer-links a:hover {
+  /* opt out of the site-wide inverted-box link hover, else this is fg on fg */
+  background: none;
+  box-shadow: none;
   color: var(--fg);
   text-decoration: underline;
 }
@@ -532,6 +535,9 @@ nav.tag-filter a:hover {
 }
 .wm-colophon:hover,
 .wm-colophon:focus-visible {
+  /* opt out of the site-wide inverted-box link hover; match .theme-toggle */
+  background: none;
+  box-shadow: none;
   color: var(--fg);
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -635,7 +641,8 @@ nav.tag-filter a:hover {
   align-items: flex-start;
   gap: 0.35rem;
 }
-.home .links a { color: var(--fg); }
+/* :not(:hover) so this doesn't outrank a:hover's color and black out the text */
+.home .links a:not(:hover) { color: var(--fg); }
 .home .links .sep { display: none; }
 
 /* the two teasers sit side-by-side at the foot of the home page. */
@@ -680,7 +687,7 @@ nav.tag-filter a:hover {
   color: var(--fg);
   background: transparent;
   box-shadow: none;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 ul.home-list {

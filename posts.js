@@ -4,7 +4,7 @@
 // remove a post: delete its file and delete its entry.
 // edit a post: just edit the html file (and update title/date here if those changed).
 //
-// the latest 5 posts (by date) appear on the home page; all posts appear at /posts/.
+// the first 3 public posts in this array appear on the home page; all posts appear at /posts/.
 //
 // tags: array of strings. recognized: "essay" | "review" | "personal".
 // posts can be filtered by tag at /posts/?tag=essay etc.
@@ -22,6 +22,27 @@ window.POSTS = [
     date: "2026-06-26",
     summary: "On observation, ego, and art as connection rather than self-expression.",
     tags: ["essay"]
+  },
+  {
+    slug: "palm-trees",
+    title: "Palm Trees (and Bougainvillea)",
+    date: "2022-10-14",
+    summary: "On moving from Missouri to California.",
+    tags: ["personal"]
+  },
+  {
+    slug: "the-line-grows-blurrier",
+    title: "The Line Grows Blurrier",
+    date: "2023-12-31",
+    summary: "On art, logic, and growing up.",
+    tags: ["personal"]
+  },
+  {
+    slug: "on-pleasure",
+    title: "On Pleasure",
+    date: "2024-07-27",
+    summary: "From a journal entry on what gives life meaning.",
+    tags: ["personal"]
   },
   {
     slug: "the-circular-train-problem",
@@ -59,33 +80,12 @@ window.POSTS = [
     tags: ["essay"]
   },
   {
-    slug: "the-line-grows-blurrier",
-    title: "The Line Grows Blurrier",
-    date: "2023-12-31",
-    summary: "On art, logic, and growing up.",
-    tags: ["personal"]
-  },
-  {
-    slug: "on-pleasure",
-    title: "On Pleasure",
-    date: "2024-07-27",
-    summary: "From a journal entry on what gives life meaning.",
-    tags: ["personal"]
-  },
-  {
     slug: "cigarettes",
     title: "Cigarettes",
     date: "2022-10-14",
     summary: "A friend's father, lung cancer, and the smell that lingers.",
     tags: ["personal"],
     private: true
-  },
-  {
-    slug: "palm-trees",
-    title: "Palm Trees (and Bougainvillea)",
-    date: "2022-10-14",
-    summary: "On moving from Missouri to California.",
-    tags: ["personal"]
   },
   {
     slug: "on-inebriants",

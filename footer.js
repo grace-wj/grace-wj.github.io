@@ -14,7 +14,6 @@
           <a href="mailto:grayswan795@gmail.com">email</a>
           <a href="https://github.com/grace-wj" target="_blank" rel="noopener">github</a>
           <a href="https://www.linkedin.com/in/grace-juan/" target="_blank" rel="noopener">linkedin</a>
-          <a href="/resume.pdf" data-todo target="_blank" rel="noopener">résumé</a>
           <a href="https://github.com/grace-wj/grace-wj.github.io" target="_blank" rel="noopener">source</a>
         </nav>
       </div>`;

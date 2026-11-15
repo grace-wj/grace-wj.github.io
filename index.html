@@ -33,8 +33,8 @@
   <div class="site-header-inner">
     <nav class="site-nav" aria-label="primary">
       <a href="/" aria-current="page">Home</a>
-      <a href="/projects/">Projects</a>
       <a href="/posts/">Writing</a>
+      <a href="/projects/">Projects</a>
       <a href="/design/">Design</a>
       <a href="/reading/">Reading</a>
       <a href="/quotes/">Quotes</a>
@@ -65,7 +65,7 @@
       </button>
       <div class="hero-text">
         <p class="lead">
-          deployed engineer at <a href="https://cognition.com/" target="_blank" rel="noopener">cognition</a>, berkeley cs + cogsci '25.<br>reading, writing, designing on the side.<br>figuring out what's next.
+          i draw faces, plants and machines, and read and write about art, consciousness and growing up.<br>berkeley cs + cogsci '25. by day, deployed engineer at <a href="https://cognition.com/" target="_blank" rel="noopener">cognition</a>.
         </p>
         <p class="links">
           <a href="mailto:grayswan795@gmail.com">email</a>
@@ -73,8 +73,6 @@
           <a href="https://github.com/grace-wj" target="_blank" rel="noopener">github</a>
           <span class="sep" aria-hidden="true">·</span>
           <a href="https://www.linkedin.com/in/grace-juan/" target="_blank" rel="noopener">linkedin</a>
-          <span class="sep" aria-hidden="true">·</span>
-          <a href="/resume.pdf" data-todo target="_blank" rel="noopener">résumé</a>
         </p>
       </div>
     </div>
@@ -87,22 +85,22 @@
   <div class="home-teasers">
     <section class="home-teaser">
       <div class="home-teaser-head">
+        <h2 class="home-label">selected writing</h2>
+      </div>
+      <ul class="home-list" id="post-list">
+        <!-- rendered from posts.js: first 3 non-private posts -->
+      </ul>
+      <a class="home-all" href="/posts/">all writing →</a>
+    </section>
+
+    <section class="home-teaser">
+      <div class="home-teaser-head">
         <h2 class="home-label">recent projects</h2>
       </div>
       <ul class="home-list" id="project-list">
         <!-- rendered from projects.js -->
       </ul>
       <a class="home-all" href="/projects/">all projects →</a>
-    </section>
-
-    <section class="home-teaser">
-      <div class="home-teaser-head">
-        <h2 class="home-label">recent writing</h2>
-      </div>
-      <ul class="home-list" id="post-list">
-        <!-- rendered from posts.js: 3 most recent non-private posts -->
-      </ul>
-      <a class="home-all" href="/posts/">all writing →</a>
     </section>
   </div>
 
@@ -127,11 +125,9 @@
     projectList.appendChild(li);
   }
 
-  // writing — 3 most recent public posts, by date descending
+  // writing — first 3 public posts, in posts.js order
   const recentPosts = (window.POSTS || [])
     .filter(p => !p.private)
-    .slice()
-    .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
     .slice(0, 3);
 
   const postList = document.getElementById('post-list');

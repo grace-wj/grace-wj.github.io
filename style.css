@@ -255,9 +255,6 @@ a:hover {
   text-decoration: none;
   box-shadow: 0.15em 0 0 var(--fg), -0.15em 0 0 var(--fg);
 }
-/* unfinished links: hidden until wired up. remove the attribute to publish. */
-a[data-todo] { display: none; }
-
 .bio,
 .reading-intro,
 .writing-intro,

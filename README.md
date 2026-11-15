@@ -17,7 +17,6 @@ python3 -m http.server 8000
 ## Editing content
 
 - **Bio / tagline / nav links** — edit `index.html` (look for `TODO` comments).
-- **Resume** — replace `resume.pdf` in the repo root.
 - **Projects** — edit the `PROJECTS` array in `projects.js`. Renders on the home page.
 - **Writing** — see below.
 

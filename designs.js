@@ -20,15 +20,6 @@ window.DESIGNS = [
     tags: ["illustration"]
   },
   {
-    slug: "wordmark",
-    title: "The Wordmark",
-    year: "2026",
-    client: "Personal work",
-    summary: "Eight hand-lettered versions of my name that the home page morphs between.",
-    thumb: "img/wordmark-thumb.jpg",
-    tags: ["typography", "illustration"]
-  },
-  {
     slug: "codeology-merch",
     title: "Codeology Merch",
     year: "2022",

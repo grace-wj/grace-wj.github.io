@@ -619,6 +619,33 @@ nav.tag-filter a:hover {
     transform-origin: top left;
     transform: scale(var(--wm-fill-s, 1)) translate(var(--wm-fill-x, 0), var(--wm-fill-y, 0));
   }
+  /* The art sits flush with the box edges here, so the morph warp (up to ~45px of
+     displacement) would push pixels outside the filtered box, where WebKit never
+     invalidates them (webkit.org/b/237538) and stale fragments linger. Give the
+     filter empty bleed inside the box, cancelled by an equal negative margin so the
+     layout is unchanged. The aspect ratio moves to the art itself: WebKit sizes a
+     padded aspect-ratio flex item wrong. The bleed overlaps the nav and bio, so it
+     ignores taps; ::before restores the original hit area. */
+  .masthead {
+    --wm-bleed: 48px;
+    box-sizing: content-box;
+    aspect-ratio: auto;
+    padding: var(--wm-bleed);
+    margin: calc(-1 * var(--wm-bleed));
+    position: relative;
+    pointer-events: none;
+  }
+  .masthead::before {
+    content: "";
+    position: absolute;
+    inset: var(--wm-bleed);
+    pointer-events: auto;
+  }
+  .masthead #masthead-img {
+    height: auto;
+    aspect-ratio: 1795 / 1311;
+    pointer-events: auto;
+  }
 }
 .home .lead {
   font-family: var(--serif);
